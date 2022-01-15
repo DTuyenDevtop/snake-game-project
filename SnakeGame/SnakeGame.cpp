@@ -19,6 +19,8 @@ int main() {
     fixConsoleWindow();
     changeConsoleColor(WHITE);   
     
+    thread sound_track(playSoundLoop, L"resources/backgroundmusic.wav");
+
     drawBoard();
     
     scanf_s("%*c");
