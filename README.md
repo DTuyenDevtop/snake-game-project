@@ -1,5 +1,5 @@
 # CSC10002-project
-Phan Thanh An
-Võ Nguyễn Hoàng Kim
-Nguyễn Nhật Nam
-Lưu Hoàng Bách
+Phan Thanh An \n
+Võ Nguyễn Hoàng Kim \n
+Nguyễn Nhật Nam \n
+Lưu Hoàng Bách \n
