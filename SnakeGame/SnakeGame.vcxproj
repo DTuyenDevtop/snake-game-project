@@ -139,7 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gameSound.cpp" />
     <ClCompile Include="SnakeGame.cpp" />
+    <ClCompile Include="theme.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gameSound.h" />
+    <ClInclude Include="theme.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\sound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
