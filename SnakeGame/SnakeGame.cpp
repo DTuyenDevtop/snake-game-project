@@ -22,7 +22,7 @@ int main() {
     thread sound_track(playSoundLoop, L"resources/backgroundmusic.wav");
 
     drawBoard();
-    
     scanf_s("%*c");
+    sound_track.detach();
     return 0;
 }
