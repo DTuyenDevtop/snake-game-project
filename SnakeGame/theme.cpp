@@ -51,23 +51,13 @@ void textColor(int colorCode) {
     SetConsoleTextAttribute(hStdOut, wColor);
 }
 
-void drawBoard() {
-    system("cls");
-    textColor(GREEN);
-    
-    for (int i = 3; i <= 141; ++i) {
-        gotoXY(i, 1);
-        printf("%c", 219);
-
-        gotoXY(i, 37);
-        printf("%c", 219);
-    }
-
-    for (int i = 2; i <= 37; ++i) {
-        gotoXY(3, i);
-        printf("%c%c", 219, 219);
-
-        gotoXY(140, i);
-        printf("%c%c", 219, 219);
-    }
+void removeScrollbar() {
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    GetConsoleScreenBufferInfo(handle, &info);
+    COORD new_size = {
+        info.srWindow.Right - info.srWindow.Left + 1,
+        info.srWindow.Bottom - info.srWindow.Top + 1
+    };
+    SetConsoleScreenBufferSize(handle, new_size);
 }

@@ -4,3 +4,5 @@
 void playSound(LPCWSTR path);
 
 void playSoundLoop(LPCWSTR path);
+
+void turnOffSound();

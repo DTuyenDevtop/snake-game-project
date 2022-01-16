@@ -7,12 +7,12 @@
 
 void playSound(LPCWSTR path){
     PlaySound(path, NULL, SND_SYNC);
-    //PlaySound(path, NULL, SND_FILENAME); 
 }
 
 void playSoundLoop(LPCWSTR path) {
-    while (true) {
-        playSound(path);
-        //PlaySound(path, NULL, SND_LOOP | SND_ASYNC);
-    }
+    PlaySound(path, NULL, SND_LOOP | SND_ASYNC);
+}
+
+void turnOffSound() {
+    PlaySound(NULL, NULL, NULL);
 }

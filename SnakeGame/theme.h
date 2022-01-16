@@ -16,7 +16,7 @@
 #define WIDTH 1080
 #define HEIGHT 680
 
-const int BACKGROUND_COLOR = GRAY;
+const int BACKGROUND_COLOR = WHITE;
 
 // Change the console color
 void changeConsoleColor(int BackC);
@@ -33,5 +33,5 @@ void textColor(int n);
 // Move the cursor pointer the location (x, y)
 void gotoXY(short x, short y);
 
-// Draw border of the board
-void drawBoard();
+// Remove scrolllbar
+void removeScrollbar();
