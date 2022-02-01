@@ -1,54 +1,70 @@
 #pragma once
-#include "theme.h"
+#include "graphic.h"
+
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
+// Define console
+#define WIDTH 1284
+#define HEIGHT 760
+extern string colorXY[205][85];
+
 struct Screen {
+
     void clear() {
         system("cls");
     }
+    
+    Screen() {
+        for (int i = 0; i < 150; ++i) {
+            for (int j = 0; j < 55; ++j) {
+                colorXY[i][j] = "GRAY";
+            }
+        }
+    }
 
     struct Draw {
-        #define x first
-        #define y second
-
         #define width first
         #define height second
-
-        void retangle(const pair<int, int> topLeft, const pair<int, int> dimension, int color, int thickness) {
+        void retangle(const pair<int, int> topLeft, const pair<int, int> dimension, int color, int thickness, string colorXY[205][85]) {
             textColor(color);
-            for (int i = topLeft.x; i <= topLeft.x + (dimension.width * 2); ++i) {
+            for (int i = topLeft.first; i <= topLeft.first + (dimension.width * 2); ++i) {
                 if (thickness == 2) {
-                    gotoXY(i, topLeft.y);
+                    gotoXY(i, topLeft.second);
                     printf("%c", 219);
 
-                    gotoXY(i, topLeft.y + dimension.height);
+                    gotoXY(i, topLeft.second + dimension.height);
                     printf("%c", 219);
                 }
                 else if (thickness == 1) {
-                    gotoXY(i, topLeft.y);
+                    gotoXY(i, topLeft.second);
+                    colorXY[i][topLeft.second] = "DANGER";
                     printf("%c", 220);
 
-                    gotoXY(i, topLeft.y + dimension.height);
+                    gotoXY(i, topLeft.second + dimension.height);
+                    colorXY[i][topLeft.second + dimension.height] = "DANGER";
                     printf("%c", 223);
                 }
             }
 
-            for (int i = topLeft.y; i <= topLeft.y + dimension.height; ++i) {
+            for (int i = topLeft.second; i <= topLeft.second + dimension.height; ++i) {
                 if (thickness == 2) {
-                    gotoXY(topLeft.x, i);
+                    gotoXY(topLeft.first, i);
                     printf("%c%c", 219, 219);
 
-                    gotoXY(topLeft.x + (dimension.width * 2), i);
+                    gotoXY(topLeft.first + (dimension.width * 2), i);
                     printf("%c%c", 219, 219);
                 }
                 else if (thickness == 1) {
-                    if (i != topLeft.y && i != topLeft.y + dimension.height) {
-                        gotoXY(topLeft.x, i);
+                    if (i != topLeft.second && i != topLeft.second + dimension.height) {
+                        gotoXY(topLeft.first, i);
+                        colorXY[topLeft.first][i] = "DANGER";
                         printf("%c", 219);
 
-                        gotoXY(topLeft.x + (dimension.width * 2), i);
+                        gotoXY(topLeft.first + (dimension.width * 2), i);
+                        colorXY[topLeft.first + (dimension.width * 2)][i] = "DANGER";
                         printf("%c", 219);
                     }
                 }
@@ -56,4 +72,12 @@ struct Screen {
         }
 
     } draw;
+
+    void resetScreenColor(string colorXY[205][85]) {
+        for (int i = 0; i < 200; ++i) {
+            for (int j = 0; j < 85; ++j) {
+                colorXY[i][j] = "SAFE";
+            }
+        }
+    }
 };

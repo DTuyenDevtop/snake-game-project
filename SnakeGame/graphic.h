@@ -1,6 +1,7 @@
 #pragma once
-#include <windows.h>          
-#include <stdio.h>     
+#include <Windows.h>
+#include <conio.h>
+#include <iostream>
 
 // Define color
 #define BLACK 0
@@ -12,11 +13,7 @@
 #define GRAY 7
 #define WHITE 15
 
-// Define console
-#define WIDTH 1080
-#define HEIGHT 680
-
-const int BACKGROUND_COLOR = WHITE;
+const int BACKGROUND_COLOR = GRAY;
 
 // Change the console color
 void changeConsoleColor(int BackC);
@@ -35,3 +32,13 @@ void gotoXY(short x, short y);
 
 // Remove scrolllbar
 void removeScrollbar();
+
+void hideCursor();
+
+void colorText(std::string Text, int Color);
+
+void colorText(char Text, int Color);
+
+void snakeLogoRight();
+
+void snakeLogoLeft();

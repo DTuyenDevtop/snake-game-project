@@ -1,12 +1,8 @@
 #pragma once
-#pragma comment(lib, "winmm.lib")
-#include <windows.h> 
-#include <iostream>
-#include <mmsystem.h>
 #include "gameSound.h"
 
 void playSound(LPCWSTR path){
-    PlaySound(path, NULL, SND_SYNC);
+    PlaySound(path, NULL, SND_ASYNC);
 }
 
 void playSoundLoop(LPCWSTR path) {

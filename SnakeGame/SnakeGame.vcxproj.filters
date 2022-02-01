@@ -15,18 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SnakeGame.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="theme.cpp">
+    <ClCompile Include="graphic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="snake.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="theme.h">
+    <ClInclude Include="graphic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameSound.h">
@@ -35,9 +41,18 @@
     <ClInclude Include="screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="resources\sound.wav">
+    <Media Include="resources\backgroundmusic.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="resources\eatfood.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
