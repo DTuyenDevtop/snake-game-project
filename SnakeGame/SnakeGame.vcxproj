@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gameSound.cpp" />
+    <ClCompile Include="level.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graphic.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameSound.h" />
+    <ClInclude Include="level.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="graphic.h" />

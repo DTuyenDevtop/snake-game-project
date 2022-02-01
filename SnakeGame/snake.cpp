@@ -3,6 +3,7 @@
 #include "snake.h"
 #include "graphic.h"
 #include "gameSound.h"
+#include "level.h"
 
 #include <fstream>
 #include <conio.h>
