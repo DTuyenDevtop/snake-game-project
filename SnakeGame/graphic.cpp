@@ -47,6 +47,15 @@ void textColor(int colorCode) {
     SetConsoleTextAttribute(hStdOut, wColor);
 }
 
+void textFillColor(int colorCode, int BackC) {
+    //int BackC = BACKGROUND_COLOR;
+    int ForgC = colorCode;
+    WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    SetConsoleTextAttribute(hStdOut, wColor);
+}
+
 void removeScrollbar() {
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO info;
@@ -67,15 +76,15 @@ void hideCursor() {
 }
 
 void colorText(std::string Text, int Color) {
-    textColor(RED);
+    textColor(BYELLOW);
     std::cout << Text;
-    textColor(RED);
+    textColor(BYELLOW);
 }
 
 void colorText(char Text, int Color) {
-    textColor(RED);
+    textColor(BYELLOW);
     std::cout << Text;
-    textColor(RED);
+    textColor(BYELLOW);
 }
 
 

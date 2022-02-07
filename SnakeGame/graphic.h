@@ -27,6 +27,9 @@ void resizeConsole(int width, int height);
 // Change the text color
 void textColor(int n);
 
+// Change the text color with padding 
+void textFillColor(int colorCode, int BackC);
+
 // Move the cursor pointer the location (x, y)
 void gotoXY(short x, short y);
 
