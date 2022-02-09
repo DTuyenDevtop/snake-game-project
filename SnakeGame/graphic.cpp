@@ -76,17 +76,16 @@ void hideCursor() {
 }
 
 void colorText(std::string Text, int Color) {
-    textColor(BYELLOW);
+    textColor(Color);
     std::cout << Text;
-    textColor(BYELLOW);
+    textColor(Color);
 }
 
 void colorText(char Text, int Color) {
-    textColor(BYELLOW);
+    textColor(Color);
     std::cout << Text;
-    textColor(BYELLOW);
+    textColor(Color);
 }
-
 
 void snakeLogoRight() {
     int line = 2;

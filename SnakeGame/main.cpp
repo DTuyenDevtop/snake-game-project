@@ -3,12 +3,14 @@
 
 // Standard library
 #include <thread>
+#include <map>
 #include <string>
 #include <conio.h>
 #include <iostream>
 #include <windows.h>  
 #include <mmsystem.h>
 #include <winuser.h>
+#include <future>
 
 // Custom library
 #include "graphic.h"
@@ -22,6 +24,8 @@ using namespace std;
 Screen screen;
 vector<Menu> listMenu;
 bool stopShow = false;
+Status Sound;
+map<int, pair<int, string>> color;
 
 void setup() {
     resizeConsole(WIDTH, HEIGHT);
@@ -30,7 +34,13 @@ void setup() {
     hideCursor();
     changeConsoleColor(BACKGROUND_COLOR);
 
-    //playSoundLoop(L"resources/backgroundmusic.wav");
+    color[0] = { 0, "BLACK" };
+    color[1] = { 1, "BLUE" };
+    color[2] = { 2, "GREEN" };
+    color[3] = { 3, "CYAN" };
+    color[4] = { 4, "RED" };
+    color[5] = { 5, "VIOLET" };
+    color[6] = { 6, "BROWN YELLOW" };
 
     screen.clear();
     screen.resetScreenColor(colorXY);
@@ -50,13 +60,18 @@ void showLogo() {
 }
 
 void mainMenu() {
-    initMenu(listMenu);
+    playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+    thread logo(showLogo);
+    HANDLE logo_handle = logo.native_handle();
 
+    stopShow = true;
+    initMenu(listMenu);
     int dir = 0;
     bool checkChoose = false;
+    snakeColor = RED;
 
-    thread logo(showLogo);
-    HANDLE t1 = logo.native_handle();
+    map<int, pair<int, string>>::iterator it;
+    it = color.begin();
 
     while (true) {
         textColor(BLUE);
@@ -71,19 +86,102 @@ void mainMenu() {
 
         if (checkChoose == true) {
             checkChoose = false;
-            if (dir == 5) {
-                exit(0);
-            }
-            else if (dir == 0) {
-                SuspendThread(t1);
+            if (dir == 0) {
+                //SuspendThread(logo_handle);
+                stopShow = true;
+                Sleep(510);
                 system("cls");
-
                 playGame();
+                
+                Sleep(100);
                 setup();
-                ResumeThread(t1);
+                stopShow = false;
+                //ResumeThread(logo_handle);
             }
             else if (dir == 1) {
-                ResumeThread(t1);
+                stopShow = true;
+            }
+            else if (dir == 2) {
+                //pass
+            }
+            else if (dir == 4) {
+                SuspendThread(logo_handle);
+                setting();
+                gotoXY(60, 23);
+                cout << "Press ESC to exit and press enter to change value";
+                ResumeThread(logo_handle);
+
+                int choice = 0;
+                bool check = false;
+
+                while (true) {
+                    vector<Menu> listSetting;
+                    Menu items;
+
+                    items.x = 85;
+                    items.y = 25;
+
+                    if (Sound == Status::OFF) {
+                        items.data = "MUSIC: OFF";
+                    }
+                    else {
+                        items.data = "MUSIC: ON";
+                    }
+                    listSetting.push_back(items);
+
+                    items.x = 85;
+                    items.y = 27;
+                    items.data = "SNAKE COLOR: ";
+                    items.data += color[snakeColor].second + "          ";
+                    listSetting.push_back(items);
+
+                    textFillColor(WHITE, BLUE);
+
+                    printMenu(listSetting);
+
+                    textFillColor(RED, BLUE);
+                    gotoXY(listSetting[choice].x - 3, listSetting[choice].y);
+                    cout << (char)175 << " " << listSetting[choice].data << " ";
+                    textFillColor(WHITE, BLUE);
+
+                    moveSelectSetting(listSetting, choice, check);
+                    
+                    if (choice == -1) {
+                        break;
+                    }
+
+                    if (check == true) {
+                        check = false;
+               
+                        if (choice == 0) {
+                            if (Sound == Status::ON) {
+                                turnOffSound();
+                                listSetting[choice].data = "MUSIC: OFF";
+                                Sound = Status::OFF;
+                            }
+                            else {
+                                playSoundLoop(L"resources/backgroundmusic.wav");
+                                listSetting[choice].data = "MUSIC: ON";
+                                Sound = Status::ON;
+
+                            }
+                        } 
+                        else if (choice == 1) {
+                            if (it != --color.end()) {
+                                it++;
+                            }
+                            else {
+                                it = color.begin();
+                            }
+                            snakeColor = it->second.first;
+                            listSetting[choice].data = "SNAKE COLOR: " + it->second.second + "           ";
+                        }
+                    }
+                }
+                setup();
+            }
+            else if (dir == 6) {
+                exit(0);
             }
         }
     }
@@ -92,6 +190,5 @@ void mainMenu() {
 int main() {
     setup();
     mainMenu();
-
     return 0;
 }

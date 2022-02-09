@@ -10,6 +10,7 @@ using namespace std;
 #define WIDTH 1284
 #define HEIGHT 760
 extern string colorXY[205][85];
+extern short snakeColor;
 
 struct Screen {
 

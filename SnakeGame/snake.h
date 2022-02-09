@@ -5,7 +5,7 @@
 
 using namespace std;
 
-enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY};
+enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF};
 
 struct Infomation {
 	string data;

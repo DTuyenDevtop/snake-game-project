@@ -5,8 +5,9 @@
 
 // Define color
 #define BLACK 0
+#define BLUE 1
 #define GREEN 2
-#define BLUE 3
+#define CYAN 3
 #define RED 4
 #define VIOLET 5
 #define BYELLOW 6

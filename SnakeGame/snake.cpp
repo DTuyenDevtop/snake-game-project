@@ -9,39 +9,39 @@
 #include <conio.h>
 #include <time.h>
 
-#define WidthGame      120
-#define HeightGame     40
+#define WidthGame      130
+#define HeightGame     35
 #define SPEEDFIRST     50
 #define SPEEDLATER	   30
 
 std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85];
-Screen gameDisplay;
+short snakeColor;
 
 void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bool& endGame, int score) {
 	Infomation Body;
 	endGame = false;
 
-	gotoXY(132, 2);  
-	colorText("Score: ", 10); 
+	gotoXY(152, 5);  
+	colorText("Score: ", RED); 
 	cout << score;
-	int pos = 8;
+	int pos = 15;
 
 	for (int i = 0; i < 8; i++) {
 		Body.data = studentIds[i];
-		Body.x = pos; Body.y = 0;
+		Body.x = pos; Body.y = 6;
 		Snake.push_back(Body);
 		pos--;
 	}
 
 	// Make first food
 	srand((unsigned int)time(0));
-	Food.x = 1 + rand() % (WidthGame - 2);
-	Food.y = 1 + rand() % (HeightGame - 2);
+	Food.x = 5 + rand() % (WidthGame - 2);
+	Food.y = 5 + rand() % (HeightGame - 2);
 
 	gotoXY(Food.x, Food.y);
-	colorText(studentIds[position], Food.x);
+	colorText(studentIds[position], snakeColor);
 
 	// Init direction
 	Derection.x = 1; 
@@ -71,21 +71,22 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		}
 
 		// Pass the width and height
-		if (Snake[i].x >= WidthGame) {
-			Snake[i].x = 0;
-		}
+		//if (Snake[i].x >= WidthGame) {
+		//	Snake[i].x = 0;
+		//}
 
-		if (Snake[i].x < 0) {
-			Snake[i].x = WidthGame - 1;
-		}
-		if (Snake[i].y >= HeightGame) { 
-			Snake[i].y = 0; 
-		}
-		if (Snake[i].y < 0) {
-			Snake[i].y = HeightGame - 1;
-		}
+		//if (Snake[i].x < 0) {
+		//	Snake[i].x = WidthGame - 1;
+		//}
+		//if (Snake[i].y >= HeightGame) { 
+		//	Snake[i].y = 0; 
+		//}
+		//if (Snake[i].y < 0) {
+		//	Snake[i].y = HeightGame - 1;
+		//}
 
 		if (colorXY[Snake[0].x][Snake[0].y] != "SAFE") {
+			position = 8;
 			endGame = true;
 		}
 
@@ -111,19 +112,19 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		Snake.push_back(Add);
 
 		score++;  
-		gotoXY(132, 2); 
-		colorText("Score: ", 10); 
+		gotoXY(152, 5); 
+		colorText("Score: ", RED); 
 		cout << score;
 
 		//playSound(L"resources/eatfood.wav");
 
 		// Creat new food
 		srand((unsigned int)time(0));
-		Food.x = 1 + rand() % (WidthGame - 1);
-		Food.y = 1 + rand() % (HeightGame - 1);
+		Food.x = 5 + rand() % (WidthGame - 1);
+		Food.y = 5 + rand() % (HeightGame - 1);
 
 		gotoXY(Food.x, Food.y);
-		colorText(studentIds[position], Food.x);
+		colorText(studentIds[position], snakeColor);
 	}
 }
 
@@ -220,6 +221,8 @@ void mainLoop (
 }
 
 void playGame() {
+	system("cls");
+
 	vector<Infomation> Snake;
 	Infomation Derection, Food;
 	Status StatusMove, StatusGame;
@@ -227,8 +230,8 @@ void playGame() {
 	int Speed = SPEEDFIRST, score = 0;
 	bool endGame = false;
 
-	gameDisplay.resetScreenColor(colorXY);
-	gameDisplay.draw.retangle({ 119, 0 }, { 0, 44 }, GREEN, 1, colorXY);
+	initLevel();
+	level[0]();
 
 	init(Snake, Food, Derection, endGame, score);
 	while (!endGame) {
