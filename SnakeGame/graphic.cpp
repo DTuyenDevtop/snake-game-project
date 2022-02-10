@@ -140,3 +140,32 @@ void snakeLogoLeft() {
     gotoXY(col, line++);
     std::cout << "     \\/__/         \\/__/         \\/__/         \\/__/         \\/__/                ";
 }
+
+void showLogo() {
+    textColor(RED);
+    int line = 2;
+    int col = 55;
+    gotoXY(col, line++);
+    wcout << L"  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░░▌      ▐░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌░▌     ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌ ▐░▌ ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░▌          ▐░▌▐░▌    ▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌ ▐░▌   ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌░▌   ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░▌    ▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▀▀▀▀▀▀▀▀▀█░▌▐░▌   ▐░▌ ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
+    wcout << L"           ▐░▌▐░▌    ▐░▌▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▄▄▄▄▄▄▄▄▄█░▌▐░▌     ▐░▐░▌▐░▌       ▐░▌▐░▌ ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░▌       ▐░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀         ▀  ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
+}

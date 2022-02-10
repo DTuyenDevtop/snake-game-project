@@ -2,6 +2,11 @@
 #include <Windows.h>
 #include <conio.h>
 #include <iostream>
+#include <io.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+using namespace std;
 
 // Define color
 #define BLACK 0
@@ -46,3 +51,5 @@ void colorText(char Text, int Color);
 void snakeLogoRight();
 
 void snakeLogoLeft();
+
+void showLogo();

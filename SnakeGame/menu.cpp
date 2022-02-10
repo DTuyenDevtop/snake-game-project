@@ -222,7 +222,6 @@ void ourTeam() {
 			cout << " ";
 		}
 	}
-	
 
 	textFillColor(WHITE, 64);
 	for (int i = 40; i <= 140; ++i) {
@@ -231,7 +230,6 @@ void ourTeam() {
 		gotoXY(i, 40);
 		cout << (char)(205);
 	}
-
 
 	//Our team border
 	for (int i = 15; i <= 40; ++i) {

@@ -52,35 +52,6 @@ void setup() {
     screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
 }
 
-void showLogo() {
-    textColor(RED);
-    int line = 2;
-    int col = 55;
-    gotoXY(col, line++);
-    wcout << L"  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄   " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░░░░░░░░░░░▌▐░░▌      ▐░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌░▌     ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌ ▐░▌ ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░▌          ▐░▌▐░▌    ▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌ ▐░▌   ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌░▌   ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░▌    ▐░░░░░░░░░░░▌  " << endl;
-    gotoXY(col, line++);
-    wcout << L"  ▀▀▀▀▀▀▀▀▀█░▌▐░▌   ▐░▌ ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
-    gotoXY(col, line++);
-    wcout << L"           ▐░▌▐░▌    ▐░▌▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
-    gotoXY(col, line++);
-    wcout << L"  ▄▄▄▄▄▄▄▄▄█░▌▐░▌     ▐░▐░▌▐░▌       ▐░▌▐░▌ ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
-    gotoXY(col, line++);
-    wcout << L" ▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░▌       ▐░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
-    gotoXY(col, line++);
-    wcout << L"  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀         ▀  ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀   " << endl;
-    gotoXY(col, line++);
-}
-
 void mainMenu() {
     playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
     initMenu(listMenu);
@@ -204,17 +175,16 @@ void mainMenu() {
                 }
             }
             else if (dir == 5) {    
-                    ourTeam();
+                ourTeam();
 
-                    while (true) {
-                        if (_kbhit()) {
-                            int key = _getch();
-                            if (key == 27) {
-                                break;
-                            }
+                while (true) {
+                    if (_kbhit()) {
+                        int key = _getch();
+                        if (key == 27) {
+                            break;
                         }
                     }
-                    setup();
+                }
             }
             else if (dir == 6) {
                 exit(0);
