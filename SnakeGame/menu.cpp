@@ -214,7 +214,7 @@ void setting() {
 	gotoXY(col, row++);
 }
 
-void ourteam() {
+void ourTeam() {
 	textFillColor(RED, 64);
 	for (int i = 40; i <= 140; ++i) {
 		for (int j = 15; j <= 40; ++j) {

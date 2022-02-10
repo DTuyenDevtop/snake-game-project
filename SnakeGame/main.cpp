@@ -204,14 +204,14 @@ void mainMenu() {
                 }
             }
             else if (dir == 5) {    
-                    SuspendThread(logo_handle);
-                    ourteam();
-                    ResumeThread(logo_handle);
+                    ourTeam();
 
                     while (true) {
                         if (_kbhit()) {
                             int key = _getch();
-                            if (key == 27) break;
+                            if (key == 27) {
+                                break;
+                            }
                         }
                     }
                     setup();

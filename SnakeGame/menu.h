@@ -19,4 +19,4 @@ void printMenu(vector<Menu> listMenu);
 void moveSelect(vector<Menu> listMenu, int& dir, bool& check);
 void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
 void setting();
-void ourteam();
+void ourTeam();
