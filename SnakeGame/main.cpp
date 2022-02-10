@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #pragma comment(lib, "winmm.lib")
 
 // Standard library
@@ -11,6 +11,9 @@
 #include <mmsystem.h>
 #include <winuser.h>
 #include <future>
+#include <io.h>
+#include <fcntl.h>
+#include <stdio.h>
 #include <fstream>
 
 // Custom library
@@ -24,7 +27,6 @@ using namespace std;
 
 Screen screen;
 vector<Menu> listMenu;
-bool stopShow = false;
 Status Sound;
 map<int, pair<int, string>> color;
 
@@ -34,6 +36,9 @@ void setup() {
     fixConsoleWindow();
     hideCursor();
     changeConsoleColor(BACKGROUND_COLOR);
+
+    // Current OEM code page
+    setlocale(LC_CTYPE, ".OCP"); // ref: https://xoax.net/cpp/ref/cstd/incl/clocale/fn/setlocale/
 
     color[0] = { 0, "BLACK" };
     color[1] = { 1, "BLUE" };
@@ -45,19 +50,38 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
+    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
 
 void showLogo() {
-    while (!stopShow) {
-        Sleep(500);
-        textColor(VIOLET);
-        snakeLogoLeft();
-        Sleep(500);
-        textColor(BYELLOW);
-        snakeLogoRight();
-    }
+    textColor(RED);
+    int line = 2;
+    int col = 55;
+    gotoXY(col, line++);
+    wcout << L"  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░░▌      ▐░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌░▌     ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌ ▐░▌ ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░▌          ▐░▌▐░▌    ▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌ ▐░▌   ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌░▌   ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░▌    ▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▀▀▀▀▀▀▀▀▀█░▌▐░▌   ▐░▌ ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░█▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
+    wcout << L"           ▐░▌▐░▌    ▐░▌▐░▌▐░▌       ▐░▌▐░▌▐░▌  ▐░▌            " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▄▄▄▄▄▄▄▄▄█░▌▐░▌     ▐░▐░▌▐░▌       ▐░▌▐░▌ ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄   " << endl;
+    gotoXY(col, line++);
+    wcout << L" ▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░▌       ▐░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌  " << endl;
+    gotoXY(col, line++);
+    wcout << L"  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀         ▀  ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀   " << endl;
+    gotoXY(col, line++);
 }
 
 void mainMenu() {
@@ -74,7 +98,21 @@ void mainMenu() {
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
 
+    bool firstTime = true;
+
     while (true) {
+        if (!firstTime) {
+            for (int i = 40; i >= 15; --i) {
+                gotoXY(5, i);
+                textFillColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
+                cout << "                                                                                                                                         ";
+                Sleep(10);
+            }
+        }
+        firstTime = false;
+
+        screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
+        showLogo();
         textColor(BLUE);
         printMenu(listMenu);
 
@@ -88,20 +126,16 @@ void mainMenu() {
         if (checkChoose == true) {
             checkChoose = false;
             if (dir == 0) {
-                //SuspendThread(logo_handle);
-                stopShow = true;
-                Sleep(510);
                 system("cls");
                 playGame(saveScore);
                 
-                Sleep(100);
                 setup();
                 stopShow = false;
                 //ResumeThread(logo_handle);
 
             }
             else if (dir == 1) {
-                stopShow = true;
+                // pass
             }
             else if (dir == 2) {
                 //pass
@@ -112,11 +146,9 @@ void mainMenu() {
                 highScore(saveScore);
             }
             else if (dir == 4) {
-                SuspendThread(logo_handle);
                 setting();
                 gotoXY(60, 23);
                 cout << "Press ESC to exit and press enter to change value";
-                ResumeThread(logo_handle);
 
                 int choice = 0;
                 bool check = false;
@@ -185,7 +217,19 @@ void mainMenu() {
                         }
                     }
                 }
-                setup();
+            }
+            else if (dir == 5) {    
+                    ourTeam();
+
+                    while (true) {
+                        if (_kbhit()) {
+                            int key = _getch();
+                            if (key == 27) {
+                                break;
+                            }
+                        }
+                    }
+                    setup();
             }
             else if (dir == 6) {
                 exit(0);
