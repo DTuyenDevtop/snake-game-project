@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "menu.h"
 
 using namespace std;
@@ -152,12 +152,11 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check) {
 }
 
 void setting() {
-	textFillColor(RED, 65);
-	for (int i = 40; i <= 140; ++i) {
-		for (int j = 15; j <= 40; ++j) {
-			gotoXY(i, j);
-			cout << " ";
-		}
+	textFillColor(BLUE, BLUE);
+	for (int j = 15; j <= 40; ++j) {
+		gotoXY(40, j);
+		cout << "                                                                                                     ";
+		Sleep(8);
 	}
 
 	textFillColor(WHITE, 65);
@@ -187,16 +186,30 @@ void setting() {
 	gotoXY(140, 40);
 	cout << (char)(188);
 
-	int row = 16, col = 70;
+	int row = 16, col = 60;
+	//gotoXY(col, row++);
+	//cout << "  ____  _____ _____ _____ ___ _   _  ____  ";
+	//gotoXY(col, row++);
+	//cout << " / ___|| ____|_   _|_   _|_ _| \\ | |/ ___| ";
+	//gotoXY(col, row++);
+	//cout << " \\___ \\|  _|   | |   | |  | ||  \\| | |  _  ";
+	//gotoXY(col, row++);
+	//cout << "  ___) | |___  | |   | |  | || |\\  | |_| | ";
+	//gotoXY(col, row++);
+	//cout << " |____/|_____| |_|   |_| |___|_| \\_|\\____| ";
+	//gotoXY(col, row++);
+	textFillColor(BYELLOW, BLUE);
 	gotoXY(col, row++);
-	cout << "  ____  _____ _____ _____ ___ _   _  ____  ";
+	wcout << L"	███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ";
 	gotoXY(col, row++);
-	cout << " / ___|| ____|_   _|_   _|_ _| \\ | |/ ___| ";
+	wcout << L"	██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ";
 	gotoXY(col, row++);
-	cout << " \\___ \\|  _|   | |   | |  | ||  \\| | |  _  ";
+	wcout << L"	███████╗█████╗     ██║      ██║   ██║██╔██╗ ██║██║  ███╗";
 	gotoXY(col, row++);
-	cout << "  ___) | |___  | |   | |  | || |\\  | |_| | ";
+	wcout << L"	╚════██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║";
 	gotoXY(col, row++);
-	cout << " |____/|_____| |_|   |_| |___|_| \\_|\\____| ";
+	wcout << L"	███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝";
+	gotoXY(col, row++);
+	wcout << L"	╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝	";
 	gotoXY(col, row++);
 }
