@@ -26,4 +26,4 @@ void drawSnake(vector<Infomation>&);
 
 void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, int&, bool&, int&);
 
-void playGame();
+void playGame(vector <int> saveScore);

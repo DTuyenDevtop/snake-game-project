@@ -11,6 +11,7 @@
 #include <mmsystem.h>
 #include <winuser.h>
 #include <future>
+#include <fstream>
 
 // Custom library
 #include "graphic.h"
@@ -44,7 +45,7 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
-    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
+    screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
 
@@ -63,13 +64,13 @@ void mainMenu() {
     playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
     thread logo(showLogo);
     HANDLE logo_handle = logo.native_handle();
-
+    vector<int> saveScore = {0};
     stopShow = true;
     initMenu(listMenu);
     int dir = 0;
     bool checkChoose = false;
     snakeColor = RED;
-
+    loadFileScore(saveScore);
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
 
@@ -91,18 +92,24 @@ void mainMenu() {
                 stopShow = true;
                 Sleep(510);
                 system("cls");
-                playGame();
+                playGame(saveScore);
                 
                 Sleep(100);
                 setup();
                 stopShow = false;
                 //ResumeThread(logo_handle);
+
             }
             else if (dir == 1) {
                 stopShow = true;
             }
             else if (dir == 2) {
                 //pass
+                stopShow = true;
+                system("cls");
+                loadFileScore(saveScore);
+                gotoXY(60, 23);
+                highScore(saveScore);
             }
             else if (dir == 4) {
                 SuspendThread(logo_handle);

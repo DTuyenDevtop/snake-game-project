@@ -1,6 +1,6 @@
 #pragma once
 #include "menu.h"
-
+#include <fstream>
 using namespace std;
 
 void initMenu(vector<Menu>& listMenu) {
@@ -199,4 +199,34 @@ void setting() {
 	gotoXY(col, row++);
 	cout << " |____/|_____| |_|   |_| |___|_| \\_|\\____| ";
 	gotoXY(col, row++);
+}
+void swap(int& a, int& b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+void loadFileScore(vector<int> saveScore) {
+	ifstream filein;
+	filein.open("saveScore.txt", ios::in);
+	if (filein.fail() == true) {
+		cout << "File cannot be found";
+	}
+	else {
+		while (filein.eof() == false) {
+			int x;
+			filein >> x;
+			saveScore.push_back(x);
+		}
+	}
+}
+void highScore(vector<int> saveScore) {
+	for (int i = 0; i < saveScore.size(); i++) {
+		for (int j = i ; j < saveScore.size(); j++) {
+			if (saveScore[i] < saveScore[j]) swap(saveScore[i], saveScore[j]);
+		}
+	}
+	for (int i = 0; i < saveScore.size(); i++) {
+		if (saveScore.size() >= 10) break;
+		cout << i + 1 << ". " << saveScore[i]<<endl;
+	}
 }

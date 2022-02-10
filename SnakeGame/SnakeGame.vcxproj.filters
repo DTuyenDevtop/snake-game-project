@@ -62,4 +62,7 @@
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="saveScore.txt" />
+  </ItemGroup>
 </Project>

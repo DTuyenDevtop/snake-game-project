@@ -19,3 +19,5 @@ void printMenu(vector<Menu> listMenu);
 void moveSelect(vector<Menu> listMenu, int& dir, bool& check);
 void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
 void setting();
+void highScore(vector<int> saveScore);
+void loadFileScore(vector<int> saveScore);

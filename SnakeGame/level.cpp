@@ -6,9 +6,9 @@ vector<function<void()>> level;
 Screen gameDisplay;
 
 void drawBorder() {
-	gameDisplay.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
+	gameDisplay.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
 	gameDisplay.draw.retangle({ 5, 2 }, { 63, 40 }, RED, 1, colorXY);
-	gameDisplay.draw.retangle({ 134, 2 }, { 18, 40 }, RED, 1, colorXY);
+	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
 
 }
 
