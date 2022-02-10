@@ -213,3 +213,223 @@ void setting() {
 	wcout << L"	╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝	";
 	gotoXY(col, row++);
 }
+
+void ourteam() {
+	textFillColor(RED, 64);
+	for (int i = 40; i <= 140; ++i) {
+		for (int j = 15; j <= 40; ++j) {
+			gotoXY(i, j);
+			cout << " ";
+		}
+	}
+	
+
+	textFillColor(WHITE, 64);
+	for (int i = 40; i <= 140; ++i) {
+		gotoXY(i, 15);
+		cout << (char)(205);
+		gotoXY(i, 40);
+		cout << (char)(205);
+	}
+
+
+	//Our team border
+	for (int i = 15; i <= 40; ++i) {
+		gotoXY(40, i);
+		cout << (char)(186);
+		gotoXY(140, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(40, 15);
+	cout << (char)(201);
+	gotoXY(40, 40);
+	cout << (char)(200);
+	gotoXY(140, 15);
+	cout << (char)(187);
+	gotoXY(140, 40);
+	cout << (char)(188);
+
+	// Ourteam logo
+	int row = 16, col = 70;
+	textFillColor(GRAY, 64);
+	gotoXY(col, row++);
+	cout << "   ____               _______                  ";
+	gotoXY(col, row++);
+	cout << "  / __ \\             |__   __|                  ";
+	gotoXY(col, row++);
+	cout << " | |  | |_   _ _ __     | | ___  __ _ _ __ ___  ";
+	gotoXY(col, row++);
+	cout << " | |  | | | | | '__|    | |/ _ \\/ _` | '_ ` _ \\ ";
+	gotoXY(col, row++);
+	cout << " | |__| | |_| | |       | |  __/ (_| | | | | | |";
+	gotoXY(col, row++);
+	cout << "  \\____/ \\__,_|_|       |_|\\___|\\__,_|_| |_| |_|";
+
+	textFillColor(WHITE, 64);
+
+	// Team 8 border
+	textFillColor(BLUE, 64);
+	for (int i = 43; i <= 79; ++i) {
+		gotoXY(i, 24);
+		cout << (char)(205);
+		gotoXY(i, 32);
+		cout << (char)(205);
+	}
+	for (int i = 24; i <= 32; ++i) {
+		gotoXY(43, i);
+		cout << (char)(186);
+		gotoXY(79, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(43, 24);
+	cout << (char)(201);
+	gotoXY(43, 32);
+	cout << (char)(200);
+	gotoXY(79, 24);
+	cout << (char)(187);
+	gotoXY(79, 32);
+	cout << (char)(188);
+
+	textFillColor(WHITE, 64);
+
+	// Teamm 8 logo
+	int row1 = 22, col1 = 46;
+	textFillColor(BLUE, 64);
+
+	gotoXY(col1, row1++);
+	cout << "  _____ ___   _   __  __   ___ ";
+	gotoXY(col1, row1++);
+	cout << " |_   _| __| /_\\ |  \\/  | ( _ )";
+	gotoXY(col1, row1++);
+	cout << "   | | | _| / _ \\| |\\/| | / _ \\";
+	gotoXY(col1, row1++);
+	cout << "   |_| |___/_/ \\_\\_|  |_| \\___/";
+
+	textFillColor(WHITE, 64);
+	
+	// Team member
+	int row2 = 27, col2 = 45;
+
+	gotoXY(col2, row2++);
+	textFillColor(RED, 64);
+	cout << "Phan Thanh An       - 21127003";
+
+	gotoXY(col2, row2++);
+	textFillColor(BYELLOW, 64);
+	cout << "Nguyen Nhat Nam     - 21127648";
+
+	gotoXY(col2, row2++);
+	textFillColor(CYAN, 64);
+	cout << "Vo Nguyen Hoang Kim - 21127090";
+
+	gotoXY(col2, row2++);
+	textFillColor(GREEN, 64);
+	cout << "Luu Hoang Bach      - 21127493";
+
+	textFillColor(WHITE, 64);
+
+	// Instructor border
+	textFillColor(BLUE, 64);
+	for (int i = 81; i <= 138; ++i) {
+		gotoXY(i, 24);
+		cout << (char)(205);
+		gotoXY(i, 29);
+		cout << (char)(205);
+	}
+
+	for (int i = 24; i <= 29; ++i) {
+		gotoXY(81, i);
+		cout << (char)(186);
+		gotoXY(138, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(81, 24);
+	cout << (char)(201);
+	gotoXY(81, 29);
+	cout << (char)(200);
+	gotoXY(138, 24);
+	cout << (char)(187);
+	gotoXY(138, 29);
+	cout << (char)(188);
+
+	textFillColor(WHITE, 64);
+
+	// Instructor logo
+	int row3 = 22, col3 = 84;
+	textFillColor(BLUE, 64);
+	gotoXY(col3, row3++);
+	cout << "  ___ _  _ ___ _____ ___ _   _  ___ _____ ___  ___ ";
+	gotoXY(col3, row3++);
+	cout << " |_ _| \\| / __|_   _| _ \\ | | |/ __|_   _/ _ \\| _ \\";
+	gotoXY(col3, row3++);
+	cout << "  | || .` \\__ \\ | | |   / |_| | (__  | || (_) |   /";
+	gotoXY(col3, row3++);
+	cout << " |___|_|\\_|___/ |_| |_|_\\\\___/ \\___| |_| \\___/|_|_\\";
+	
+	textFillColor(WHITE, 64);
+
+	// Instructor information
+	int row4 = 27, col4 = 83;
+
+	gotoXY(col4, row4++);
+	textFillColor(VIOLET, 64);
+	cout << "Dr.Truong Toan Thinh - Teacher";
+	
+	textFillColor(WHITE, 64);	
+
+	// Snake image
+	/*int flag = 0;
+	while (flag == 0) {
+		Sleep(100);
+		textFillColor(RED, 64);
+		snakeImage();
+		Sleep(100);
+		textFillColor(VIOLET, 64);
+		snakeImage(); 
+		Sleep(100);
+		textFillColor(BLUE, 64);
+		snakeImage(); 
+		Sleep(100);
+		textFillColor(GREEN, 64);
+		snakeImage(); 
+		Sleep(100);
+		textFillColor(BYELLOW, 64);
+		snakeImage();
+		Sleep(100);
+		textFillColor(WHITE, 64);
+		snakeImage();
+	}*/
+
+	// Snake image
+	int row5 = 33, col5 = 43;
+	gotoXY(col5, row5++);
+	textFillColor(GRAY, 64);
+	cout << "                                                                                       ____";
+	gotoXY(col5, row5++);
+	textFillColor(VIOLET, 64);
+	cout << "                                                                                      / . .\\";
+	gotoXY(col5, row5++);
+	textFillColor(BLUE, 64);
+	cout << "                                                                                      \\   -----<";
+	gotoXY(col5, row5++);
+	textFillColor(GREEN, 64);
+	cout << "                                                                                       \\  /";
+	gotoXY(col5, row5++);
+	textFillColor(BYELLOW, 64);
+	cout << "   ____________________________________________________________________________________/ /";
+	gotoXY(col5, row5++);
+	textFillColor(RED, 64);
+	cout << "-=:_____________________________________________________________________________________/";
+
+	textFillColor(WHITE, 64);
+
+	// Exit
+	int row6 = 39, col6 = 43;
+	gotoXY(col6, row6++);
+	cout << "Press ESC to exit.";
+}
+
+
