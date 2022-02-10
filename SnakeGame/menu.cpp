@@ -249,23 +249,39 @@ void ourTeam() {
 	cout << (char)(188);
 
 	// Ourteam logo
-	int row = 16, col = 70;
-	textFillColor(GRAY, 64);
-	gotoXY(col, row++);
-	cout << "   ____               _______                  ";
-	gotoXY(col, row++);
-	cout << "  / __ \\             |__   __|                  ";
-	gotoXY(col, row++);
-	cout << " | |  | |_   _ _ __     | | ___  __ _ _ __ ___  ";
-	gotoXY(col, row++);
-	cout << " | |  | | | | | '__|    | |/ _ \\/ _` | '_ ` _ \\ ";
-	gotoXY(col, row++);
-	cout << " | |__| | |_| | |       | |  __/ (_| | | | | | |";
-	gotoXY(col, row++);
-	cout << "  \\____/ \\__,_|_|       |_|\\___|\\__,_|_| |_| |_|";
+	//int row = 16, col = 70;
+	//textFillColor(GRAY, 64);
+	//gotoXY(col, row++);
+	//cout << "   ____               _______                  ";
+	//gotoXY(col, row++);
+	//cout << "  / __ \\             |__   __|                  ";
+	//gotoXY(col, row++);
+	//cout << " | |  | |_   _ _ __     | | ___  __ _ _ __ ___  ";
+	//gotoXY(col, row++);
+	//cout << " | |  | | | | | '__|    | |/ _ \\/ _` | '_ ` _ \\ ";
+	//gotoXY(col, row++);
+	//cout << " | |__| | |_| | |       | |  __/ (_| | | | | | |";
+	//gotoXY(col, row++);
+	//cout << "  \\____/ \\__,_|_|       |_|\\___|\\__,_|_| |_| |_|";
 
-	textFillColor(WHITE, 64);
+	//textFillColor(WHITE, 64);
 
+	// Ourteam logo
+	int row = 16, col = 60;
+	textFillColor(RED, 64);
+	gotoXY(col, row++);
+	wcout << L" ██████╗ ██╗   ██╗██████╗     ████████╗███████╗ █████╗ ███╗   ███╗";
+	gotoXY(col, row++);
+	wcout << L"██╔═══██╗██║   ██║██╔══██╗    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║";
+	gotoXY(col, row++);
+	wcout << L"██║   ██║██║   ██║██████╔╝       ██║   █████╗  ███████║██╔████╔██║";
+	gotoXY(col, row++);
+	wcout << L"██║   ██║██║   ██║██╔══██╗       ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║";
+	gotoXY(col, row++);
+	wcout << L"╚██████╔╝╚██████╔╝██║  ██║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║";
+	gotoXY(col, row++);
+	wcout << L" ╚═════╝  ╚═════╝ ╚═╝  ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝";
+	
 	// Team 8 border
 	textFillColor(BLUE, 64);
 	for (int i = 43; i <= 79; ++i) {
