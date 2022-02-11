@@ -20,6 +20,8 @@ void printMenu(vector<Menu> listMenu);
 void moveSelect(vector<Menu> listMenu, int& dir, bool& check);
 void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
 void setting();
+void ourTeam();
+void guide();
 void highScore(vector<int>& saveScore, Screen screen);
 void loadFileScore(vector<int>& saveScore);
 void ourTeam();
