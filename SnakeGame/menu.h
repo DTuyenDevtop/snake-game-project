@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "graphic.h"
+#include "screen.h"
 
 using namespace std;
 
@@ -19,5 +20,6 @@ void printMenu(vector<Menu> listMenu);
 void moveSelect(vector<Menu> listMenu, int& dir, bool& check);
 void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
 void setting();
-void highScore(vector<int> saveScore);
-void loadFileScore(vector<int> saveScore);
+void highScore(vector<int>& saveScore, Screen screen);
+void loadFileScore(vector<int>& saveScore);
+void ourTeam();

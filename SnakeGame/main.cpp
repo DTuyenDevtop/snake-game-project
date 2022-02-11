@@ -50,7 +50,6 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
-    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
@@ -88,8 +87,8 @@ void mainMenu() {
     playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
     thread logo(showLogo);
     HANDLE logo_handle = logo.native_handle();
-    vector<int> saveScore = {0};
-    stopShow = true;
+    vector<int> saveScore ;
+    bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;
     bool checkChoose = false;
@@ -139,11 +138,19 @@ void mainMenu() {
             }
             else if (dir == 2) {
                 //pass
-                stopShow = true;
+  /*              stopShow = true;*/
                 system("cls");
                 loadFileScore(saveScore);
-                gotoXY(60, 23);
-                highScore(saveScore);
+                highScore(saveScore,screen);
+                while (true) {
+                    if (_kbhit()) {
+                        int key = _getch();
+                        if (key == 27) {
+                            break;
+                        }
+                    }
+                }
+                setup();
             }
             else if (dir == 4) {
                 setting();

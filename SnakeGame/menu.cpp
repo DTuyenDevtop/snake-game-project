@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "menu.h"
+#include "screen.h"
+#include "graphic.h"
 #include <fstream>
 using namespace std;
 
@@ -433,19 +435,19 @@ void ourTeam() {
 }
 
 
-}
 void swap(int& a, int& b) {
 	int temp = a;
 	a = b;
 	b = temp;
 }
-void loadFileScore(vector<int> saveScore) {
+void loadFileScore(vector<int> &saveScore) {
 	ifstream filein;
 	filein.open("saveScore.txt", ios::in);
 	if (filein.fail() == true) {
 		cout << "File cannot be found";
 	}
 	else {
+		saveScore.resize(0);
 		while (filein.eof() == false) {
 			int x;
 			filein >> x;
@@ -453,14 +455,107 @@ void loadFileScore(vector<int> saveScore) {
 		}
 	}
 }
-void highScore(vector<int> saveScore) {
+void highScore(vector<int>& saveScore, Screen screen) {
+	//Border of highscore
+	textFillColor(BLACK, BLACK);
+	for (int i = 40; i <= 140; ++i) {
+		for (int j = 15; j <= 40; ++j) {
+			gotoXY(i, j);
+			cout << " ";
+		}
+	}
+
+
+	textFillColor(WHITE, BLACK);
+	for (int i = 40; i <= 140; ++i) {
+		gotoXY(i, 15);
+		cout << (char)(205);
+		gotoXY(i, 40);
+		cout << (char)(205);
+	}
+
+
+	for (int i = 15; i <= 40; ++i) {
+		gotoXY(40, i);
+		cout << (char)(186);
+		gotoXY(140, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(40, 15);
+	cout << (char)(201);
+	gotoXY(40, 40);
+	cout << (char)(200);
+	gotoXY(140, 15);
+	cout << (char)(187);
+	gotoXY(140, 40);
+	cout << (char)(188);
+
+	int colHS = 49;
+	int rowHS = 17;
+	textFillColor(14, BLACK);
+	gotoXY(colHS, rowHS++);
+	wcout << L"	██╗  ██╗██╗ ██████╗ ██╗  ██╗    ███████╗ ██████╗ ██████╗ ██████╗ ███████╗";
+	gotoXY(colHS, rowHS++);
+	wcout << L"	██║  ██║██║██╔════╝ ██║  ██║    ██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝";
+	gotoXY(colHS, rowHS++);
+	wcout << L"	███████║██║██║  ███╗███████║    ███████╗██║     ██║   ██║██████╔╝█████╗  ";
+	gotoXY(colHS, rowHS++);
+	wcout << L"	██╔══██║██║██║   ██║██╔══██║    ╚════██║██║     ██║   ██║██╔══██╗██╔══╝  ";
+	gotoXY(colHS, rowHS++);
+	wcout << L"	██║  ██║██║╚██████╔╝██║  ██║    ███████║╚██████╗╚██████╔╝██║  ██║███████╗";
+	gotoXY(colHS, rowHS++);
+	wcout << L"	╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝";
+	
+	int col1 = 118;
+	int row2 = 25;
+	gotoXY(col1, row2++);
+	cout << "  :~~~~~~~~~~~~~~:  ";
+	gotoXY(col1, row2++);
+	cout << "^.:~~^~~~~~~~~~~!:.^";
+	gotoXY(col1, row2++);
+	cout << " ::^~^~~~~~~~~~!^:: ";
+	gotoXY(col1, row2++);
+	cout << "   ^^~~~~~~~~~~~^   ";
+	gotoXY(col1, row2++);
+	cout << "   ::.:^^~~^^:.::   ";
+	gotoXY(col1, row2++);
+	cout << "        .^~.        ";
+	gotoXY(col1, row2++);
+	cout << "        :^~:        ";
+	gotoXY(col1, row2++);
+	cout << "     :~!!!77!~:     "; 
+	gotoXY(col1, row2++);
+	cout << "     ~?~~~~~~?~     ";
+	gotoXY(col1, row2++);
+	cout << "     ~?~~~~~~?~     ";
+	gotoXY(col1, row2++);
+	cout << "     7JJJJJJJJ7.    ";
+
+	//High score border
+	screen.draw.retangle({ 44, 23 }, { 36, 15 }, RED, 1, colorXY);
+	screen.draw.retangle({ 60, 24 }, { 0, 14 }, RED, 1, colorXY);
+	screen.draw.retangle({ 44, 27 }, { 36, 0 }, RED, 1, colorXY);
+	gotoXY(51, 25);
+	textFillColor(11, BLACK);
+	cout << "RANK";
+	gotoXY(87, 25);
+	cout << "Score";
+	//Sort function
 	for (int i = 0; i < saveScore.size(); i++) {
-		for (int j = i ; j < saveScore.size(); j++) {
+		for (int j = i + 1 ; j < saveScore.size(); j++) {
 			if (saveScore[i] < saveScore[j]) swap(saveScore[i], saveScore[j]);
 		}
 	}
+	//textColor(WHITE);
+	
+	textFillColor(14, BLACK);
 	for (int i = 0; i < saveScore.size(); i++) {
-		if (saveScore.size() >= 10) break;
-		cout << i + 1 << ". " << saveScore[i]<<endl;
+		if (i >= 10) break;
+		gotoXY(52, i+ 28);
+		cout << i + 1;
+		gotoXY(88, i + 28);
+		cout << saveScore[i] << endl;
 	}
+
 }
