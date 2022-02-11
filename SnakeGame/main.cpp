@@ -101,6 +101,17 @@ void mainMenu() {
             else if (dir == 2) {
                 //pass
             }
+            else if (dir == 3) {
+                guide();
+                while (true) {
+                    if (_kbhit()) {
+                        int key = _getch();
+                        if (key == 27) {
+                            break;
+                        }
+                    }
+                }
+            }
             else if (dir == 4) {
                 setting();
                 gotoXY(60, 23);

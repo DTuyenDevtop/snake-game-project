@@ -446,4 +446,99 @@ void ourTeam() {
 	cout << "Press ESC to exit.";
 }
 
+void guide() {
+	textFillColor(RED, 65);
+	for (int i = 40; i <= 140; ++i) {
+		for (int j = 15; j <= 40; ++j) {
+			gotoXY(i, j);
+			cout << " ";
+		}
+	}
+
+// Create boder for the table
+	textFillColor(WHITE, 65);
+	for (int i = 40; i <= 140; ++i) {
+		gotoXY(i, 15);
+		cout << (char)(205); // 205 =
+		gotoXY(i, 40);
+		cout << (char)(205);
+	}
+
+	for (int i = 15; i <= 40; ++i) {
+		gotoXY(40, i);
+		cout << (char)(186); // ||
+		gotoXY(140, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(40, 15);
+	cout << (char)(201); 
+
+	gotoXY(40, 40);
+	cout << (char)(200);
+
+	gotoXY(140, 15);
+	cout << (char)(187); 
+
+	gotoXY(140, 40);
+	cout << (char)(188); 
+
+	/*int row = 16, col = 70;
+	gotoXY(col, row++);
+	cout << "   _____ _    _ _____ _____  ______ ";
+	gotoXY(col, row++);
+	cout << "  / ____| |  | |_   _|  __  \|  ____|";
+	gotoXY(col, row++);
+	cout << " | |  __| |  | | | | | |  | | |__   ";
+	gotoXY(col, row++);
+	cout << " | | |_ | |  | | | | | |  | |  __|  ";
+	gotoXY(col, row++);
+	cout << " | |__| | |__| |_| |_| |__| | |____ ";
+	gotoXY(col, row++);
+	cout << "  \\_____|\\____/|_____|_____/|______|";*/
+
+	int row = 16, col = 75;
+	textFillColor(BLACK, BLUE);
+	gotoXY(col, row++);
+	wcout << L" ██████╗ ██╗   ██╗██╗██████╗ ███████╗";
+	gotoXY(col, row++);
+	wcout << L"██╔════╝ ██║   ██║██║██╔══██╗██╔════╝";
+	gotoXY(col, row++);
+	wcout << L"██║  ███╗██║   ██║██║██║  ██║█████╗ ";
+	gotoXY(col, row++);
+	wcout << L"██║   ██║██║   ██║██║██║  ██║██╔══╝ ";
+	gotoXY(col, row++);
+	wcout << L"╚██████╔╝╚██████╔╝██║██████╔╝███████╗";
+
+	textFillColor(WHITE, 65);
+	gotoXY(50, 23);
+	cout << "Read me first !!";
+	gotoXY(50, 25);
+	cout << "You will be a snake finding food to prolong your length.";
+	gotoXY(50, 26);
+	cout << "              ___";
+	gotoXY(50, 27);
+	cout << "             | W |";
+	gotoXY(50, 28);
+	cout << "          ___|___|___  ";
+	gotoXY(50, 29);
+	cout << "Pressing | A | S | D | to control the direction of the snake. ";
+	gotoXY(50, 30);
+	cout << "         |___|___|___|";
+	
+	gotoXY(50, 32);
+	//textFillColor(RED, 65);
+	cout << "Be carefull!";
+	textFillColor(WHITE, 65);
+	gotoXY(50, 34);
+	cout << "You have to cope with barricades and walls in each level.";
+	gotoXY(50, 36);
+	cout<<"If you hit one of them, the snake will die.";
+	gotoXY(50, 38);
+	cout << "Good luck!";
+	gotoXY(120, 39);
+	cout << "Press ESC to exit.";
+		
+}
+
 
