@@ -5,6 +5,7 @@
 #include "gameSound.h"
 #include "level.h"
 
+#include <vector>
 #include <fstream>
 #include <conio.h>
 #include <time.h>
@@ -18,6 +19,7 @@ std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85];
 short snakeColor;
+vector<int> saveScore;
 
 void randFood(Infomation& Food) {
 	srand((unsigned int)time(0));
@@ -120,7 +122,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		Add.y = Snake[size - 1].oy;
 		Snake.push_back(Add);
 
-		score++;  
+		score+=100;  
 		gotoXY(152, 5); 
 		colorText("Score: ", RED); 
 		cout << score;
@@ -245,5 +247,18 @@ void playGame() {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
+	}
+	
+	saveScore.push_back(score);
+	ofstream fileout;
+	
+	fileout.open("saveScore.txt", ios::trunc);
+	if (fileout.fail() == true) {
+		cout << "File cannot be found";
+	}
+	else {
+		for(int i=0;i<saveScore.size();i++){
+			fileout << saveScore[i] << endl;
+		}
 	}
 }

@@ -26,7 +26,8 @@ void drawSnake(vector<Infomation>&);
 
 void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, int&, bool&, int&);
 
+void playGame();
 void randFood(Infomation &Food);
 
-void playGame();
+//void playGame();
 

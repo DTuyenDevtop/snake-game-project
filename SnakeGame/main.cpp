@@ -14,6 +14,7 @@
 #include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <fstream>
 
 // Custom library
 #include "graphic.h"
@@ -25,8 +26,10 @@
 using namespace std;
 
 Screen screen;
-vector<Menu> listMenu;
 Status Sound;
+
+vector<Menu> listMenu;
+extern vector<int> saveScore;
 map<int, pair<int, string>> color;
 
 void setup() {
@@ -49,16 +52,19 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
-    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
+    screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
+    screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
 
 void mainMenu() {
     playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+
+    bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;
     bool checkChoose = false;
     snakeColor = RED;
-
+    loadFileScore(saveScore);
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
 
@@ -75,8 +81,8 @@ void mainMenu() {
         }
         firstTime = false;
 
-        screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         showLogo();
+        screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         textColor(BLUE);
         printMenu(listMenu);
 
@@ -99,10 +105,27 @@ void mainMenu() {
                 // pass
             }
             else if (dir == 2) {
-                //pass
+                loadFileScore(saveScore);
+                highScore(saveScore, screen);
+                while (true) {
+                    if (_kbhit()) {
+                        int key = _getch();
+                        if (key == 27) {
+                            break;
+                        }
+                    }
+                }
             }
             else if (dir == 3) {
-                // pass
+                guide();
+                while (true) {
+                    if (_kbhit()) {
+                        int key = _getch();
+                        if (key == 27) {
+                            break;
+                        }
+                    }
+                }
             }
             else if (dir == 4) {
                 setting();

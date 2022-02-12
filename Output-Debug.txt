@@ -1,0 +1,53 @@
+﻿'SnakeGame.exe' (Win32): Loaded 'D:\IT-Algo\Project-Application\DesktopCodingProject\SnakeGame\x64\Debug\SnakeGame.exe'. Symbols loaded.
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\ntdll.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\kernel32.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\KernelBase.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\user32.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\win32u.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\gdi32.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\gdi32full.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\msvcp_win.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\ucrtbase.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\winmm.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\msvcrt.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\msvcp140d.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140d.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140_1d.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\ucrtbased.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\imm32.dll'. 
+The thread 0x11f0 has exited with code 0 (0x0).
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\sechost.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\uxtheme.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\combase.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\rpcrt4.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\AudioSes.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\SHCore.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\kernel.appcore.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\bcryptprimitives.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\winmmbase.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\MMDevAPI.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\wdmaud.drv'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\avrt.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\ksuser.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\devobj.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\cfgmgr32.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\cfgmgr32.dll'. 
+'SnakeGame.exe' (Win32): Unloaded 'C:\Windows\System32\cfgmgr32.dll'
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\cfgmgr32.dll'. 
+'SnakeGame.exe' (Win32): Unloaded 'C:\Windows\System32\cfgmgr32.dll'
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\msacm32.drv'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\msacm32.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\midimap.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\clbcatq.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\powrprof.dll'. 
+'SnakeGame.exe' (Win32): Loaded 'C:\Windows\System32\umpdc.dll'. 
+The thread 0x2c8c has exited with code 0 (0x0).
+The thread 0x3aa8 has exited with code 0 (0x0).
+The thread 0x27e8 has exited with code 0 (0x0).
+The thread 0x3644 has exited with code 0 (0x0).
+The thread 0x36a8 has exited with code -1073741510 (0xc000013a).
+The thread 0x13a4 has exited with code -1073741510 (0xc000013a).
+The thread 0x1170 has exited with code -1073741510 (0xc000013a).
+The thread 0x1880 has exited with code -1073741510 (0xc000013a).
+The thread 0x3bb8 has exited with code -1073741510 (0xc000013a).
+The program '[13148] SnakeGame.exe' has exited with code -1073741510 (0xc000013a).
