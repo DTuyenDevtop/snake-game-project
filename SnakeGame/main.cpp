@@ -101,10 +101,11 @@ void mainMenu() {
             else if (dir == 2) {
                 //pass
             }
+            else if (dir == 3) {
+                // pass
+            }
             else if (dir == 4) {
                 setting();
-                gotoXY(60, 23);
-                cout << "Press ESC to exit and press enter to change value";
 
                 int choice = 0;
                 bool check = false;
@@ -130,14 +131,14 @@ void mainMenu() {
                     items.data += color[snakeColor].second + "          ";
                     listSetting.push_back(items);
 
-                    textFillColor(WHITE, BLUE);
+                    textFillColor(WHITE, BLACK);
 
                     printMenu(listSetting);
 
-                    textFillColor(RED, BLUE);
+                    textFillColor(RED, BLACK);
                     gotoXY(listSetting[choice].x - 3, listSetting[choice].y);
                     cout << (char)175 << " " << listSetting[choice].data << " ";
-                    textFillColor(WHITE, BLUE);
+                    textFillColor(WHITE, BLACK);
 
                     moveSelectSetting(listSetting, choice, check);
                     

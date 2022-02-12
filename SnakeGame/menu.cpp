@@ -114,9 +114,9 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check) {
 				}
 
 				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
-				textFillColor(RED, BLUE);
+				textFillColor(RED, BLACK);
 				cout << (char)175 << " " << listMenu[dir].data << " ";
-				textFillColor(WHITE, BLUE);
+				textFillColor(WHITE, BLACK);
 				//break;
 			}
 			else if (key == 80) {
@@ -132,10 +132,10 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check) {
 					dir++;
 				}
 
-				textFillColor(RED, BLUE);
+				textFillColor(RED, BLACK);
 				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
 				cout << (char)175 << " " << listMenu[dir].data << " ";
-				textFillColor(WHITE, BLUE);
+				textFillColor(WHITE, BLACK);
 				//break;
 			}
 			else if (key == 13) {
@@ -152,14 +152,14 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check) {
 }
 
 void setting() {
-	textFillColor(BLUE, BLUE);
+	textFillColor(BLUE, BLACK);
 	for (int j = 15; j <= 40; ++j) {
 		gotoXY(40, j);
 		cout << "                                                                                                     ";
 		Sleep(8);
 	}
 
-	textFillColor(WHITE, 65);
+	textFillColor(WHITE, BLACK);
 	for (int i = 40; i <= 140; ++i) {
 		gotoXY(i, 15);
 		cout << (char)(205);
@@ -187,18 +187,8 @@ void setting() {
 	cout << (char)(188);
 
 	int row = 16, col = 60;
-	//gotoXY(col, row++);
-	//cout << "  ____  _____ _____ _____ ___ _   _  ____  ";
-	//gotoXY(col, row++);
-	//cout << " / ___|| ____|_   _|_   _|_ _| \\ | |/ ___| ";
-	//gotoXY(col, row++);
-	//cout << " \\___ \\|  _|   | |   | |  | ||  \\| | |  _  ";
-	//gotoXY(col, row++);
-	//cout << "  ___) | |___  | |   | |  | || |\\  | |_| | ";
-	//gotoXY(col, row++);
-	//cout << " |____/|_____| |_|   |_| |___|_| \\_|\\____| ";
-	//gotoXY(col, row++);
-	textFillColor(BYELLOW, BLUE);
+
+	textFillColor(BYELLOW, BLACK);
 	gotoXY(col, row++);
 	wcout << L"	███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ";
 	gotoXY(col, row++);
@@ -212,6 +202,33 @@ void setting() {
 	gotoXY(col, row++);
 	wcout << L"	╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝	";
 	gotoXY(col, row++);
+
+	int row5 = 33, col5 = 43;
+	gotoXY(col5, row5++);
+	textFillColor(GRAY, 64);
+	cout << "                                                                                       ____";
+	gotoXY(col5, row5++);
+	textFillColor(VIOLET, 64);
+	cout << "                                                                                      / . .\\";
+	gotoXY(col5, row5++);
+	textFillColor(BLUE, 64);
+	cout << "                                                                                      \\   -----<";
+	gotoXY(col5, row5++);
+	textFillColor(GREEN, 64);
+	cout << "                                                                                       \\  /";
+	gotoXY(col5, row5++);
+	textFillColor(BYELLOW, 64);
+	cout << "   ____________________________________________________________________________________/ /";
+	gotoXY(col5, row5++);
+	textFillColor(RED, 64);
+	cout << "-=:_____________________________________________________________________________________/";
+
+	textFillColor(WHITE, 64);
+
+	// Exit
+	int row6 = 39, col6 = 43;
+	gotoXY(col6, row6++);
+	cout << "Press ESC to exit. Press enter to change value.";
 }
 
 void ourTeam() {
@@ -445,5 +462,3 @@ void ourTeam() {
 	gotoXY(col6, row6++);
 	cout << "Press ESC to exit.";
 }
-
-

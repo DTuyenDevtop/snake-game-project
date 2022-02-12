@@ -9,7 +9,7 @@
 #include <conio.h>
 #include <time.h>
 
-#define WidthGame      130
+#define WidthGame      120
 #define HeightGame     35
 #define SPEEDFIRST     50
 #define SPEEDLATER	   30
@@ -18,6 +18,18 @@ std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85];
 short snakeColor;
+
+void randFood(Infomation& Food) {
+	srand((unsigned int)time(0));
+	Food.x = 5 + rand() % (WidthGame - 5);
+	Food.y = 5 + rand() % (HeightGame - 5);
+
+	while (colorXY[Food.x][Food.y] == "DANGER") {
+		srand((unsigned int)time(0));
+		Food.x = 5 + rand() % (WidthGame - 5);
+		Food.y = 5 + rand() % (HeightGame - 5);
+	}
+}
 
 void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bool& endGame, int score) {
 	Infomation Body;
@@ -35,10 +47,7 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bo
 		pos--;
 	}
 
-	// Make first food
-	srand((unsigned int)time(0));
-	Food.x = 5 + rand() % (WidthGame - 2);
-	Food.y = 5 + rand() % (HeightGame - 2);
+	randFood(Food);
 
 	gotoXY(Food.x, Food.y);
 	colorText(studentIds[position], snakeColor);
@@ -119,9 +128,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		//playSound(L"resources/eatfood.wav");
 
 		// Creat new food
-		srand((unsigned int)time(0));
-		Food.x = 5 + rand() % (WidthGame - 1);
-		Food.y = 5 + rand() % (HeightGame - 1);
+		randFood(Food);
 
 		gotoXY(Food.x, Food.y);
 		colorText(studentIds[position], snakeColor);
