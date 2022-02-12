@@ -572,10 +572,10 @@ void loadFileScore(vector<int> &saveScore) {
 		cout << "File cannot be found";
 	}
 	else {
-		saveScore.resize(0);
-		while (filein.eof() == false) {
-			int x;
-			filein >> x;
+		saveScore.clear();
+		int x;
+		while (filein >> x) {
+			
 			saveScore.push_back(x);
 		}
 	}
@@ -631,30 +631,39 @@ void highScore(vector<int>& saveScore, Screen screen) {
 	gotoXY(colHS, rowHS++);
 	wcout << L"	╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝";
 	
-	int col1 = 118;
-	int row2 = 25;
-	gotoXY(col1, row2++);
-	cout << "  :~~~~~~~~~~~~~~:  ";
-	gotoXY(col1, row2++);
-	cout << "^.:~~^~~~~~~~~~~!:.^";
-	gotoXY(col1, row2++);
-	cout << " ::^~^~~~~~~~~~!^:: ";
-	gotoXY(col1, row2++);
-	cout << "   ^^~~~~~~~~~~~^   ";
-	gotoXY(col1, row2++);
-	cout << "   ::.:^^~~^^:.::   ";
-	gotoXY(col1, row2++);
-	cout << "        .^~.        ";
-	gotoXY(col1, row2++);
-	cout << "        :^~:        ";
-	gotoXY(col1, row2++);
-	cout << "     :~!!!77!~:     "; 
-	gotoXY(col1, row2++);
-	cout << "     ~?~~~~~~?~     ";
-	gotoXY(col1, row2++);
-	cout << "     ~?~~~~~~?~     ";
-	gotoXY(col1, row2++);
-	cout << "     7JJJJJJJJ7.    ";
+	textFillColor(14, BLACK);
+	int a = 118;
+	int b = 24;
+	gotoXY(a, b++);
+	wcout << L"  █████████████████  ";
+	gotoXY(a, b++);
+	wcout << L" ███████████████████ ";
+	gotoXY(a, b++);
+	wcout << L"██ ███████████████ ██";
+	gotoXY(a, b++);
+	wcout << L" ███████████████████ ";
+	gotoXY(a, b++);
+	wcout << L"  █████████████████  ";
+	gotoXY(a, b++);
+	wcout << L"   ███████████████   ";
+	gotoXY(a, b++);
+	wcout << L"     █  ██████  █    ";
+	gotoXY(a, b++);
+	wcout << L"         ███        ";
+	gotoXY(a, b++);
+	wcout << L"         ███        ";
+	gotoXY(a, b++);
+	wcout << L"         ███        ";
+	gotoXY(a, b++);
+	wcout << L"       ███████      ";
+	gotoXY(a, b++);
+	wcout << L"      █████████      ";
+	gotoXY(a, b++);
+	wcout << L"     ███████████      ";
+	gotoXY(a, b++);
+	wcout << L"      █████████       ";
+	gotoXY(a, b++);
+	wcout << L"     ███████████      ";
 
 	//High score border
 	screen.draw.retangle({ 44, 23 }, { 36, 15 }, RED, 1, colorXY);
@@ -685,4 +694,5 @@ void highScore(vector<int>& saveScore, Screen screen) {
 		gotoXY(88, i + 28);
 		cout << saveScore[i] << endl;
 	}
+	
 }
