@@ -5,6 +5,7 @@
 #include <thread>
 #include <map>
 #include <string>
+#include <iostream>
 #include <conio.h>
 #include <iostream>
 #include <windows.h>  
@@ -15,6 +16,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <fstream>
+#include <ctime>
 
 // Custom library
 #include "graphic.h"
@@ -68,7 +70,7 @@ void mainMenu() {
     it = color.begin();
 
     bool firstTime = true;
-    /*loadFileScore(savePlayers);*/
+    loadFileScore(savePlayers);
     while (true) {
         if (!firstTime) {
             for (int i = 40; i >= 15; --i) {
@@ -96,10 +98,11 @@ void mainMenu() {
             checkChoose = false;
             if (dir == 0) {
                 string name;
-                string dateAndTime;
+                time_t now = time(0);
+                string dateAndTime = ctime(&now);
                 fillName(name);
                 system("cls");
-                playGame();
+                playGame(name, dateAndTime);
                 
                 setup();
             }
