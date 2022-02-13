@@ -230,7 +230,7 @@ void mainLoop (
 	}
 }
 
-void playGame() {
+void playGame(string name, string dateAndTime) {
 	system("cls");
 
 	vector<Infomation> Snake;
@@ -251,8 +251,8 @@ void playGame() {
 	}
 	Player t;
 	t.score = score;
-	//t.name = name;
-	//t.dateAndTime = dateAndTime;
+	t.name = name;
+	t.dateAndTime = dateAndTime;
 	savePlayers.push_back(t);
 	ofstream fileout;
 	

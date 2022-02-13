@@ -576,9 +576,11 @@ void loadFileScore(vector<Player> &savePlayers) {
 	else {
 		savePlayers.clear();
 		Player x;
-		while (filein >> x.score) {
-			getline(cin, x.name);
-			getline(cin, x.dateAndTime);
+		while (!filein.eof()) {
+			filein >> x.score;
+			filein.ignore();
+			getline(filein, x.name);
+			getline(filein, x.dateAndTime);
 			savePlayers.push_back(x);
 		}
 	}
@@ -664,19 +666,25 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	gotoXY(a, b++);
 	wcout << L"     ███████████      ";
 	gotoXY(a, b++);
-	wcout << L"      █████████       ";
+	wcout << L"     ███████████      ";
 	gotoXY(a, b++);
 	wcout << L"     ███████████      ";
 
 	//High score border
-	screen.draw.retangle({ 44, 23 }, { 36, 15 }, RED, 1, colorXY);
-	screen.draw.retangle({ 60, 24 }, { 0, 14 }, RED, 1, colorXY);
-	screen.draw.retangle({ 44, 27 }, { 36, 0 }, RED, 1, colorXY);
-	gotoXY(51, 25);
+	screen.draw.retangle({ 44, 23 }, { 36, 16 }, 3, 1, colorXY);
+	screen.draw.retangle({ 52, 24 }, { 0, 14 }, 3, 1, colorXY);
+	screen.draw.retangle({ 44, 27 }, { 36, 0 }, 3, 1, colorXY);
+	screen.draw.retangle({ 65, 24 }, { 0, 14 }, 3, 1, colorXY);
+	screen.draw.retangle({ 86, 24 }, { 0, 14 }, 3, 1, colorXY);
+	gotoXY(46, 25);
 	textFillColor(11, BLACK);
 	cout << "RANK";
-	gotoXY(87, 25);
-	cout << "Score";
+	gotoXY(57, 25);
+	cout << "SCORE";
+	gotoXY(74, 25);
+	cout << "NAME";
+	gotoXY(100, 25);
+	cout << "DATE";
 
 	//Sort function
 	for (int i = 0; i < savePlayers.size(); i++) {
@@ -692,10 +700,14 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	textFillColor(14, BLACK);
 	for (int i = 0; i < savePlayers.size(); i++) {
 		if (i >= 10) break;
-		gotoXY(50, i+ 28);
+		gotoXY(48, i + 28);
 		cout << i + 1;
-		gotoXY(60, i + 28);
+		gotoXY(58, i + 28);
 		cout << savePlayers[i].score << endl;
+		gotoXY(72, i + 28);
+		cout << savePlayers[i].name << endl;
+		gotoXY(90, i + 28);
+		cout << savePlayers[i].dateAndTime << endl;
 	}
 	
 }
@@ -727,13 +739,12 @@ void fillName(string &name) {
 	textColor(3);
 	cout << "Please fill in your name in the blanks below. ";
 	Screen nameScreen;
-	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, RED, 1, colorXY);
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
 	Sleep(t);
 	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
 	Sleep(t);
 	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
 	Sleep(t);
-	
 	gotoXY(78, 29);
 	cin >> name;
 }
