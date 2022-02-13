@@ -249,6 +249,7 @@ void playGame(string name, string dateAndTime) {
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
 	}
+
 	Player t;
 	t.score = score;
 	t.name = name;
@@ -256,15 +257,13 @@ void playGame(string name, string dateAndTime) {
 	savePlayers.push_back(t);
 	ofstream fileout;
 	
-	fileout.open("saveScore.txt", ios::trunc);
+	fileout.open("saveScore.txt", ios::app);
 	if (fileout.fail() == true) {
 		cout << "File cannot be found";
 	}
 	else {
-		for(int i=0;i<savePlayers.size();i++){
-			fileout << savePlayers[i].score << endl;
-			fileout << savePlayers[i].name << endl;
-			fileout << savePlayers[i].dateAndTime << endl;
-		}
+		fileout << endl << t.score << endl;
+		fileout << t.name << endl;
+		fileout << t.dateAndTime;
 	}
 }
