@@ -738,9 +738,9 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 		cout << i + 1;
 		gotoXY(58, i + 28);
 		cout << savePlayers[i].score << endl;
-		gotoXY(72, i + 28);
+		gotoXY(70, i + 28);
 		cout << savePlayers[i].name << endl;
-		gotoXY(90, i + 28);
+		gotoXY(89, i + 28);
 		cout << savePlayers[i].dateAndTime << endl;
 	}
 	
