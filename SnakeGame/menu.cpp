@@ -670,11 +670,44 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	wcout << L"     ███████████      ";
 
 	//High score border
-	screen.draw.retangle({ 44, 23 }, { 36, 16 }, 3, 1, colorXY);
-	screen.draw.retangle({ 52, 24 }, { 0, 14 }, 3, 1, colorXY);
-	screen.draw.retangle({ 44, 27 }, { 36, 0 }, 3, 1, colorXY);
-	screen.draw.retangle({ 65, 24 }, { 0, 14 }, 3, 1, colorXY);
-	screen.draw.retangle({ 86, 24 }, { 0, 14 }, 3, 1, colorXY);
+	//screen.draw.retangle({ 44, 23 }, { 36, 16 }, 3, 1, colorXY);
+	textFillColor(3,BLACK);
+	for (int i = 43; i <= 115; i++) {
+		gotoXY(i, 23);
+		cout << (char)220;
+		gotoXY(i, 38);
+		cout << (char)223;
+		if (i != 43 && i != 53 && i != 65 && i != 86) {
+			gotoXY(i, 27);
+			cout << (char)223;
+		}
+		 
+	}
+	textFillColor(GRAY, BLACK);
+	for (int i = 43; i <= 115; i++) {
+		gotoXY(i, 27);
+		cout << (char)223;
+	}
+	textFillColor(3, BLACK);
+	gotoXY(43, 27);
+	cout << char(221);
+	for (int i = 24; i <= 37; i++) {
+		gotoXY(43, i);
+		cout << (char)219;
+		gotoXY(53, i);
+		cout << (char)219;
+		gotoXY(65, i);
+		cout << (char)219;
+		gotoXY(86, i);
+		cout << (char)219;
+		gotoXY(115, i);
+		cout << (char)219;
+	}
+
+	//screen.draw.retangle({ 52, 24 }, { 0, 14 }, 3, 1, colorXY);
+	//screen.draw.retangle({ 44, 27 }, { 36, 0 }, 3, 1, colorXY);
+	//screen.draw.retangle({ 65, 24 }, { 0, 14 }, 3, 1, colorXY);
+	//screen.draw.retangle({ 86, 24 }, { 0, 14 }, 3, 1, colorXY);
 	gotoXY(46, 25);
 	textFillColor(11, BLACK);
 	cout << "RANK";
