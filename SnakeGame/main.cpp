@@ -29,7 +29,7 @@ Screen screen;
 Status Sound;
 
 vector<Menu> listMenu;
-extern vector<int> saveScore;
+extern vector<Player> savePlayers;
 map<int, pair<int, string>> color;
 
 void setup() {
@@ -58,13 +58,12 @@ void setup() {
 
 void mainMenu() {
     playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
-
     bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;
     bool checkChoose = false;
     snakeColor = RED;
-    loadFileScore(saveScore);
+    loadFileScore(savePlayers);
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
 
@@ -96,6 +95,9 @@ void mainMenu() {
         if (checkChoose == true) {
             checkChoose = false;
             if (dir == 0) {
+                string name;
+                string dateAndTime;
+                fillName(name);
                 system("cls");
                 playGame();
                 
@@ -105,8 +107,8 @@ void mainMenu() {
                 // pass
             }
             else if (dir == 2) {
-                loadFileScore(saveScore);
-                highScore(saveScore, screen);
+                loadFileScore(savePlayers);
+                highScore(savePlayers, screen);
                 while (true) {
                     if (_kbhit()) {
                         int key = _getch();

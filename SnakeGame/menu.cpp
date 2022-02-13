@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "graphic.h"
 #include <fstream>
+#include <string>
 using namespace std;
 
 void initMenu(vector<Menu>& listMenu) {
@@ -559,29 +560,31 @@ void guide() {
 		
 }
 
-void swap(int& a, int& b) {
-	int temp = a;
+void swap(Player& a, Player& b) {
+	Player temp;
+	temp = a;
 	a = b;
-	b = temp;
+	b = temp;	
 }
 
-void loadFileScore(vector<int> &saveScore) {
+void loadFileScore(vector<Player> &savePlayers) {
 	ifstream filein;
 	filein.open("saveScore.txt", ios::in);
 	if (filein.fail() == true) {
 		cout << "File cannot be found";
 	}
 	else {
-		saveScore.clear();
-		int x;
-		while (filein >> x) {
-			
-			saveScore.push_back(x);
+		savePlayers.clear();
+		Player x;
+		while (filein >> x.score) {
+			getline(cin, x.name);
+			getline(cin, x.dateAndTime);
+			savePlayers.push_back(x);
 		}
 	}
 }
 
-void highScore(vector<int>& saveScore, Screen screen) {
+void highScore(vector<Player>& savePlayers, Screen screen) {
 	//Border of highscore
 	textFillColor(BLACK, BLACK);
 	for (int i = 40; i <= 140; ++i) {
@@ -676,10 +679,10 @@ void highScore(vector<int>& saveScore, Screen screen) {
 	cout << "Score";
 
 	//Sort function
-	for (int i = 0; i < saveScore.size(); i++) {
-		for (int j = i + 1 ; j < saveScore.size(); j++) {
-			if (saveScore[i] < saveScore[j]) {
-				swap(saveScore[i], saveScore[j]);
+	for (int i = 0; i < savePlayers.size(); i++) {
+		for (int j = i + 1 ; j < savePlayers.size(); j++) {
+			if (savePlayers[i].score < savePlayers[j].score) {
+				swap(savePlayers[i], savePlayers[j]);
 			}
 		}
 	}
@@ -687,12 +690,40 @@ void highScore(vector<int>& saveScore, Screen screen) {
 	//textColor(WHITE);
 	
 	textFillColor(14, BLACK);
-	for (int i = 0; i < saveScore.size(); i++) {
+	for (int i = 0; i < savePlayers.size(); i++) {
 		if (i >= 10) break;
-		gotoXY(52, i+ 28);
+		gotoXY(50, i+ 28);
 		cout << i + 1;
-		gotoXY(88, i + 28);
-		cout << saveScore[i] << endl;
+		gotoXY(60, i + 28);
+		cout << savePlayers[i].score << endl;
 	}
 	
+}
+void fillName(string &name) {
+	system("cls");
+	Sleep(500);
+	textFillColor(3, 7);
+	int col1 = 50, row1 = 18;
+	gotoXY(col1, row1++);
+	wcout << L"██    ██  ██████  ██    ██ ██████      ███    ██  █████  ███    ███ ███████ ";
+	gotoXY(col1, row1++);
+	wcout << L" ██  ██  ██    ██ ██    ██ ██   ██     ████   ██ ██   ██ ████  ████ ██      ";
+	gotoXY(col1, row1++);
+	wcout << L"  ████   ██    ██ ██    ██ ██████      ██ ██  ██ ███████ ██ ████ ██ █████   ";
+	gotoXY(col1, row1++);
+	wcout << L"   ██    ██    ██ ██    ██ ██   ██     ██  ██ ██ ██   ██ ██  ██  ██ ██      ";
+	gotoXY(col1, row1++);
+	wcout << L"   ██     ██████   ██████  ██   ██     ██   ████ ██   ██ ██      ██ ███████ ";
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	gotoXY(col1+15, row1++);
+	textColor(3);
+	cout << "Please fill in your name in the blanks below. ";
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, RED, 1, colorXY);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	
+	gotoXY(78, 29);
+	cin >> name;
 }

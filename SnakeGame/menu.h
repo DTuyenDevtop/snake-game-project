@@ -14,6 +14,10 @@ struct Menu {
 		data = "";
 	}
 };
+struct Player {
+	string name,dateAndTime;
+	int score;
+};
 
 void initMenu(vector<Menu>& listMenu);
 void printMenu(vector<Menu> listMenu);
@@ -22,6 +26,8 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
 void setting();
 void ourTeam();
 void guide();
-void highScore(vector<int>& saveScore, Screen screen);
-void loadFileScore(vector<int>& saveScore);
+void swap(Player& a, Player& b);
+void highScore(vector<Player>& savePlayers, Screen screen);
+void loadFileScore(vector<Player>& savePlayers);
 void ourTeam();
+void fillName(string& name);

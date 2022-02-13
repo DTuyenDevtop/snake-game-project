@@ -4,6 +4,7 @@
 #include "graphic.h"
 #include "gameSound.h"
 #include "level.h"
+#include "menu.h"
 
 #include <vector>
 #include <fstream>
@@ -19,7 +20,7 @@ std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85];
 short snakeColor;
-vector<int> saveScore;
+vector<Player> savePlayers;
 
 void randFood(Infomation& Food) {
 	srand((unsigned int)time(0));
@@ -248,8 +249,11 @@ void playGame() {
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
 	}
-	
-	saveScore.push_back(score);
+	Player t;
+	t.score = score;
+	//t.name = name;
+	//t.dateAndTime = dateAndTime;
+	savePlayers.push_back(t);
 	ofstream fileout;
 	
 	fileout.open("saveScore.txt", ios::trunc);
@@ -257,8 +261,10 @@ void playGame() {
 		cout << "File cannot be found";
 	}
 	else {
-		for(int i=0;i<saveScore.size();i++){
-			fileout << saveScore[i] << endl;
+		for(int i=0;i<savePlayers.size();i++){
+			fileout << savePlayers[i].score << endl;
+			fileout << savePlayers[i].name << endl;
+			fileout << savePlayers[i].dateAndTime << endl;
 		}
 	}
 }
