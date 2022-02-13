@@ -14,8 +14,9 @@ struct Menu {
 		data = "";
 	}
 };
+
 struct Player {
-	string name,dateAndTime;
+	string name, dateAndTime;
 	int score;
 };
 

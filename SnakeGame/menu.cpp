@@ -687,14 +687,15 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	cout << "DATE";
 
 	//Sort function
-	for (int i = 0; i < savePlayers.size(); i++) {
+	for (int i = 0; i < savePlayers.size() - 1; i++) {
 		for (int j = i + 1 ; j < savePlayers.size(); j++) {
 			if (savePlayers[i].score < savePlayers[j].score) {
 				swap(savePlayers[i], savePlayers[j]);
 			}
 		}
 	}
-
+	gotoXY(0, 0);
+	cout << savePlayers.size();
 	//textColor(WHITE);
 	
 	textFillColor(14, BLACK);
