@@ -63,12 +63,12 @@ void mainMenu() {
     int dir = 0;
     bool checkChoose = false;
     snakeColor = RED;
-    loadFileScore(savePlayers);
+    
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
 
     bool firstTime = true;
-
+    /*loadFileScore(savePlayers);*/
     while (true) {
         if (!firstTime) {
             for (int i = 40; i >= 15; --i) {

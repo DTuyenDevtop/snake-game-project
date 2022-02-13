@@ -700,8 +700,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	
 }
 void fillName(string &name) {
-	system("cls");
-	Sleep(500);
+	/*Sleep(500);*/
 	textFillColor(3, 7);
 	int col1 = 50, row1 = 18;
 	gotoXY(col1, row1++);
