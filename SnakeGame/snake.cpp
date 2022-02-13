@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#define _CRT_SECURE_NO_WARNINGS
+#pragma once
 
 #include "snake.h"
 #include "graphic.h"
@@ -10,6 +11,7 @@
 #include <fstream>
 #include <conio.h>
 #include <time.h>
+#include <ctime>
 
 #define WidthGame      120
 #define HeightGame     35
@@ -230,7 +232,7 @@ void mainLoop (
 	}
 }
 
-void playGame(string name, string dateAndTime) {
+void playGame(string name, string& dateAndTime) {
 	system("cls");
 
 	vector<Infomation> Snake;
@@ -249,7 +251,9 @@ void playGame(string name, string dateAndTime) {
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
 	}
-
+	time_t now = time(0);
+	dateAndTime = ctime(&now);
+	dateAndTime.pop_back();
 	Player t;
 	t.score = score;
 	t.name = name;
