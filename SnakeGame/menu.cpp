@@ -700,28 +700,39 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	
 }
 void fillName(string &name) {
-	/*Sleep(500);*/
+	system("cls");
+	int t = 25;
+	Sleep(t);
 	textFillColor(3, 7);
 	int col1 = 50, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"██    ██  ██████  ██    ██ ██████      ███    ██  █████  ███    ███ ███████ ";
+	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L" ██  ██  ██    ██ ██    ██ ██   ██     ████   ██ ██   ██ ████  ████ ██      ";
+	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"  ████   ██    ██ ██    ██ ██████      ██ ██  ██ ███████ ██ ████ ██ █████   ";
+	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"   ██    ██    ██ ██    ██ ██   ██     ██  ██ ██ ██   ██ ██  ██  ██ ██      ";
+	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"   ██     ██████   ██████  ██   ██     ██   ████ ██   ██ ██      ██ ███████ ";
+	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"                                                                            ";
+	Sleep(t);
 	gotoXY(col1+15, row1++);
 	textColor(3);
 	cout << "Please fill in your name in the blanks below. ";
 	Screen nameScreen;
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, RED, 1, colorXY);
+	Sleep(t);
 	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	Sleep(t);
 	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	Sleep(t);
 	
 	gotoXY(78, 29);
 	cin >> name;
