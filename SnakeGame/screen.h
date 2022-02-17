@@ -34,9 +34,11 @@ struct Screen {
             for (int i = topLeft.first; i <= topLeft.first + (dimension.width * 2); ++i) {
                 if (thickness == 2) {
                     gotoXY(i, topLeft.second);
+                    colorXY[i][topLeft.second] = "DANGER";
                     printf("%c", 219);
 
                     gotoXY(i, topLeft.second + dimension.height);
+                    colorXY[i][topLeft.second + dimension.height] = "DANGER";
                     printf("%c", 219);
                 }
                 else if (thickness == 1) {
@@ -53,9 +55,14 @@ struct Screen {
             for (int i = topLeft.second; i <= topLeft.second + dimension.height; ++i) {
                 if (thickness == 2) {
                     gotoXY(topLeft.first, i);
+                    colorXY[topLeft.first][i] = "DANGER";
+                    colorXY[topLeft.first + 1][i] = "DANGER";
+
                     printf("%c%c", 219, 219);
 
                     gotoXY(topLeft.first + (dimension.width * 2), i);
+                    colorXY[topLeft.first + (dimension.width * 2)][i] = "DANGER";
+                    colorXY[topLeft.first + (dimension.width * 2) + 1][i] = "DANGER";
                     printf("%c%c", 219, 219);
                 }
                 else if (thickness == 1) {

@@ -18,6 +18,12 @@ struct Menu {
 struct Player {
 	string name, dateAndTime;
 	int score;
+
+	Player() {
+		name = "";
+		dateAndTime = "";
+		score = 0;
+	}
 };
 
 void initMenu(vector<Menu>& listMenu);
