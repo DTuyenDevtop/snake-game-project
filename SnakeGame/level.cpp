@@ -15,15 +15,30 @@ void drawBorder() {
 void level1() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
-	//gameDisplay.draw.retangle({ 119, 0 }, { 0, 44 }, GREEN, 1, colorXY);
+	gameDisplay.draw.retangle({ 14, 17 }, { 8, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 14, 28 }, { 8, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 105, 17 }, { 8, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 105, 28 }, { 8, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 50, 5 }, { 0, 8 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 85, 5 }, { 0, 8 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 50, 31 }, { 0, 8 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 85, 31 }, { 0, 8 }, BLACK, 2, colorXY);
+
 }
 
 void level2() {
-
+	gameDisplay.resetScreenColor(colorXY);
+	drawBorder();
+	gameDisplay.draw.retangle({ 6, 22 }, { 12, 0 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 45, 22 }, { 24, 0 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 106, 22 }, { 12, 0 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 70, 2 }, { 0, 7 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 1, colorXY);
 }
 
 void level3() {
-	
+
 }
 
 void level4() {

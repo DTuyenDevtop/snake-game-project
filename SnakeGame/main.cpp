@@ -98,10 +98,7 @@ void mainMenu() {
             checkChoose = false;
             if (dir == 0) {
                 string name;
-                time_t now = time(0);
-                string dateAndTime = ctime(&now);
-                dateAndTime.pop_back();
-
+                string dateAndTime;
                 fillName(name);
                 system("cls");
                 playGame(name, dateAndTime);
