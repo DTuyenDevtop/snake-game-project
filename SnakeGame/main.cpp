@@ -28,7 +28,7 @@
 using namespace std;
 
 Screen screen;
-Status Sound;
+extern Status Sound;
 
 vector<Menu> listMenu;
 extern vector<Player> savePlayers;

@@ -23,6 +23,7 @@ int position = 8;
 string colorXY[205][85];
 short snakeColor;
 vector<Player> savePlayers;
+Status Sound;
 
 void randFood(Infomation& Food) {
 	srand((unsigned int)time(0));
@@ -115,6 +116,9 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 	
 	// Eat food
 	if (Snake[0].x == Food.x && Snake[0].y == Food.y) {
+		if (Sound == Status::OFF) {
+			playSound(L"resources/eatfood.wav");
+		}
 
 		if (position == studentIds.size() - 1) {
 			position = 0;
