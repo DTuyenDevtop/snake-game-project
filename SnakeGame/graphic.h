@@ -53,3 +53,9 @@ void snakeLogoRight();
 void snakeLogoLeft();
 
 void showLogo();
+
+void snakeGraphic1();
+
+void snakeGraphic2();
+
+void snakeGraphic3();
