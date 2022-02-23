@@ -467,7 +467,7 @@ void ourTeam() {
 }
 
 void guide() {
-	textFillColor(RED, 65);
+	textFillColor(RED, 64);
 	for (int i = 40; i <= 140; ++i) {
 		for (int j = 15; j <= 40; ++j) {
 			gotoXY(i, j);
@@ -476,7 +476,7 @@ void guide() {
 	}
 
 // Create boder for the table
-	textFillColor(WHITE, 65);
+	textFillColor(WHITE, 64);
 	for (int i = 40; i <= 140; ++i) {
 		gotoXY(i, 15);
 		cout << (char)(205); // 205 =
@@ -518,7 +518,7 @@ void guide() {
 	cout << "  \\_____|\\____/|_____|_____/|______|";*/
 
 	int row = 16, col = 75;
-	textFillColor(BLACK, BLUE);
+	textFillColor(CYAN, BLACK);
 	gotoXY(col, row++);
 	wcout << L" ██████╗ ██╗   ██╗██╗██████╗ ███████╗";
 	gotoXY(col, row++);
@@ -530,7 +530,7 @@ void guide() {
 	gotoXY(col, row++);
 	wcout << L"╚██████╔╝╚██████╔╝██║██████╔╝███████╗";
 
-	textFillColor(WHITE, 65);
+	textFillColor(WHITE, 64);
 	gotoXY(50, 23);
 	cout << "Read me first !!";
 	gotoXY(50, 25);
@@ -547,9 +547,9 @@ void guide() {
 	cout << "         |___|___|___|";
 	
 	gotoXY(50, 32);
-	//textFillColor(RED, 65);
+//	textFillColor(RED, 64);
 	cout << "Be carefull!";
-	textFillColor(WHITE, 65);
+	textFillColor(WHITE, 64);
 	gotoXY(50, 34);
 	cout << "You have to cope with barricades and walls in each level.";
 	gotoXY(50, 36);
