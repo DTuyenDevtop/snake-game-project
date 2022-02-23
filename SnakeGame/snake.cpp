@@ -24,6 +24,8 @@ string colorXY[205][85];
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
+int requirement[] = { 4, 5, 6, 7, 8 };
+int currRequirement = 0;
 
 void randFood(Infomation& Food) {
 	srand((unsigned int)time(0));
@@ -102,12 +104,14 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 		if (colorXY[Snake[0].x][Snake[0].y] != "SAFE") {
 			position = 8;
+			currRequirement = 0;
 			endGame = true;
 		}
 
 		// Check seft-hitting
 		if (i != 0 && (Snake[0].x == Snake[i].x && Snake[0].y == Snake[i].y)) {
 			position = 8;
+			currRequirement = 0;
 			gotoXY(Food.x, Food.y); 
 			cout << " ";
 			endGame = true;
@@ -129,7 +133,8 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		Add.y = Snake[size - 1].oy;
 		Snake.push_back(Add);
 
-		score+=100;  
+		score += 100;
+		currRequirement += 1;
 		gotoXY(152, 5); 
 		colorText("Score: ", RED); 
 		cout << score;
@@ -232,6 +237,7 @@ void mainLoop (
 
 	if (StatusGame == Status::ESC) {
 		position = 8;
+		currRequirement = 0;
 		endGame = true;
 	}
 }
@@ -246,15 +252,48 @@ void playGame(string name, string& dateAndTime) {
 	int Speed = SPEEDFIRST, score = 0;
 	bool endGame = false;
 
+	int currentLevel = 0;
+	int currLevel = 0;
 	initLevel();
-	level[0]();
+
+	level[currentLevel++]();
 
 	init(Snake, Food, Derection, endGame, score);
+	
 	while (!endGame) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
+		if (currRequirement == requirement[currLevel]) {
+			system("cls");
+			currentLevel++;
+			level[currentLevel++]();
+			currRequirement = 0;
+			Sleep(2000);
+			score = 0;
+			
+			Snake[0].ox = Snake[0].x;
+			Snake[0].oy = Snake[0].y;
+
+			Snake[0].x = 10;
+			Snake[0].y = 10;
+			for (size_t i = 1; i < Snake.size(); ++i) {
+				Snake[i].x = Snake[i - 1].x - 1;
+				Snake[i].y = Snake[i - 1].y;
+			}
+
+			Derection.x = 1;
+			Derection.y = 0;
+
+			randFood(Food);
+			gotoXY(Food.x, Food.y);
+			colorText(studentIds[position], snakeColor);
+			
+			mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
+			drawSnake(Snake);
+		}
 	}
+
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
 	dateAndTime.pop_back();
