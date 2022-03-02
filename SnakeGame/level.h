@@ -19,3 +19,5 @@ void level5();
 void initLevel();
 
 void moveNextLevel();
+
+void decorate(int index);

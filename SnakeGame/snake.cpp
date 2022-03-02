@@ -25,7 +25,7 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 int requirement[] = { 4, 5, 6, 7, 8 };
-int currRequirement = 0;
+int currRequirement = 1;
 
 void randFood(Infomation& Food) {
 	srand((unsigned int)time(0));
