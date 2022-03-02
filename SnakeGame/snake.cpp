@@ -28,7 +28,6 @@ int requirement[] = { 4, 5, 6, 7, 8 };
 int currRequirement = 0;
 
 void randFood(Infomation& Food) {
-	srand((unsigned int)time(0));
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
@@ -55,11 +54,13 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bo
 		pos--;
 	}
 
-	randFood(Food);
+	for (int i = 0; i < 10; ++i) {
+		randFood(Food);
 
-	gotoXY(Food.x, Food.y);
-	colorText(studentIds[position], snakeColor);
-
+		gotoXY(Food.x, Food.y);
+		colorXY[Food.x][Food.y] = "FOOD";
+		colorText(254, snakeColor);
+	}
 	// Init direction
 	Derection.x = 1; 
 	Derection.y = 0;
@@ -102,7 +103,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		//	Snake[i].y = HeightGame - 1;
 		//}
 
-		if (colorXY[Snake[0].x][Snake[0].y] != "SAFE") {
+		if (colorXY[Snake[0].x][Snake[0].y] == "DANGER") {
 			position = 8;
 			currRequirement = 0;
 			endGame = true;
@@ -119,7 +120,8 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 	}
 	
 	// Eat food
-	if (Snake[0].x == Food.x && Snake[0].y == Food.y) {
+	if (colorXY[Snake[0].x][Snake[0].y] == "FOOD") {
+		colorXY[Food.x][Food.y] = "SAFE";
 		if (Sound == Status::OFF) {
 			playSound(L"resources/eatfood.wav");
 		}
@@ -145,7 +147,8 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		randFood(Food);
 
 		gotoXY(Food.x, Food.y);
-		colorText(studentIds[position], snakeColor);
+		colorXY[Food.x][Food.y] = "FOOD";
+		colorText(254, snakeColor);
 	}
 }
 
@@ -249,6 +252,8 @@ void playGame(string name, string& dateAndTime) {
 	Infomation Derection, Food;
 	Status StatusMove, StatusGame;
 
+	srand((unsigned int)time(0));
+
 	int Speed = SPEEDFIRST, score = 0;
 	bool endGame = false;
 
@@ -259,7 +264,7 @@ void playGame(string name, string& dateAndTime) {
 	level[currentLevel++]();
 
 	init(Snake, Food, Derection, endGame, score);
-	
+
 	while (!endGame) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
@@ -278,16 +283,15 @@ void playGame(string name, string& dateAndTime) {
 			Snake[0].x = 10;
 			Snake[0].y = 10;
 			for (size_t i = 1; i < Snake.size(); ++i) {
-				Snake[i].x = Snake[i - 1].x - 1;
+				Snake[i].x = Snake[i - 1].x;
 				Snake[i].y = Snake[i - 1].y;
 			}
 
-			Derection.x = 1;
-			Derection.y = 0;
+			StatusMove = Status::DOWN;
 
 			randFood(Food);
 			gotoXY(Food.x, Food.y);
-			colorText(studentIds[position], snakeColor);
+			colorText(254, snakeColor);
 			
 			mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 			drawSnake(Snake);

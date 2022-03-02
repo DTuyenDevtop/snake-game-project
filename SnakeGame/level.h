@@ -18,4 +18,6 @@ void level5();
 
 void initLevel();
 
+void bonusLevel();
+
 void moveNextLevel();
