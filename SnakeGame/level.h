@@ -21,3 +21,5 @@ void initLevel();
 void moveNextLevel();
 
 void decorate(int index);
+
+void bonusLevel();

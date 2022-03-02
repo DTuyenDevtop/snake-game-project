@@ -258,12 +258,18 @@ void level5() {
 	decorate(5);
 }
 
+void bonusLevel() {
+	gameDisplay.resetScreenColor(colorXY);
+	drawBorder();
+}
+
 void initLevel() {
 	level.push_back(level1);
 	level.push_back(level2);
 	level.push_back(level3);
 	level.push_back(level4);
 	level.push_back(level5);
+	level.push_back(bonusLevel);
 }
 
 void moveNextLevel() {

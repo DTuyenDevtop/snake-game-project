@@ -204,3 +204,33 @@ void snakeGraphic3() {
     cout << "     (_______)" << endl;
     cout << "    (_________()Oo" << endl;
 }
+
+void showLogo1() {
+    textColor(BYELLOW);
+    int line = 3;
+    int col = 41;
+    gotoXY(col, line++);
+    cout << "           /^\\/^\\" << endl;
+    gotoXY(col, line++);
+    cout << "         _|__|  O|                                                                   /" << endl;
+    gotoXY(col, line++);
+    cout << "\\/     /~     \\_/ \\                                                                //" << endl;
+    gotoXY(col, line++);
+    cout << " \\____|__________/ \\                                                             _//" << endl;
+    gotoXY(col, line++);
+    cout << "        \\_______    \\                                                           / /" << endl;
+    gotoXY(col, line++);
+    cout << "                `\\   \\                                                         / / " << endl;
+    gotoXY(col, line++);
+    cout << "                  |   |   _______..__   __.      ___       __  ___  _______   |  |"<< endl;
+    gotoXY(col, line++);
+    cout << "                 /   /   /       ||  \\ |  |     /   \\     |  |/  / |   ____|  \\  \\" << endl;
+    gotoXY(col, line++);
+    cout << "                /   /   |   (----`|   \\|  |    /  ^  \\    |  '  /  |  |__      |  |" << endl;
+    gotoXY(col, line++);
+    cout << "                |   \\    \\   \\    |  . `  |   /  /_\\  \\   |    <   |   __|     /  /" << endl;
+    gotoXY(col, line++);
+    cout << "                \\    `----)   |   |  |\\   |  /  _____  \\  |  .  \\  |  |_______/  /" << endl;
+    gotoXY(col, line++);
+    cout << "                 \\___________/    |__| \\__| /__/     \\__\\ |__|\\__\\ |____________/" << endl;
+}

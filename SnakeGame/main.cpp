@@ -82,7 +82,8 @@ void mainMenu() {
         }
         firstTime = false;
 
-        showLogo();
+        showLogo1();
+        
         screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         textColor(BLUE);
         printMenu(listMenu);
