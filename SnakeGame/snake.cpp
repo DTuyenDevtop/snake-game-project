@@ -42,7 +42,7 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bo
 	Infomation Body;
 	endGame = false;
 
-	gotoXY(152, 5);  
+	gotoXY(147, 5);  
 	colorText("Score: ", RED); 
 	cout << score;
 	int pos = 15;
@@ -137,7 +137,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 		score += 100;
 		currRequirement += 1;
-		gotoXY(152, 5); 
+		gotoXY(147, 5); 
 		colorText("Score: ", RED); 
 		cout << score;
 
