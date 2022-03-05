@@ -206,8 +206,8 @@ void snakeGraphic3() {
 }
 
 void showLogo1() {
-    textColor(BYELLOW);
-    int line = 3;
+    textColor(BLACK);
+    int line = 2;
     int col = 41;
     gotoXY(col, line++);
     cout << "           /^\\/^\\" << endl;
@@ -234,3 +234,76 @@ void showLogo1() {
     gotoXY(col, line++);
     cout << "                 \\___________/    |__| \\__| /__/     \\__\\ |__|\\__\\ |____________/" << endl;
 }
+
+void showSnakeRight() {
+    textColor(RED);
+    int line = 23;
+    int col = 120;
+    gotoXY(col, line++);
+    wcout << L"        ██████████" << endl;
+    gotoXY(col, line++);
+    wcout << L"      ██░░░░░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"      ██░░░░░░░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ██░░██░░░░░░██░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ██░░██░░░░░░██░░▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ██░░░░░░░░░░░░░░▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"      ██▒▒▒▒▒▒▒▒▒▒▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"        ██████████████" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ████░░░░██░░░░▒▒████" << endl;
+    gotoXY(col, line++);
+    wcout << L"  ██░░░░░░██░░░░░░▒▒██▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██░░░░██▒▒▒▒▒▒▒▒▒▒██░░▒▒▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██▒▒░░░░██████████░░░░▒▒██▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██▒▒░░░░░░░░░░░░░░░░░░▒▒██▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ██████████████████    ██" << endl;
+}
+
+void showSnakeLeft() {
+    textColor(RED);
+    int line = 23;
+    int col = 25;
+    gotoXY(col, line++);
+    wcout << L"              ██████████" << endl;
+    gotoXY(col, line++);
+    wcout << L"            ██░░░░░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"          ██░░░░░░░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"          ██░░██░░░░░░██░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"        ██▒▒░░██░░░░░░██░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"        ██▒▒░░░░░░░░░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"          ██▒▒▒▒▒▒▒▒▒▒▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"          ██████████████" << endl;
+    gotoXY(col, line++);
+    wcout << L"      ████▒▒░░░░██░░░░████" << endl;
+    gotoXY(col, line++);
+    wcout << L"    ██▒▒██▒▒░░░░░░██░░░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"  ██▒▒▒▒░░██▒▒▒▒▒▒▒▒▒▒██░░░░██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██▒▒██▒▒░░░░██████████░░░░▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██▒▒██▒▒░░░░░░░░░░░░░░░░░░▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"██▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██" << endl;
+    gotoXY(col, line++);
+    wcout << L"  ██    ██████████████████" << endl;
+}
+

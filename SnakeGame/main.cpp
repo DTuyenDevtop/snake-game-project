@@ -83,6 +83,11 @@ void mainMenu() {
         firstTime = false;
 
         showLogo1();
+
+        showSnakeLeft();
+
+
+        showSnakeRight();
         
         screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         textColor(BLUE);
