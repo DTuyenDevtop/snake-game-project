@@ -153,16 +153,16 @@ void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check) {
 	}
 }
 
-void setting() {
+void blackBoard() {
 	textFillColor(BLUE, BLACK);
 	for (int j = 15; j <= 40; ++j) {
-		gotoXY(40, j);
-		cout << "                                                                                                     ";
+		gotoXY(20, j);
+		cout << "                                                                                                                                        ";
 		Sleep(8);
 	}
 
 	textFillColor(WHITE, BLACK);
-	for (int i = 40; i <= 140; ++i) {
+	for (int i = 20; i <= 155; ++i) {
 		gotoXY(i, 15);
 		cout << (char)(205);
 		gotoXY(i, 40);
@@ -170,23 +170,27 @@ void setting() {
 	}
 
 	for (int i = 15; i <= 40; ++i) {
-		gotoXY(40, i);
+		gotoXY(20, i);
 		cout << (char)(186);
-		gotoXY(140, i);
+		gotoXY(155, i);
 		cout << (char)(186);
 	}
 
-	gotoXY(40, 15);
+	gotoXY(20, 15);
 	cout << (char)(201);
 
-	gotoXY(40, 40);
+	gotoXY(20, 40);
 	cout << (char)(200);
 
-	gotoXY(140, 15);
+	gotoXY(155, 15);
 	cout << (char)(187);
 
-	gotoXY(140, 40);
+	gotoXY(155, 40);
 	cout << (char)(188);
+}
+
+void setting() {
+	blackBoard();
 
 	int row = 16, col = 60;
 
@@ -234,38 +238,7 @@ void setting() {
 }
 
 void ourTeam() {
-	textFillColor(RED, 64);
-	for (int i = 40; i <= 140; ++i) {
-		for (int j = 15; j <= 40; ++j) {
-			gotoXY(i, j);
-			cout << " ";
-		}
-	}
-
-	textFillColor(WHITE, 64);
-	for (int i = 40; i <= 140; ++i) {
-		gotoXY(i, 15);
-		cout << (char)(205);
-		gotoXY(i, 40);
-		cout << (char)(205);
-	}
-
-	//Our team border
-	for (int i = 15; i <= 40; ++i) {
-		gotoXY(40, i);
-		cout << (char)(186);
-		gotoXY(140, i);
-		cout << (char)(186);
-	}
-
-	gotoXY(40, 15);
-	cout << (char)(201);
-	gotoXY(40, 40);
-	cout << (char)(200);
-	gotoXY(140, 15);
-	cout << (char)(187);
-	gotoXY(140, 40);
-	cout << (char)(188);
+	blackBoard();
 
 	// Ourteam logo
 	//int row = 16, col = 70;
@@ -467,41 +440,7 @@ void ourTeam() {
 }
 
 void guide() {
-	textFillColor(RED, 64);
-	for (int i = 40; i <= 140; ++i) {
-		for (int j = 15; j <= 40; ++j) {
-			gotoXY(i, j);
-			cout << " ";
-		}
-	}
-
-// Create boder for the table
-	textFillColor(WHITE, 64);
-	for (int i = 40; i <= 140; ++i) {
-		gotoXY(i, 15);
-		cout << (char)(205); // 205 =
-		gotoXY(i, 40);
-		cout << (char)(205);
-	}
-
-	for (int i = 15; i <= 40; ++i) {
-		gotoXY(40, i);
-		cout << (char)(186); // ||
-		gotoXY(140, i);
-		cout << (char)(186);
-	}
-
-	gotoXY(40, 15);
-	cout << (char)(201); 
-
-	gotoXY(40, 40);
-	cout << (char)(200);
-
-	gotoXY(140, 15);
-	cout << (char)(187); 
-
-	gotoXY(140, 40);
-	cout << (char)(188); 
+	blackBoard();
 
 	/*int row = 16, col = 70;
 	gotoXY(col, row++);
@@ -588,38 +527,7 @@ void loadFileScore(vector<Player> &savePlayers) {
 }
 
 void highScore(vector<Player>& savePlayers, Screen screen) {
-	//Border of highscore
-	textFillColor(BLACK, BLACK);
-	for (int i = 40; i <= 140; ++i) {
-		for (int j = 15; j <= 40; ++j) {
-			gotoXY(i, j);
-			cout << " ";
-		}
-	}
-
-	textFillColor(WHITE, BLACK);
-	for (int i = 40; i <= 140; ++i) {
-		gotoXY(i, 15);
-		cout << (char)(205);
-		gotoXY(i, 40);
-		cout << (char)(205);
-	}
-
-	for (int i = 15; i <= 40; ++i) {
-		gotoXY(40, i);
-		cout << (char)(186);
-		gotoXY(140, i);
-		cout << (char)(186);
-	}
-
-	gotoXY(40, 15);
-	cout << (char)(201);
-	gotoXY(40, 40);
-	cout << (char)(200);
-	gotoXY(140, 15);
-	cout << (char)(187);
-	gotoXY(140, 40);
-	cout << (char)(188);
+	blackBoard();
 
 	int colHS = 49;
 	int rowHS = 17;

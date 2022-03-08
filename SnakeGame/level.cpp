@@ -11,6 +11,7 @@ void drawBorder() {
 	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
 
 }
+
 void decorate(int index) {
 	int x = 137;
 	int y = 11;

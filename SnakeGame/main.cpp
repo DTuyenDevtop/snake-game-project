@@ -54,12 +54,12 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
-    screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
+    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
 
 void mainMenu() {
-   // playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+    playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
     bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;
@@ -76,7 +76,7 @@ void mainMenu() {
             for (int i = 40; i >= 15; --i) {
                 gotoXY(5, i);
                 textFillColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-                cout << "                                                                                                                                         ";
+                cout << "                                                                                                                                                       ";
                 Sleep(10);
             }
         }
