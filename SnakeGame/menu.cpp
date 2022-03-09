@@ -783,3 +783,42 @@ void fillName(string &name) {
 	gotoXY(78, 29);
 	cin >> name;
 }
+int loseGame() {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(3, 7);
+	int col1 = 42, row1 = 18;
+	gotoXY(col1, row1++);
+	wcout << L"██    ██  ██████  ██    ██      █████  ██████  ███████     ██       ██████  ███████ ███████ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L" ██  ██  ██    ██ ██    ██     ██   ██ ██   ██ ██          ██      ██    ██ ██      ██      ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"  ████   ██    ██ ██    ██     ███████ ██████  █████       ██      ██    ██ ███████ █████   ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"   ██    ██    ██ ██    ██     ██   ██ ██   ██ ██          ██      ██    ██      ██ ██      ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"   ██     ██████   ██████      ██   ██ ██   ██ ███████     ███████  ██████  ███████ ███████ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 + 20, row1+3);
+	textColor(3);
+	cout << "Do you want to continue playing ? ";
+	char c;
+	cin >> c;
+	//This line for using getch
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	Sleep(t);
+	return 1;
+}

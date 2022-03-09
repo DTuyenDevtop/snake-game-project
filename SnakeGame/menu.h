@@ -38,3 +38,4 @@ void highScore(vector<Player>& savePlayers, Screen screen);
 void loadFileScore(vector<Player>& savePlayers);
 void ourTeam();
 void fillName(string& name);
+int loseGame();
