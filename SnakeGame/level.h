@@ -24,4 +24,9 @@ void decorate(int index);
 
 void bonusLevel();
 
+void drawInGate();
+
+void drawOutGate(int width);
+
+
 void decorateBonus();

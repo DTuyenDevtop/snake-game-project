@@ -59,7 +59,7 @@ void setup() {
 }
 
 void mainMenu() {
-   // playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+    //playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
     bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;
@@ -76,14 +76,20 @@ void mainMenu() {
             for (int i = 40; i >= 15; --i) {
                 gotoXY(5, i);
                 textFillColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-                cout << "                                                                                                                                         ";
+                cout << "                                                                                                                                                       ";
                 Sleep(10);
             }
         }
         firstTime = false;
 
         showLogo1();
-        loseGame();
+
+        showSnakeLeft();
+
+
+        showSnakeRight();
+        
+        //loseGame();
         screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         textColor(BLUE);
         printMenu(listMenu);

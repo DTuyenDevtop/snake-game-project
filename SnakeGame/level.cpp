@@ -11,6 +11,7 @@ void drawBorder() {
 	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
 
 }
+
 void decorate(int index) {
 	int x = 137;
 	int y = 11;
@@ -244,7 +245,7 @@ void decorate(int index) {
 }
 void decorateBonus() {
 	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
-	textColor(2);
+	textColor(6);
 	int col1 = 137, row1 = 12;
 	gotoXY(col1, row1++);
 	wcout << L"██████ ";
@@ -328,6 +329,8 @@ void level1() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
 	decorate(1);
+	//drawInGate();
+	drawOutGate(3);
 	gameDisplay.draw.retangle({ 14, 17 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 14, 28 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 105, 17 }, { 8, 0 }, BLACK, 2, colorXY);
@@ -349,6 +352,8 @@ void level2() {
 	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 1, colorXY);
 	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 1, colorXY);
 	decorate(2);
+	//drawInGate();
+	drawOutGate(3);
 }
 
 void level3() {
@@ -369,6 +374,8 @@ void level3() {
 	gameDisplay.draw.retangle({ 38, 22 }, { 30, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 68, 12 }, { 0, 20 }, BLACK, 2, colorXY);
 	decorate(3);
+	//drawInGate();
+	drawOutGate(2);
 }
 
 void level4() {
@@ -388,6 +395,8 @@ void level4() {
 	gameDisplay.draw.retangle({ 93, 21 }, { 0, 7 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 110, 30 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(4);
+	//drawInGate();
+	drawOutGate(2);
 }
 
 void level5() {
@@ -412,21 +421,125 @@ void level5() {
 	gameDisplay.draw.retangle({ 77, 25 }, { 0, 8 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 77, 25 }, { 10, 0 }, BLACK, 2, colorXY);
 	decorate(5);
+	//drawInGate();
+	drawOutGate(1);
 }
 
 void bonusLevel() {
 	decorateBonus();
 	gameDisplay.resetScreenColor(colorXY);
-	drawBorder();
+	drawBorder();	
+	//drawInGate();
+	drawOutGate(3);
 }
 
 void initLevel() {
-	level.push_back(level1);
-	level.push_back(level2);
-	level.push_back(level3);
-	level.push_back(level4);
-	level.push_back(level5);
+	//level.push_back(level1);
+	//level.push_back(level2);
+	//level.push_back(level3);
+	//level.push_back(level4);
+	//level.push_back(level5);
 	level.push_back(bonusLevel);
+}
+
+void drawInGate()
+{
+	int col = 7, row = 6;
+	gotoXY(col, row);
+	for (int i = 0; i < 9; i++)
+	{
+		if (i < 3 || i>5)
+		{
+			colorXY[col + i][row] = "DANGER";
+		}
+	}
+	cout << (char)205 << (char)202 << (char)205 << "   " << (char)205 << (char)202 << (char)205;
+	col++; row--;
+	gotoXY(col, row);
+	colorXY[col][row] = "DANGER";
+	colorXY[col + 6][row] = "DANGER";
+	cout << (char)186 << "     " << (char)186;
+	row--;
+	gotoXY(col, row);
+	for (int i = 0; i < 6; i++)
+	{
+		colorXY[col + i][row] = "DANGER";
+	}
+	cout << (char)201 << (char)205 << (char)205 << (char)79 << (char)205 << (char)205 << (char)187;
+}
+
+void drawOutGate(int width)
+{
+	int x;
+	switch (width)
+	{
+	case 3:
+		x = 0;
+		break;
+	case 2:
+		x = 1;
+		break;
+	case 1:
+		x = 2;
+		break;
+	}
+
+	int col = 121, row = 38;
+	gotoXY(col, row);
+	for (int i = 0; i < 9; i++)
+	{
+		if (i < 3 || i>5-x)
+		{
+			colorXY[col + i][row] = "DANGER";
+		}
+	}
+	if (width == 3)
+	{
+		cout << (char)205 << (char)203 << (char)205 << "   " << (char)205 << (char)203 << (char)205;
+	}
+	else if(width==2)
+	{
+		cout << (char)205 << (char)203 << (char)205 << "  " << (char)205 << (char)203 << (char)205;
+	}
+	else
+	{
+		cout << (char)205 << (char)203 << (char)205 << " " << (char)205 << (char)203 << (char)205;
+	}
+	
+	col++; row++;
+	gotoXY(col, row);
+	colorXY[col][row] = "DANGER";
+	colorXY[col + 5-x][row] = "DANGER";
+	
+	if (width == 3)
+	{
+		cout << (char)186 << "     " << (char)186;
+	} 
+	else if (width == 2)
+	{
+		cout << (char)186 << "    " << (char)186;
+	}
+	else
+	{
+		cout << (char)186 << "   " << (char)186;
+	}
+
+	row++;
+	gotoXY(col, row);
+	colorXY[col][row] = "DANGER";
+	colorXY[col + 6-x][row] = "DANGER";
+	if (width == 3)
+	{
+		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)188;
+	}
+	else if (width == 2)
+	{
+		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)205 << (char)188;
+	}
+	else
+	{
+		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)188;
+	}
 }
 
 void moveNextLevel() {
