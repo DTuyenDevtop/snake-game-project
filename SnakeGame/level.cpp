@@ -345,12 +345,12 @@ void level1() {
 void level2() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
-	gameDisplay.draw.retangle({ 6, 22 }, { 12, 0 }, BLACK, 1, colorXY);
-	gameDisplay.draw.retangle({ 45, 22 }, { 24, 0 }, BLACK, 1, colorXY);
-	gameDisplay.draw.retangle({ 106, 22 }, { 12, 0 }, BLACK, 1, colorXY);
-	gameDisplay.draw.retangle({ 70, 2 }, { 0, 7 }, BLACK, 1, colorXY);
-	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 1, colorXY);
-	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 1, colorXY);
+	gameDisplay.draw.retangle({ 6, 22 }, { 12, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 45, 22 }, { 24, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 106, 22 }, { 12, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 70, 2 }, { 0, 7 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(2);
 	//drawInGate();
 	drawOutGate(3);
@@ -434,11 +434,11 @@ void bonusLevel() {
 }
 
 void initLevel() {
-	//level.push_back(level1);
-	//level.push_back(level2);
-	//level.push_back(level3);
-	//level.push_back(level4);
-	//level.push_back(level5);
+	level.push_back(level1);
+	level.push_back(level2);
+	level.push_back(level3);
+	level.push_back(level4);
+	level.push_back(level5);
 	level.push_back(bonusLevel);
 }
 

@@ -271,7 +271,7 @@ void playGame(string name, string& dateAndTime) {
 		drawSnake(Snake);
 		if (currRequirement == requirement[currLevel]) {
 			system("cls");
-			currentLevel++;
+			//currentLevel++;
 			level[currentLevel++]();
 			currRequirement = 0;
 			Sleep(2000);
