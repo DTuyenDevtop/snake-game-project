@@ -54,7 +54,7 @@ void setup() {
 
     screen.clear();
     screen.resetScreenColor(colorXY);
-    screen.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
+    screen.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
     screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
 }
 

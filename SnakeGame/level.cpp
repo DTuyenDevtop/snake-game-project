@@ -154,6 +154,8 @@ void decorate(int index) {
 	}
 	if (index == 2) {
 		textColor(t);
+		tempy++;
+		tempx--;
 		gotoXY(tempx, tempy++);
 		wcout << L" (O)-.     ";
 		gotoXY(tempx, tempy++);
@@ -205,6 +207,7 @@ void decorate(int index) {
 	}
 	if (index == 5) {
 		textColor(t);
+		tempy++;
 		gotoXY(tempx, tempy++);
 		wcout << L"   oo_ ";
 		gotoXY(tempx, tempy++);
@@ -220,7 +223,7 @@ void decorate(int index) {
 		wcout << L"(_____/ ";
 
 	}
-	for (int i = 155; i <= 163; ++i) {
+	for (int i = 155; i <= 164; ++i) {
 		gotoXY(i, 23);
 		cout << (char)(205);
 		gotoXY(i, 30);
@@ -229,7 +232,7 @@ void decorate(int index) {
 	for (int i = 24; i <= 29; ++i) {
 		gotoXY(154, i);
 		cout << (char)(186);
-		gotoXY(164, i);
+		gotoXY(165, i);
 		cout << (char)(186);
 	}
 
@@ -237,9 +240,9 @@ void decorate(int index) {
 	cout << (char)(201);
 	gotoXY(154, 30);
 	cout << (char)(200);
-	gotoXY(164, 23);
+	gotoXY(165, 23);
 	cout << (char)(187);
-	gotoXY(164, 30);
+	gotoXY(165, 30);
 	cout << (char)(188);
 
 }
