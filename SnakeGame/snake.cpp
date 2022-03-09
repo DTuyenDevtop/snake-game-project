@@ -36,6 +36,7 @@ void randFood(Infomation& Food) {
 		Food.x = 5 + rand() % (WidthGame - 5);
 		Food.y = 5 + rand() % (HeightGame - 5);
 	}
+	colorXY[Food.x][Food.y] = "FOOD";
 }
 
 void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bool& endGame, int score) {
@@ -56,9 +57,7 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bo
 
 	for (int i = 0; i < 10; ++i) {
 		randFood(Food);
-
 		gotoXY(Food.x, Food.y);
-		colorXY[Food.x][Food.y] = "FOOD";
 		colorText(254, snakeColor);
 	}
 	// Init direction
@@ -122,6 +121,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 	// Eat food
 	if (colorXY[Snake[0].x][Snake[0].y] == "FOOD") {
 		colorXY[Food.x][Food.y] = "SAFE";
+		
 		if (Sound == Status::OFF) {
 			playSound(L"resources/eatfood.wav");
 		}
@@ -135,20 +135,18 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		Add.y = Snake[size - 1].oy;
 		Snake.push_back(Add);
 
-		score += 100;
-		currRequirement += 1;
-		gotoXY(147, 5); 
-		colorText("Score: ", RED); 
-		cout << score;
-
-		//playSound(L"resources/eatfood.wav");
-
 		// Creat new food
 		randFood(Food);
 
 		gotoXY(Food.x, Food.y);
 		colorXY[Food.x][Food.y] = "FOOD";
 		colorText(254, snakeColor);
+
+		score += 100;
+		currRequirement += 1;
+		gotoXY(147, 5); 
+		colorText("Score: ", RED); 
+		cout << score;
 	}
 }
 
@@ -271,7 +269,6 @@ void playGame(string name, string& dateAndTime) {
 		drawSnake(Snake);
 		if (currRequirement == requirement[currLevel]) {
 			system("cls");
-			currentLevel++;
 			level[currentLevel++]();
 			currRequirement = 0;
 			Sleep(2000);
