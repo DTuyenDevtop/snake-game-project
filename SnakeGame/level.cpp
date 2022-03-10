@@ -1,5 +1,7 @@
 ﻿#include "level.h"
 #include "screen.h"
+#include "snake.h"
+#include "graphic.h"
 
 vector<function<void()>> level;
 
@@ -327,6 +329,7 @@ void decorateBonus() {
 	gotoXY(x - 1, y++ + 22);
 	wcout << "(_________()Oo";
 }
+
 void level1() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
@@ -426,10 +429,36 @@ void level5() {
 	drawOutGate(1);
 }
 
+void randXY(Infomation& Food, const std::string label) {
+	Food.x = 5 + rand() % (WidthGame - 5);
+	Food.y = 5 + rand() % (HeightGame - 5);
+
+	while (colorXY[Food.x][Food.y] == "DANGER") {
+		srand((unsigned int)time(0));
+		Food.x = 5 + rand() % (WidthGame - 5);
+		Food.y = 5 + rand() % (HeightGame - 5);
+	}
+	colorXY[Food.x][Food.y] = label;
+}
+
 void bonusLevel() {
 	decorateBonus();
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();	
+
+	Infomation Food;
+	for (int i = 0; i < 10; ++i) {
+		randXY(Food, "FOOD_BINC");
+		gotoXY(Food.x, Food.y);
+		colorText(254, snakeColor);
+	}
+
+	for (int i = 0; i < 10; ++i) {
+		randXY(Food, "FOOD_BST");
+		gotoXY(Food.x, Food.y);
+		colorText(254, BYELLOW);
+	}
+
 	//drawInGate();
 	drawOutGate(3);
 }

@@ -13,18 +13,13 @@
 #include <time.h>
 #include <ctime>
 
-#define WidthGame      120
-#define HeightGame     35
-#define SPEEDFIRST     50
-#define SPEEDLATER	   30
-
 std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85];
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
-int requirement[] = { 4, 5, 6, 7, 8 };
+int requirement[] = { 4, 5, 6, 7, 8, 5 };
 int currRequirement = 1;
 
 void randFood(Infomation& Food) {
@@ -36,7 +31,7 @@ void randFood(Infomation& Food) {
 		Food.x = 5 + rand() % (WidthGame - 5);
 		Food.y = 5 + rand() % (HeightGame - 5);
 	}
-	colorXY[Food.x][Food.y] = "FOOD";
+	colorXY[Food.x][Food.y] = "FOOD_INC";
 }
 
 void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bool& endGame, int score) {
@@ -55,11 +50,10 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Derection, bo
 		pos--;
 	}
 
-	for (int i = 0; i < 10; ++i) {
-		randFood(Food);
-		gotoXY(Food.x, Food.y);
-		colorText(254, snakeColor);
-	}
+	randFood(Food);
+	gotoXY(Food.x, Food.y);
+	colorText(254, snakeColor);
+
 	// Init direction
 	Derection.x = 1; 
 	Derection.y = 0;
@@ -119,7 +113,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 	}
 	
 	// Eat food
-	if (colorXY[Snake[0].x][Snake[0].y] == "FOOD") {
+	if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_INC") {
 		colorXY[Food.x][Food.y] = "SAFE";
 		
 		if (Sound == Status::OFF) {
@@ -139,13 +133,48 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		randFood(Food);
 
 		gotoXY(Food.x, Food.y);
-		colorXY[Food.x][Food.y] = "FOOD";
+		colorXY[Food.x][Food.y] = "FOOD_INC";
 		colorText(254, snakeColor);
 
 		score += 100;
 		currRequirement += 1;
 		gotoXY(147, 5); 
 		colorText("Score: ", RED); 
+		cout << score;
+	} 
+	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BINC") {
+		colorXY[Food.x][Food.y] = "SAFE";
+
+		if (Sound == Status::OFF) {
+			playSound(L"resources/eatfood.wav");
+		}
+
+		if (position == studentIds.size() - 1) {
+			position = 0;
+		}
+
+		Add.data = studentIds[position++];
+		Add.x = Snake[size - 1].ox;
+		Add.y = Snake[size - 1].oy;
+		Snake.push_back(Add);
+
+		score += 100;
+		currRequirement += 1;
+		gotoXY(147, 5);
+		colorText("Score: ", RED);
+		cout << score;
+	}
+	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BST") {
+		colorXY[Food.x][Food.y] = "SAFE";
+
+		if (Sound == Status::OFF) {
+			playSound(L"resources/eatfood.wav");
+		}
+
+		score += 100;
+		currRequirement += 1;
+		gotoXY(147, 5);
+		colorText("Score: ", RED);
 		cout << score;
 	}
 }
@@ -256,7 +285,7 @@ void playGame(string name, string& dateAndTime) {
 	bool endGame = false;
 
 	int currentLevel = 0;
-	int currLevel = 0;
+	//int currLevel = 0;
 	initLevel();
 
 	level[currentLevel++]();
@@ -267,9 +296,15 @@ void playGame(string name, string& dateAndTime) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Derection, Food, Speed, endGame, score);
 		drawSnake(Snake);
-		if (currRequirement == requirement[currLevel]) {
+		if (currRequirement == requirement[currentLevel - 1]) {
 			system("cls");
-			level[currentLevel++]();
+			if (currentLevel < level.size() - 1) {
+				level[currentLevel++]();
+			}
+			else {
+				currentLevel = 0;
+				level[currentLevel++]();
+			}
 			currRequirement = 0;
 			Sleep(2000);
 			score = 0;
