@@ -306,4 +306,3 @@ void showSnakeLeft() {
     gotoXY(col, line++);
     wcout << L"  ██    ██████████████████" << endl;
 }
-
