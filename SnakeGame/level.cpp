@@ -9,7 +9,6 @@ void drawBorder() {
 	gameDisplay.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
 	gameDisplay.draw.retangle({ 5, 2 }, { 63, 40 }, RED, 1, colorXY);
 	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
-
 }
 
 void decorate(int index) {
@@ -339,7 +338,6 @@ void level1() {
 	gameDisplay.draw.retangle({ 85, 5 }, { 0, 8 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 50, 31 }, { 0, 8 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 85, 31 }, { 0, 8 }, BLACK, 2, colorXY);
-	
 }
 
 void level2() {
@@ -442,14 +440,11 @@ void initLevel() {
 	level.push_back(bonusLevel);
 }
 
-void drawInGate()
-{
+void drawInGate() {
 	int col = 7, row = 6;
 	gotoXY(col, row);
-	for (int i = 0; i < 9; i++)
-	{
-		if (i < 3 || i>5)
-		{
+	for (int i = 0; i < 9; i++) {
+		if (i < 3 || i > 5) {
 			colorXY[col + i][row] = "DANGER";
 		}
 	}
@@ -460,67 +455,59 @@ void drawInGate()
 	colorXY[col + 6][row] = "DANGER";
 	cout << (char)186 << "     " << (char)186;
 	row--;
+
 	gotoXY(col, row);
-	for (int i = 0; i < 6; i++)
-	{
+	for (int i = 0; i < 6; i++) {
 		colorXY[col + i][row] = "DANGER";
 	}
 	cout << (char)201 << (char)205 << (char)205 << (char)79 << (char)205 << (char)205 << (char)187;
 }
 
-void drawOutGate(int width)
-{
-	int x;
-	switch (width)
-	{
-	case 3:
-		x = 0;
-		break;
-	case 2:
-		x = 1;
-		break;
-	case 1:
-		x = 2;
-		break;
+void drawOutGate(int width) {
+	int x = 0;
+	switch (width) {
+		case 3:
+			x = 0;
+			break;
+		case 2:
+			x = 1;
+			break;
+		case 1:
+			x = 2;
+			break;
 	}
 
 	int col = 121, row = 38;
 	gotoXY(col, row);
-	for (int i = 0; i < 9; i++)
-	{
-		if (i < 3 || i>5-x)
-		{
+
+	for (int i = 0; i < 9; i++) {
+		if (i < 3 || i > 5 - x) {
 			colorXY[col + i][row] = "DANGER";
 		}
 	}
-	if (width == 3)
-	{
+	
+	if (width == 3) {
 		cout << (char)205 << (char)203 << (char)205 << "   " << (char)205 << (char)203 << (char)205;
 	}
-	else if(width==2)
-	{
+	else if(width == 2) {
 		cout << (char)205 << (char)203 << (char)205 << "  " << (char)205 << (char)203 << (char)205;
 	}
-	else
-	{
+	else {
 		cout << (char)205 << (char)203 << (char)205 << " " << (char)205 << (char)203 << (char)205;
 	}
 	
 	col++; row++;
 	gotoXY(col, row);
 	colorXY[col][row] = "DANGER";
-	colorXY[col + 5-x][row] = "DANGER";
+	colorXY[col + 5 - x][row] = "DANGER";
 	
-	if (width == 3)
-	{
+	if (width == 3) {
 		cout << (char)186 << "     " << (char)186;
 	} 
-	else if (width == 2)
-	{
+	else if (width == 2) {
 		cout << (char)186 << "    " << (char)186;
 	}
-	else
-	{
+	else {
 		cout << (char)186 << "   " << (char)186;
 	}
 
@@ -528,16 +515,13 @@ void drawOutGate(int width)
 	gotoXY(col, row);
 	colorXY[col][row] = "DANGER";
 	colorXY[col + 6-x][row] = "DANGER";
-	if (width == 3)
-	{
+	if (width == 3) {
 		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)188;
 	}
-	else if (width == 2)
-	{
+	else if (width == 2) {
 		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)205 << (char)188;
 	}
-	else
-	{
+	else {
 		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)188;
 	}
 }
