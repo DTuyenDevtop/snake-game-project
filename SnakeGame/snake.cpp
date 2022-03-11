@@ -217,7 +217,6 @@ void mainLoop (
 			StatusMove = Status::DOWN;
 		}
 		else if (key == 32) { // Space - pause game
-			pauseGame();
 			StatusGame = Status::PAUSE;
 		}
 		else if (key == 27) {
