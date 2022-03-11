@@ -27,15 +27,29 @@ struct Player {
 };
 
 void initMenu(vector<Menu>& listMenu);
+
 void printMenu(vector<Menu> listMenu);
+
 void moveSelect(vector<Menu> listMenu, int& dir, bool& check);
+
 void moveSelectSetting(vector<Menu> listMenu, int& dir, bool& check);
+
 void setting();
+
 void ourTeam();
+
 void guide();
+
 void swap(Player& a, Player& b);
-void highScore(vector<Player>& savePlayers, Screen screen);
+
+void highScore(vector<Player>& savePlayers, Screen screen)
+;
 void loadFileScore(vector<Player>& savePlayers);
+
 void ourTeam();
+
 void fillName(string& name);
+
 int loseGame();
+
+void pauseGame();

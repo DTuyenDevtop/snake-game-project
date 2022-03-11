@@ -730,3 +730,62 @@ int loseGame() {
 	Sleep(t);
 	return 1;
 }
+
+void pauseGame() {
+	//Black board
+	textFillColor(BLUE, BLACK);
+	for (int j = 16; j <= 29; ++j) {
+		gotoXY(27, j);
+		cout << "                                                                                    ";
+		Sleep(8);
+	}
+
+	//Horizontal border
+	textFillColor(WHITE, BLACK);
+	for (int i = 27; i <= 110; ++i) {
+		gotoXY(i, 16);
+		cout << (char)(205);
+		gotoXY(i, 29);
+		cout << (char)(205);
+	}
+
+	//Veritcal border
+	for (int i = 17; i <= 28; ++i) {
+		gotoXY(26, i);
+		cout << (char)(186);
+		gotoXY(110, i);
+		cout << (char)(186);
+	}
+
+	gotoXY(26, 16); // Top right
+	cout << (char)(201);
+
+	gotoXY(26, 29); // Bottom right
+	cout << (char)(200);
+
+	gotoXY(110, 16); // Top left
+	cout << (char)(187);
+
+	gotoXY(110, 29); // Bottom left
+	cout << (char)(188);
+
+	//Graphic
+	textFillColor(3, 64);
+	int col1 = 29, row1 = 19;
+	gotoXY(col1, row1++);
+	wcout << L"██████   █████  ██    ██ ███████ ███████     ██████   █████  ███    ███ ███████ ";
+	gotoXY(col1, row1++);
+	wcout << L"██   ██ ██   ██ ██    ██ ██      ██         ██       ██   ██ ████  ████ ██      ";
+	gotoXY(col1, row1++);
+	wcout << L"██████  ███████ ██    ██ ███████ █████      ██   ███ ███████ ██ ████ ██ █████   ";
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██ ██    ██      ██ ██         ██    ██ ██   ██ ██  ██  ██ ██      ";
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██  ██████  ███████ ███████     ██████  ██   ██ ██      ██ ███████ ";
+
+	//Text
+	gotoXY(col1 + 22, row1 + 2);
+	textFillColor(WHITE, BLACK);
+	cout << "Press spacebar again to continue";
+	textColor(snakeColor);
+}
