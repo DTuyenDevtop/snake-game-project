@@ -334,8 +334,8 @@ void level1() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
 	decorate(1);
-	//drawInGate();
-	drawOutGate(3);
+	//drawInGate(7,6);
+	drawOutGate(3,121,38);
 	gameDisplay.draw.retangle({ 14, 17 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 14, 28 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 105, 17 }, { 8, 0 }, BLACK, 2, colorXY);
@@ -356,8 +356,8 @@ void level2() {
 	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(2);
-	//drawInGate();
-	drawOutGate(3);
+	//drawInGate(7,6);
+	drawOutGate(3,121,38);
 }
 
 void level3() {
@@ -378,8 +378,8 @@ void level3() {
 	gameDisplay.draw.retangle({ 38, 22 }, { 30, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 68, 12 }, { 0, 20 }, BLACK, 2, colorXY);
 	decorate(3);
-	//drawInGate();
-	drawOutGate(2);
+	//drawInGate(7,6);
+	drawOutGate(2,121,38);
 }
 
 void level4() {
@@ -399,8 +399,8 @@ void level4() {
 	gameDisplay.draw.retangle({ 93, 21 }, { 0, 7 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 110, 30 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(4);
-	//drawInGate();
-	drawOutGate(2);
+	//drawInGate(7,6);
+	drawOutGate(2,121,38);
 }
 
 void level5() {
@@ -425,8 +425,8 @@ void level5() {
 	gameDisplay.draw.retangle({ 77, 25 }, { 0, 8 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 77, 25 }, { 10, 0 }, BLACK, 2, colorXY);
 	decorate(5);
-	//drawInGate();
-	drawOutGate(1);
+	//drawInGate(7,6);
+	drawOutGate(1,121,38);
 }
 
 void randXY(Infomation& Food, const std::string label) {
@@ -459,8 +459,8 @@ void bonusLevel() {
 		colorText(254, BYELLOW);
 	}
 
-	//drawInGate();
-	drawOutGate(3);
+	//drawInGate(7,6);
+	drawOutGate(3,121,38);
 }
 
 void initLevel() {
@@ -472,8 +472,8 @@ void initLevel() {
 	level.push_back(bonusLevel);
 }
 
-void drawInGate() {
-	int col = 7, row = 6;
+void drawInGate(int col, int row) {
+	//int col = 7, row = 6;
 	gotoXY(col, row);
 	for (int i = 0; i < 9; i++) {
 		if (i < 3 || i > 5) {
@@ -495,7 +495,7 @@ void drawInGate() {
 	cout << (char)201 << (char)205 << (char)205 << (char)79 << (char)205 << (char)205 << (char)187;
 }
 
-void drawOutGate(int width) {
+void drawOutGate(int width, int col, int row) {
 	int x = 0;
 	switch (width) {
 		case 3:
@@ -509,7 +509,7 @@ void drawOutGate(int width) {
 			break;
 	}
 
-	int col = 121, row = 38;
+	//int col = 121, row = 38;
 	gotoXY(col, row);
 
 	for (int i = 0; i < 9; i++) {
