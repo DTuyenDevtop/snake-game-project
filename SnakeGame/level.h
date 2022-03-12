@@ -28,5 +28,6 @@ void drawInGate(int col, int row);
 
 void drawOutGate(int width, int col, int row);
 
+void deleteBorder();
 
 void decorateBonus();
