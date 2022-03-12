@@ -8,7 +8,7 @@ vector<function<void()>> level;
 Screen gameDisplay;
 
 void drawBorder() {
-	gameDisplay.draw.retangle({ 2, 1 }, { 83, 42 }, GREEN, 2, colorXY);
+	gameDisplay.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
 	gameDisplay.draw.retangle({ 5, 2 }, { 63, 40 }, RED, 1, colorXY);
 	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
 }
@@ -335,7 +335,14 @@ void level1() {
 	drawBorder();
 	decorate(1);
 	//drawInGate(7,6);
-	drawOutGate(3,121,38);
+	//drawOutGate(3,121,38);
+	colorXY[121][40] = "PASS";
+	colorXY[122][40] = "PASS";
+	colorXY[123][40] = "PASS";
+	colorXY[124][40] = "PASS";
+	colorXY[125][40] = "PASS";
+	colorXY[126][40] = "PASS";
+
 	gameDisplay.draw.retangle({ 14, 17 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 14, 28 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 105, 17 }, { 8, 0 }, BLACK, 2, colorXY);
@@ -460,7 +467,7 @@ void bonusLevel() {
 	}
 
 	//drawInGate(7,6);
-	drawOutGate(3,121,38);
+	drawOutGate(3, 121, 38);
 }
 
 void initLevel() {
