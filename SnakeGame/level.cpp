@@ -4,9 +4,8 @@
 #include "graphic.h"
 
 vector<function<void()>> level;
-
 Screen gameDisplay;
-
+\
 void drawBorder() {
 	gameDisplay.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
 	gameDisplay.draw.retangle({ 5, 2 }, { 63, 40 }, RED, 1, colorXY);
@@ -118,22 +117,6 @@ void decorate(int index) {
 	gotoXY(x -1, y++ - 8);
 	wcout << " \\_________:=-";
 
-	/*gotoXY(x + plus, y + oy++);
-	cout << "  ________ ";
-	gotoXY(x + plus, y + oy++);
-	cout << "  ________ ";*/
-	/*for (int i = 135; i <= 142; ++i) {
-		gotoXY(i, 24);
-		cout << (char)(205);
-		gotoXY(i, 32);
-		cout << (char)(205);
-	}
-	for (int i = 20; i <= 26 ; ++i) {
-		gotoXY(136, i);
-		cout << (char)(186);
-		gotoXY(145, i);
-		cout << (char)(186);
-	}*/
 	int t = 13;
 	if (index == 1) {
 		textColor(t);
@@ -153,6 +136,7 @@ void decorate(int index) {
 		wcout << L" (_/\\_) ";
 
 	}
+
 	if (index == 2) {
 		textColor(t);
 		tempy++;
@@ -189,6 +173,7 @@ void decorate(int index) {
 		wcout << L" (__/   ";
 
 	}
+
 	if (index == 4) {
 		textColor(t);
 		gotoXY(tempx, tempy++);
@@ -224,12 +209,14 @@ void decorate(int index) {
 		wcout << L"(_____/ ";
 
 	}
+
 	for (int i = 155; i <= 164; ++i) {
 		gotoXY(i, 23);
 		cout << (char)(205);
 		gotoXY(i, 30);
 		cout << (char)(205);
 	}
+	
 	for (int i = 24; i <= 29; ++i) {
 		gotoXY(154, i);
 		cout << (char)(186);
@@ -247,6 +234,7 @@ void decorate(int index) {
 	cout << (char)(188);
 
 }
+
 void decorateBonus() {
 	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
 	textColor(6);
@@ -334,8 +322,7 @@ void level1() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
 	decorate(1);
-	//drawInGate(7,6);
-	//drawOutGate(3,121,38);
+
 	colorXY[121][40] = "PASS";
 	colorXY[122][40] = "PASS";
 	colorXY[123][40] = "PASS";
@@ -363,8 +350,6 @@ void level2() {
 	gameDisplay.draw.retangle({ 70, 14 }, { 0, 16 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 70, 35 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(2);
-	//drawInGate(7,6);
-	drawOutGate(3,121,38);
 }
 
 void level3() {
@@ -479,25 +464,27 @@ void initLevel() {
 	level.push_back(bonusLevel);
 }
 
+void initGate() {
+}
+
 void drawInGate(int col, int row) {
-	//int col = 7, row = 6;
 	gotoXY(col, row);
 	for (int i = 0; i < 9; i++) {
 		if (i < 3 || i > 5) {
-			colorXY[col + i][row] = "DANGER";
+			//colorXY[col + i][row] = "DANGER";
 		}
 	}
 	cout << (char)205 << (char)202 << (char)205 << "   " << (char)205 << (char)202 << (char)205;
 	col++; row--;
 	gotoXY(col, row);
-	colorXY[col][row] = "DANGER";
-	colorXY[col + 6][row] = "DANGER";
+	//colorXY[col][row] = "DANGER";
+	//colorXY[col + 6][row] = "DANGER";
 	cout << (char)186 << "     " << (char)186;
 	row--;
 
 	gotoXY(col, row);
 	for (int i = 0; i < 6; i++) {
-		colorXY[col + i][row] = "DANGER";
+		//colorXY[col + i][row] = "DANGER";
 	}
 	cout << (char)201 << (char)205 << (char)205 << (char)79 << (char)205 << (char)205 << (char)187;
 }
@@ -565,8 +552,7 @@ void drawOutGate(int width, int col, int row) {
 	}
 }
 
-void deleteBorder()
-{
+void deleteBorder() {
 	textColor(1);
 	int col = 5, row = 2;
 	for (int i = 0; i < 127; i++) {

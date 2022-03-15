@@ -144,6 +144,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graphic.cpp" />
+    <ClCompile Include="setup.cpp" />
     <ClCompile Include="snake.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="graphic.h" />
+    <ClInclude Include="setup.h" />
     <ClInclude Include="snake.h" />
   </ItemGroup>
   <ItemGroup>
