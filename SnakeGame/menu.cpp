@@ -191,6 +191,8 @@ void blackBoard() {
 
 void setting() {
 	blackBoard();
+	wrenchLeft();
+	plierRight();
 
 	int row = 16, col = 60;
 
@@ -212,22 +214,22 @@ void setting() {
 	int row5 = 33, col5 = 43;
 	gotoXY(col5, row5++);
 	textFillColor(GRAY, 64);
-	cout << "                                                                                       ____";
+	cout << "                                                                            ____";
 	gotoXY(col5, row5++);
 	textFillColor(VIOLET, 64);
-	cout << "                                                                                      / . .\\";
+	cout << "                                                                           / . .\\";
 	gotoXY(col5, row5++);
 	textFillColor(BLUE, 64);
-	cout << "                                                                                      \\   -----<";
+	cout << "                                                                           \\   -----<";
 	gotoXY(col5, row5++);
 	textFillColor(GREEN, 64);
-	cout << "                                                                                       \\  /";
+	cout << "                                                                            \\  /";
 	gotoXY(col5, row5++);
 	textFillColor(BYELLOW, 64);
-	cout << "   ____________________________________________________________________________________/ /";
+	cout << "   _________________________________________________________________________/ /";
 	gotoXY(col5, row5++);
 	textFillColor(RED, 64);
-	cout << "-=:_____________________________________________________________________________________/";
+	cout << "-=:__________________________________________________________________________/";
 
 	textFillColor(WHITE, 64);
 
@@ -275,7 +277,7 @@ void ourTeam() {
 	wcout << L" ╚═════╝  ╚═════╝ ╚═╝  ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝";
 	
 	// Team 8 border
-	textFillColor(BLUE, 64);
+	textFillColor(11, 64);
 	for (int i = 43; i <= 79; ++i) {
 		gotoXY(i, 24);
 		cout << (char)(205);
@@ -302,7 +304,7 @@ void ourTeam() {
 
 	// Teamm 8 logo
 	int row1 = 22, col1 = 46;
-	textFillColor(BLUE, 64);
+	textFillColor(11, 64);
 
 	gotoXY(col1, row1++);
 	cout << "  _____ ___   _   __  __   ___ ";
@@ -337,7 +339,7 @@ void ourTeam() {
 	textFillColor(WHITE, 64);
 
 	// Instructor border
-	textFillColor(BLUE, 64);
+	textFillColor(11, 64);
 	for (int i = 81; i <= 138; ++i) {
 		gotoXY(i, 24);
 		cout << (char)(205);
@@ -365,7 +367,7 @@ void ourTeam() {
 
 	// Instructor logo
 	int row3 = 22, col3 = 84;
-	textFillColor(BLUE, 64);
+	textFillColor(11, 64);
 	gotoXY(col3, row3++);
 	cout << "  ___ _  _ ___ _____ ___ _   _  ___ _____ ___  ___ ";
 	gotoXY(col3, row3++);
@@ -381,7 +383,7 @@ void ourTeam() {
 	int row4 = 27, col4 = 83;
 
 	gotoXY(col4, row4++);
-	textFillColor(VIOLET, 64);
+	textFillColor(14, 64);
 	cout << "Dr.Truong Toan Thinh - Teacher";
 	
 	textFillColor(WHITE, 64);	

@@ -123,23 +123,34 @@ void mainMenu() {
                     vector<Menu> listSetting;
                     Menu items;
 
-                    items.x = 85;
-                    items.y = 25;
+                    testColor(snakeColor);
+                    
+                    items.x = 80;
+                    items.y = 24;
 
                     if (Sound == Status::OFF) {
-                        items.data = "MUSIC: OFF";
+                        items.data = "BACKGROUND MUSIC: OFF";
                     }
                     else {
-                        items.data = "MUSIC: ON";
+                        items.data = "BACKGROUND MUSIC: ON ";
                     }
                     listSetting.push_back(items);
 
-                    items.x = 85;
-                    items.y = 27;
+                    items.x = 80;
+                    items.y = 26;
+                    if (Sound == Status::OFF) {
+                        items.data = "EATING SOUND: ON ";
+                    }
+                    else {
+                        items.data = "EATING SOUND: OFF";
+                    }
+                    listSetting.push_back(items);
+
+                    items.x = 80;
+                    items.y = 28;
                     items.data = "SNAKE COLOR: ";
                     items.data += color[snakeColor].second + "          ";
                     listSetting.push_back(items);
-
                     textFillColor(WHITE, BLACK);
 
                     printMenu(listSetting);
@@ -161,17 +172,31 @@ void mainMenu() {
                         if (choice == 0) {
                             if (Sound == Status::ON) {
                                 turnOffSound();
-                                listSetting[choice].data = "MUSIC: OFF";
+                                listSetting[choice].data = "BACKGROUND MUSIC: OFF";
                                 Sound = Status::OFF;
                             }
                             else {
                                 playSoundLoop(L"resources/backgroundmusic.wav");
-                                listSetting[choice].data = "MUSIC: ON";
+                                listSetting[choice].data = " BACKGROUND MUSIC: ON ";
+                                Sound = Status::ON;
+                            }
+                        }
+
+                        else if (choice == 1) {
+                            if (Sound == Status::ON) {
+                                turnOffSound();
+                                listSetting[choice].data = "EATING SOUND: ON ";
+                                Sound = Status::OFF;
+                            }
+                            else {
+                                playSoundLoop(L"resources/backgroundmusic.wav");
+                                listSetting[choice].data = "EATING SOUND: OFF";
                                 Sound = Status::ON;
 
                             }
                         }
-                        else if (choice == 1) {
+
+                        else if (choice == 2) {
                             if (it != --color.end()) {
                                 it++;
                             }
