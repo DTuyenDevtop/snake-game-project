@@ -50,6 +50,6 @@ void ourTeam();
 
 void fillName(string& name);
 
-int loseGame();
+int loseGame(string &name,string &dateAndTime);
 
 void pauseGame();
