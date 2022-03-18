@@ -442,19 +442,6 @@ void ourTeam() {
 void guide() {
 	blackBoard();
 
-	/*int row = 16, col = 70;
-	gotoXY(col, row++);
-	cout << "   _____ _    _ _____ _____  ______ ";
-	gotoXY(col, row++);
-	cout << "  / ____| |  | |_   _|  __  \|  ____|";
-	gotoXY(col, row++);
-	cout << " | |  __| |  | | | | | |  | | |__   ";
-	gotoXY(col, row++);
-	cout << " | | |_ | |  | | | | | |  | |  __|  ";
-	gotoXY(col, row++);
-	cout << " | |__| | |__| |_| |_| |__| | |____ ";
-	gotoXY(col, row++);
-	cout << "  \\_____|\\____/|_____|_____/|______|";*/
 
 	int row = 16, col = 75;
 	textFillColor(CYAN, BLACK);
@@ -469,34 +456,261 @@ void guide() {
 	gotoXY(col, row++);
 	wcout << L"╚██████╔╝╚██████╔╝██║██████╔╝███████╗";
 
-	textFillColor(WHITE, 64);
-	gotoXY(50, 23);
-	cout << "Read me first !!";
-	gotoXY(50, 25);
-	cout << "You will be a snake finding food to prolong your length.";
-	gotoXY(50, 26);
-	cout << "              ___";
-	gotoXY(50, 27);
-	cout << "             | W |";
-	gotoXY(50, 28);
-	cout << "          ___|___|___  ";
-	gotoXY(50, 29);
-	cout << "Pressing | A | S | D | to control the direction of the snake. ";
-	gotoXY(50, 30);
-	cout << "         |___|___|___|";
+	// KEYBOARD SHORTCUTS 
+	textFillColor(BYELLOW, 64);
+	col = 25, row = 20;
+	gotoXY(col, row);
+	cout << "KEYBOARD-SHORTCUTS";
+	textFillColor(GREEN, 64);
+	for (int i = 0; i < 30; i++)
+	{
+		cout << '-';
+		if (i == 24)
+		{
+			cout << " ";
+			for (int j = 0; j < 2; j++)
+			{
+				cout << char(254) << " ";
+			}
+			break;
+		}
+	}
+	for (int i = 1; i <= 3; i++)
+	{
+		row++;
+		gotoXY(col, row);
+		cout << (char)254;
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		row++;
+		gotoXY(col, row);
+		if (i == 15)
+		{
+			for (int j = 0 ; j < 3; j++)
+			{
+				cout << (char)254<<" ";
+			}
+		}
+		else
+			cout << "|";
+	}
+	for (int i = 0; i < 43; i++)
+	{
+		cout << '-';
+	}
+	col = col + 48;
+	for (int i = 1; i <= 3; i++)
+	{
+		row--;
+		gotoXY(col, row);
+		cout << (char)254;
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		row--;
+		gotoXY(col, row);
+		if (i != 15)
+		{
+			cout << '|';
+		}
+		else
+			cout << (char)254;
+	}
+
+	// BE CAREFUL
+	textFillColor(VIOLET, 64);
+	col = col + 10;
+	row = row + 4;
+	gotoXY(col, row);
+	for (int i = 0; i < 64; i++)
+	{
+		col++;
+		gotoXY(col, row);
+		if (i != 63)
+		{
+			cout << (char)205;
+		}
+		else
+			cout << (char)187;	
+	}
+	gotoXY(col - 37, row);
+	textFillColor(RED, 64);
+	cout << (char)254<<" BE-CAREFUL "<<(char)254;
+	textFillColor(VIOLET, 64);
+	for (int i = 0; i < 14; i++)
+	{
+		row++;
+		gotoXY(col, row);
+		if (i != 13)
+		{
+			cout << (char)186;
+		}
+		else
+			cout << (char)188;
+	}
+	for (int i = 0; i < 64; i++)
+	{
+		col--;
+		gotoXY(col, row);
+		if (i != 63)
+		{
+			cout << (char)205;
+		} else
+			cout << (char)200;
+	}
+	for (int i = 0; i < 14; i++)
+	{
+		row--;
+		gotoXY(col, row);
+		if (i != 13)
+		{
+			cout << (char)186;
+		}
+		else
+			cout << (char)201;
+		
+	}
 	
-	gotoXY(50, 32);
-//	textFillColor(RED, 64);
-	cout << "Be carefull!";
+	// text for "keyboard shortcuts"
 	textFillColor(WHITE, 64);
-	gotoXY(50, 34);
-	cout << "You have to cope with barricades and walls in each level.";
-	gotoXY(50, 36);
-	cout<<"If you hit one of them, the snake will die.";
-	gotoXY(50, 38);
-	cout << "Good luck!";
-	gotoXY(120, 39);
-	cout << "Press ESC to exit.";
+	col = 32; row = 22;
+	for (int i = 0; i < 4; i++)
+	{
+		gotoXY(col, row);
+		for (int j = 0; j < 5; j++)
+		{
+			cout << (char)219;
+		}
+		row=row+1; 
+	}
+	row = row - 2;
+	col = col - 4;
+	for (int i = 0; i < 3; i++)
+	{
+		gotoXY(col, row);
+		for (int j = 0; j < 13; j++)
+		{
+			if (i < 2)
+			{
+				cout << (char)219;
+			}
+			else
+			{
+				cout << (char)223;
+			}
+		}	
+		row = row + 1;
+	}
+	textFillColor(BLACK, 63);
+	gotoXY(34, 23);
+	cout << "W";
+	gotoXY(30, 25);
+	cout << "A   S   D";
+	textFillColor(GRAY, 64);
+	gotoXY(46, 23);
+	cout << "Pressing these keys";
+	gotoXY(46, 24);
+	cout<< "to control the snake";
+
+	textFillColor(WHITE, 64);
+	col = 32; row = 28;
+	for (int i = 0; i < 3; i++)
+	{
+		gotoXY(col, row);
+		for (int j = 0; j < 5; j++)
+		{
+			switch (i)
+			{
+			case 0:
+				cout << (char)220;
+				break;
+			case 1:
+				cout << (char)219;
+				break;
+			case 2:
+				cout << (char)223;
+				break;
+			}
+		}
+		row++;
+	}
+	textFillColor(BLACK, 63);
+	gotoXY(col + 2, row - 2);
+	cout << "L";
+	textFillColor(GRAY, 64);
+	gotoXY(46, 29);
+	cout << "Load";
+
+	col = 28; row = row+1;
+	for (int i = 0; i < 3; i++)
+	{
+		gotoXY(col, row);
+		for (int j = 0; j < 13; j++)
+		{
+			switch (i)
+			{
+			case 0:
+				cout << (char)220;
+				break;
+			case 1:
+				cout << (char)219;
+				break;
+			case 2:
+				cout << (char)223;
+				break;
+			}
+		}
+		row = row + 1;
+	}
+	textFillColor(BLACK, 63);
+	gotoXY(32, row - 2);
+	cout << "SPACE";
+	textFillColor(GRAY, 64);
+	gotoXY(46, row - 2);
+	cout << "Pause / Continue";
+	
+	textFillColor(WHITE, 64);
+	col = 32; row = row + 1;
+	for (int i = 0; i < 3; i++)
+	{
+		gotoXY(col, row);
+		for (int j = 0; j < 5; j++)
+		{
+			switch (i)
+			{
+			case 0:
+				cout << (char)220;
+				break;
+			case 1:
+				cout << (char)219;
+				break;
+			case 2:
+				cout << (char)223;
+				break;
+			}
+		}
+		row++;
+	}
+	textFillColor(BLACK, 63);
+	gotoXY(col + 2, row - 2);
+	cout << "S";
+	textFillColor(GRAY, 64);
+	gotoXY(46, row-2);
+	cout << "Save game";
+
+	// text for "be careful"
+	col = 86, row = 29;
+	gotoXY(col, row);
+	cout << (char)5 << " Do not hit any barricades ";
+	gotoXY(col, row+2);
+	cout << (char)5 << " Avoid the walls";
+	gotoXY(col, row+4);
+	cout << (char)5 << " Do not let the head of snake touches any part of its body";
+
+	textFillColor(CYAN, 64);
+	gotoXY(137, 39);
+	cout << "Press ESC to exit";
 		
 }
 
