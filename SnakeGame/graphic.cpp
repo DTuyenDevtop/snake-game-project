@@ -306,3 +306,142 @@ void showSnakeLeft() {
     gotoXY(col, line++);
     wcout << L"  ██    ██████████████████" << endl;
 }
+
+void wrenchLeft() {
+    textFillColor(RED, BLACK);
+    int line = 17;
+    int col = 25;
+    gotoXY(col, line++);
+    cout << "      __," << endl;
+    gotoXY(col, line++);
+    cout << "   .-'  /" << endl;
+    gotoXY(col, line++);
+    cout << " .'    /   /`." << endl;
+    gotoXY(col, line++);
+    cout << " |    /   /  |" << endl;
+    gotoXY(col, line++);
+    cout << " |    \\__/   |   " << endl;
+    gotoXY(col, line++);
+    cout << " `.         .'   " << endl;
+    gotoXY(col, line++);
+    cout << "    `.     .'     " << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |      " << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "     | ][ |" << endl;
+    gotoXY(col, line++);
+    cout << "   .'  __  `." << endl;
+    gotoXY(col, line++);
+    cout << "   |  /  \\  |  " << endl;
+    gotoXY(col, line++);
+    cout << "   |  \\__/  |" << endl;
+    gotoXY(col, line++);
+    cout << "   `.      .'" << endl;
+    gotoXY(col, line++);
+    cout << "     `----'" << endl;
+}
+
+void testColor(short snakeColor) {
+    gotoXY(75, 31);
+    textFillColor(snakeColor, BLACK);
+    cout << "21127003211276482112709021127493" << endl;
+
+    textFillColor(WHITE, BLACK);
+    for (int i = 73; i <= 108; ++i) {
+        gotoXY(i, 30);
+        cout << (char)(205);
+        gotoXY(i, 32);
+        cout << (char)(205);
+    }
+
+    for (int i = 30; i <= 32; ++i) {
+        gotoXY(73, i);
+        cout << (char)(186);
+        gotoXY(108, i);
+        cout << (char)(186);
+    }
+
+    gotoXY(73, 30);
+    cout << (char)(201);
+
+    gotoXY(73, 32);
+    cout << (char)(200);
+
+    gotoXY(108, 30);
+    cout << (char)(187);
+
+    gotoXY(108, 32);
+    cout << (char)(188);
+
+    gotoXY(85, 30);
+    cout << " DEMO COLOR " << endl;
+}
+
+void plierRight() {
+    textFillColor(RED, BLACK);
+    int line = 17;
+    int col = 125;
+    gotoXY(col, line++);
+    cout << "            //\\\\" << endl;
+    gotoXY(col, line++);
+    cout << "           //__\\\\" << endl;
+    gotoXY(col, line++);
+    cout << "           \\\\__//" << endl;
+    gotoXY(col, line++);
+    cout << "           [|__|]" << endl;
+    gotoXY(col, line++);
+    cout << "           [|__|]" << endl;
+    gotoXY(col, line++);
+    cout << "           [|__|]" << endl;
+    gotoXY(col, line++);
+    cout << "  /)       [|__|]      (\\" << endl;
+    gotoXY(col, line++);
+    cout << " //\\_______[|__|]______/\\\\" << endl;
+    gotoXY(col, line++);
+    cout << " ))________||__||_______((" << endl;
+    gotoXY(col, line++);
+    cout <<  "<_/       [  \\/  ]      \\_>" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          || || ||" << endl;
+    gotoXY(col, line++);
+    cout << "          \\\\ || //" << endl;
+    gotoXY(col, line++);
+    cout << "           \\\\||//" << endl;
+    gotoXY(col, line++);
+    cout << "            \\\\//" << endl;
+    gotoXY(col, line++);
+    cout << "             \\/" << endl;
+    gotoXY(col, line++);
+}
+
+
