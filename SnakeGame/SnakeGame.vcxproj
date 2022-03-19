@@ -161,6 +161,7 @@
     <Media Include="resources\eatfood.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="gameData.txt" />
     <Text Include="saveScore.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

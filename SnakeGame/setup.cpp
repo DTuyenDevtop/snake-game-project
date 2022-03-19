@@ -88,7 +88,7 @@ void mainMenu() {
                 setup();
             }
             else if (dir == 1) {
-                // pass
+                loadGame();
             }
             else if (dir == 2) {
                 loadFileScore(savePlayers);

@@ -404,3 +404,156 @@ void playGame(string name, string& dateAndTime) {
 		fileout << t.dateAndTime;
 	}
 }
+
+struct User {
+	char name[20];
+	int level;
+	int score;
+	int snakeLenght;
+	char snakeData[100];
+	vector<Infomation> Snake;
+};
+
+void loadGame() {
+	FILE* file;
+	fopen_s(&file, "gameData.txt", "rt");
+	User *user;
+	user = new User[100];
+	int cnt = 0;
+
+
+	if (file != nullptr) {
+		while (!feof(file)) {
+			fscanf_s(file, "User: %s\n", user[cnt].name, 20);
+			fscanf_s(file, "Level: %d\n", &user[cnt].level);
+			user[cnt].level--;
+
+			fscanf_s(file, "Length: %d\n", &user[cnt].snakeLenght);
+			printf("%d", user[cnt].snakeLenght);
+
+			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
+
+			for (int i = 0; i < user[cnt].snakeLenght; ++i) {
+				int x = 0, y = 0;
+				fscanf_s(file, "Snake Position: ");
+				fscanf_s(file, "%d %d", &x, &y);
+				Infomation data;
+				data.data = user[cnt].snakeData[i];
+				data.x = x;
+				data.y = y;
+				user->Snake.push_back(data);
+			}
+			fscanf_s(file, "\nScore: %d\n", &user[cnt].score);
+		}
+	}
+	
+	system("cls");
+
+	vector<Infomation> Snake = user[0].Snake;
+	Infomation Direction, Food;
+	Status StatusMove, StatusGame;
+	string oldSnake = "";
+
+	srand((unsigned int)time(0));
+
+	int Speed = SPEEDFIRST, score = 0;
+	bool endGame = false, isDrawGate = false;
+
+	currentLevel = user[0].level;
+	currRequirement = user[0].score / 100;
+
+	initLevel();
+
+	level[currentLevel]();
+
+	//init(Snake, Food, Direction, endGame, score);
+
+	randFood(Food);
+	gotoXY(Food.x, Food.y);
+	colorText(254, snakeColor);
+
+	Direction.x = 1;
+	Direction.y = 0;
+
+	while (!endGame) {
+		Sleep(Speed);
+		mainLoop(StatusMove, StatusGame, Snake, Direction, Food, Speed, endGame, score);
+		drawSnake(Snake);
+
+		int xStart = Snake[0].x;
+		int yStart = Snake[0].y;
+
+		if (colorXY[xStart][yStart] == "SAFE") {
+			oldSnake.resize(Snake.size());
+			for (int i = 0; i < Snake.size(); ++i) {
+				oldSnake[i] = (Snake[i].data[0]);
+			}
+		}
+
+		if (colorXY[xStart][yStart] == "PASS" && Snake.size() > 1) {
+			Snake.erase(Snake.begin());
+		}
+
+		int xEnd = Snake[Snake.size() - 1].x;
+		int yEnd = Snake[Snake.size() - 1].y;
+
+		if (currRequirement == requirement[currentLevel] && !isDrawGate) {
+			drawOutGate(3, 121, 38);
+			isDrawGate = true;
+		}
+
+		if (currRequirement == requirement[currentLevel] && colorXY[xEnd][yEnd] == "PASS") {
+			isDrawGate = false;
+			system("cls");
+
+			if (currentLevel < level.size() - 1) {
+				++currentLevel;
+				level[currentLevel]();
+			}
+			else {
+				currentLevel = 0;
+				level[currentLevel]();
+			}
+
+			drawInGate(10, 10);
+
+			Sleep(2000);
+
+			currRequirement = 0;
+			score = 0;
+
+			Snake.resize(oldSnake.size());
+			for (int i = 0; i < oldSnake.size(); ++i) {
+				Snake[i].data = oldSnake[i];
+				Snake[i].x = 10;
+				Snake[i].y = 10;
+			}
+
+			Snake[0].ox = Snake[0].x;
+			Snake[0].oy = Snake[0].y;
+
+			Snake[0].x = 14;
+			Snake[0].y = 9;
+
+			for (size_t i = 1; i < Snake.size(); ++i) {
+				Snake[i].x = Snake[i - 1].x;
+				Snake[i].y = Snake[i - 1].y;
+			}
+
+			StatusMove = Status::DOWN;
+			Direction.x = 0;
+			Direction.y = 1;
+
+			randFood(Food);
+			gotoXY(Food.x, Food.y);
+			colorText(254, snakeColor);
+
+			mainLoop(StatusMove, StatusGame, Snake, Direction, Food, Speed, endGame, score);
+			drawSnake(Snake);
+		}
+	}
+
+	deleteBorder();
+	Sleep(2000);
+	loseGame();
+}

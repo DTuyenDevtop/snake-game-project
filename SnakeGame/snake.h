@@ -34,3 +34,5 @@ void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, i
 void playGame(string name, string& dateAndTime);
 
 void randFood(Infomation &Food);
+
+void loadGame();

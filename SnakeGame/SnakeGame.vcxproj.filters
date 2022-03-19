@@ -69,6 +69,11 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="saveScore.txt" />
+    <Text Include="gameData.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="saveScore.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
