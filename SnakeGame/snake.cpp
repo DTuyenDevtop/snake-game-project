@@ -382,7 +382,7 @@ void playGame(string name, string& dateAndTime) {
 
 	deleteBorder();
 	Sleep(2000);
-	loseGame();
+	loseGame(name,dateAndTime);
 
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
