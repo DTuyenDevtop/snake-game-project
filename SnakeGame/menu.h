@@ -53,3 +53,5 @@ void fillName(string& name);
 int loseGame(string &name,string &dateAndTime);
 
 void pauseGame();
+
+void loadGame();

@@ -159,7 +159,7 @@ void blackBoard() {
 	textFillColor(BLUE, BLACK);
 	for (int j = 15; j <= 40; ++j) {
 		gotoXY(20 - leng, j);
-		cout << "                                                                                                                                                           ";
+		cout << "                                                                                                                                                          ";
 		Sleep(8);
 	}
 	
@@ -907,6 +907,9 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	wcout << L"            ██  ██  ";
 	gotoXY(a1, b1++);
 	wcout << L"              ██  ";
+	int row6 = 39, col6 = 13;
+	gotoXY(col6, row6++);
+	cout << "Press ESC to exit.";
 }
 void fillName(string &name) {
 	system("cls");
@@ -1252,4 +1255,42 @@ void pauseGame() {
 	textFillColor(WHITE, BLACK);
 	cout << "Press spacebar again to continue";
 	textColor(snakeColor);
+}
+void loadGame() {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(3, 7);
+	int col1 = 59, row1 = 18;
+	gotoXY(col1, row1++);
+	wcout << L"    __   ____  ___    ____     _________    __  _________";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"   / /  / __ \\/   |  / __ \\   / ____/   |  /  |/  / ____/";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"  / /  / / / / /| | / / / /  / / __/ /| | / /|_/ / __/   ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L" / /__/ /_/ / ___ |/ /_/ /  / /_/ / ___ |/ /  / / /___   ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"/_____|____/_/  |_/_____/   \\____/_/  |_/_/  /_/_____/   ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 - 2, row1++);
+	textColor(3);
+	cout << "Please input your name exactly to load game which you saved. ";
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	Sleep(t);
+	gotoXY(78, 29);
+	string file;
+	cin >> file;
 }

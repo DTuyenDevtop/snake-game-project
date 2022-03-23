@@ -45,13 +45,12 @@ void mainMenu() {
     it = color.begin();
 
     bool firstTime = true;
-
     while (true) {
         if (!firstTime) {
             for (int i = 40; i >= 15; --i) {
                 gotoXY(5, i);
                 textFillColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-                cout << "                                                                                                                                                       ";
+                cout << "                                                                                                                                                                 ";
                 Sleep(10);
             }
         }

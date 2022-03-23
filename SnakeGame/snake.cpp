@@ -19,7 +19,8 @@ string colorXY[205][85];
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
-int requirement[] = { 1, 1, 5, 6, 7, 8, 5 };
+int Speed = SPEEDFIRST;
+int requirement[] = { 3, 4, 5, 5, 6, 6, 7 };
 int currRequirement, currentLevel;
 
 void randFood(Infomation& Food) {
@@ -41,6 +42,12 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	gotoXY(147, 5);  
 	colorText("Score: ", RED); 
 	cout << score;
+	gotoXY(143, 6);
+	colorText("Requirement: ", RED);
+	cout << currRequirement << " / " << requirement[currentLevel];
+	gotoXY(145, 7);
+	colorText("Speed: ", RED);
+	cout << -Speed + 120 << " km/h";
 	int pos = 15;
 
 	for (int i = 0; i < 8; i++) {
@@ -99,6 +106,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		if (colorXY[Snake[0].x][Snake[0].y] == "DANGER") {
 			position = 8;
 			currRequirement = 0;
+			Speed = SPEEDFIRST;
 			endGame = true;
 		}
 
@@ -106,6 +114,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		if (i != 0 && (Snake[0].x == Snake[i].x && Snake[0].y == Snake[i].y)) {
 			position = 8;
 			currRequirement = 0;
+			Speed = SPEEDFIRST;
 			gotoXY(Food.x, Food.y); 
 			cout << " ";
 			endGame = true;
@@ -138,12 +147,12 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 		score += 100;
 		currRequirement += 1;
-		gotoXY(147, 5); 
-		colorText("Score: ", RED); 
-		cout << score;
-		gotoXY(140, 6);
-		colorText("Current Requirement: ", RED);
-		cout << currRequirement;
+		//gotoXY(147, 5); 
+		//colorText("Score: ", RED); 
+		//cout << score;
+		//gotoXY(140, 6);
+		//colorText("Current Requirement: ", RED);
+		//cout << currRequirement << " / " << requirement[currentLevel];
 	} 
 	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BINC") {
 		colorXY[Food.x][Food.y] = "SAFE";
@@ -163,9 +172,9 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 		score += 100;
 		currRequirement += 1;
-		gotoXY(147, 5);
-		colorText("Score: ", RED);
-		cout << score;
+		//gotoXY(147, 5);
+		//colorText("Score: ", RED);
+		//cout << score;
 	}
 	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BST") {
 		colorXY[Food.x][Food.y] = "SAFE";
@@ -176,9 +185,9 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 		score += 100;
 		currRequirement += 1;
-		gotoXY(147, 5);
-		colorText("Score: ", RED);
-		cout << score;
+		//gotoXY(147, 5);
+		//colorText("Score: ", RED);
+		//cout << score;
 	}
 }
 
@@ -198,6 +207,15 @@ void mainLoop (
 	Infomation& Direction, Infomation& Food, 
 	int& Speed, bool& endGame, int& score
 ) {
+	gotoXY(147, 5);
+	colorText("Score: ", RED);
+	cout << score;
+	gotoXY(143, 6);
+	colorText("Requirement: ", RED);
+	cout << currRequirement << " / " << requirement[currentLevel];
+	gotoXY(145, 7);
+	colorText("Speed: ", RED);
+	cout << -Speed + 120 << " km/h";
 	moveSnake(Snake, Direction, Food, endGame, score);
 
 	if (_kbhit()) {
@@ -290,7 +308,8 @@ void playGame(string name, string& dateAndTime) {
 
 	srand((unsigned int)time(0));
 
-	int Speed = SPEEDFIRST, score = 0;
+
+	int score = 0;
 	bool endGame = false, isDrawGate = false;
 
 	currentLevel = 0;
@@ -336,6 +355,7 @@ void playGame(string name, string& dateAndTime) {
 			if (currentLevel < level.size() - 1) {
 				++currentLevel;
 				level[currentLevel]();
+				Speed -= 10;
 			}
 			else {
 				currentLevel = 0;
@@ -347,7 +367,7 @@ void playGame(string name, string& dateAndTime) {
 			Sleep(2000);
 
 			currRequirement = 0;
-			score = 0;
+			//score = 0;
 			
 			Snake.resize(oldSnake.size());
 			for (int i = 0; i < oldSnake.size(); ++i) {
