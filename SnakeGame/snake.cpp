@@ -262,6 +262,7 @@ void mainLoop (
 					system("cls");
 					level[currentLevel]();
 					gotoXY(Food.x, Food.y);
+					colorXY[Food.x][Food.y] = "FOOD_INC";
 					colorText(254, snakeColor);
 					StatusGame = Status::EMPTY;
 					break;
@@ -382,7 +383,7 @@ void playGame(string name, string& dateAndTime) {
 
 	deleteBorder();
 	Sleep(2000);
-	loseGame(name,dateAndTime);
+	loseGame(name, dateAndTime);
 
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
@@ -555,5 +556,5 @@ void loadGame() {
 
 	deleteBorder();
 	Sleep(2000);
-	loseGame();
+	//loseGame();
 }

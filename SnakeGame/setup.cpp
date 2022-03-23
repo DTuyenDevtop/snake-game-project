@@ -51,7 +51,7 @@ void mainMenu() {
             for (int i = 40; i >= 15; --i) {
                 gotoXY(5, i);
                 textFillColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-                cout << "                                                                                                                                                       ";
+                cout << "                                                                                                                                                                 ";
                 Sleep(10);
             }
         }
@@ -89,6 +89,7 @@ void mainMenu() {
             }
             else if (dir == 1) {
                 loadGame();
+                setup();
             }
             else if (dir == 2) {
                 loadFileScore(savePlayers);

@@ -159,7 +159,7 @@ void blackBoard() {
 	textFillColor(BLUE, BLACK);
 	for (int j = 15; j <= 40; ++j) {
 		gotoXY(20 - leng, j);
-		cout << "                                                                                                                                                           ";
+		cout << "                                                                                                                                                          ";
 		Sleep(8);
 	}
 	
@@ -908,6 +908,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	gotoXY(a1, b1++);
 	wcout << L"              ██  ";
 }
+
 void fillName(string &name) {
 	system("cls");
 	int t = 25;
@@ -945,6 +946,7 @@ void fillName(string &name) {
 	gotoXY(78, 29);
 	cin >> name;
 }
+
 int loseGame(string &name,string &dateAndTime) {
 	system("cls");
 	Screen nameScreen;
