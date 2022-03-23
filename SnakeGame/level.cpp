@@ -131,9 +131,9 @@ void decorate(int index) {
 		gotoXY(tempx, tempy++);
 		wcout << L"   ||   ";
 		gotoXY(tempx, tempy++);
-		wcout << L"  _||_  ";
+		wcout << L" __||__  ";
 		gotoXY(tempx, tempy++);
-		wcout << L" (_/\\_) ";
+		wcout << L"(__++__) ";
 
 	}
 
@@ -456,7 +456,7 @@ void bonusLevel() {
 }
 
 void initLevel() {
-	//level.push_back(level1);
+	level.push_back(level1);
 	level.push_back(level2);
 	level.push_back(level3);
 	level.push_back(level4);
