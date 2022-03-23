@@ -1258,7 +1258,7 @@ void pauseGame() {
 	cout << "Press spacebar again to continue";
 	textColor(snakeColor);
 }
-void loadGame() {
+void loadGameGraphic() {
 	system("cls");
 	int t = 25;
 	Sleep(t);

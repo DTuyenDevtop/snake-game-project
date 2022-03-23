@@ -138,23 +138,19 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		Add.y = Snake[size - 1].oy;
 		Snake.push_back(Add);
 
-		// Creat new food
-		randFood(Food);
-
-		gotoXY(Food.x, Food.y);
-		colorXY[Food.x][Food.y] = "FOOD_INC";
-		colorText(254, snakeColor);
-
 		score += 100;
 		currRequirement += 1;
-		//gotoXY(147, 5); 
-		//colorText("Score: ", RED); 
-		//cout << score;
-		//gotoXY(140, 6);
-		//colorText("Current Requirement: ", RED);
-		//cout << currRequirement << " / " << requirement[currentLevel];
+
+		if (currRequirement < requirement[currentLevel]) {
+			// Creat new food
+			randFood(Food);
+
+			gotoXY(Food.x, Food.y);
+			colorXY[Food.x][Food.y] = "FOOD_INC";
+			colorText(254, snakeColor);
+		}
 	} 
-	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BINC") {
+	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BINC") { // Bonus increase, increase length and score
 		colorXY[Food.x][Food.y] = "SAFE";
 
 		if (Sound == Status::OFF) {
@@ -176,7 +172,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		//colorText("Score: ", RED);
 		//cout << score;
 	}
-	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BST") {
+	else if (colorXY[Snake[0].x][Snake[0].y] == "FOOD_BST") { // Just increase score
 		colorXY[Food.x][Food.y] = "SAFE";
 
 		if (Sound == Status::OFF) {
@@ -193,6 +189,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 
 void drawSnake(vector<Infomation>& Snake) {
 	size_t size = Snake.size();
+	textColor(snakeColor);
 	for (int i = 0; i < size; i++) {
 		gotoXY(Snake[i].x, Snake[i].y);
 		cout << Snake[i].data;
