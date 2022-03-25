@@ -43,7 +43,6 @@ void mainMenu() {
 
     map<int, pair<int, string>>::iterator it;
     it = color.begin();
-
     bool firstTime = true;
     while (true) {
         if (!firstTime) {

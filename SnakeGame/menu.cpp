@@ -944,7 +944,7 @@ void fillName(string &name) {
 	Sleep(t);
 	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
 	Sleep(t);
-	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
 	Sleep(t);
 	gotoXY(78, 29);
 	cin >> name;
@@ -1258,7 +1258,7 @@ void pauseGame() {
 	cout << "Press spacebar again to continue";
 	textColor(snakeColor);
 }
-void loadGame() {
+void loadGameGraphics() {
 	system("cls");
 	int t = 25;
 	Sleep(t);
@@ -1290,7 +1290,7 @@ void loadGame() {
 	Sleep(t);
 	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
 	Sleep(t);
-	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 1, colorXY);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
 	Sleep(t);
 	gotoXY(78, 29);
 	string file;
