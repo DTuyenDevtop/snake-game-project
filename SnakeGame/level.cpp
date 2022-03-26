@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "snake.h"
 #include "graphic.h"
+#include "setup.h"
 
 vector<function<void()>> level;
 Screen gameDisplay;
@@ -567,86 +568,34 @@ void drawOutGate(int width, int col, int row) {
 }
 
 void deleteBorder() {
-	textColor(1);
+	textColor(BLACK);
 	int col = 5, row = 2;
 	for (int i = 0; i < 127; i++) {
 		gotoXY(col + i, row);
 		cout << (char)220;
-		//Sleep(1);
+		Sleep(0.98);
 	}
+
 	col = 131; row = 3;
 	for (int i = 0; i < 39; i++) {
 		gotoXY(col, row + i);
 		cout << (char)219;
 		Sleep(1);
 	}
+
 	row = 42; col = 131;
 	for (int i = 0; i < 127; i++) {
 		gotoXY(col - i, row);
 		cout << (char)223;
-		//Sleep(1);
+		Sleep(0.98);
 	}
+
 	col = 5; row = 41;
 	for (int i = 0; i < 39; i++) {
 		gotoXY(col, row - i);
-		cout << (char)219;
-		//Sleep(1);
-	}
-
-	Sleep(500);
-	textColor(RED);
-	col = 5, row = 2;
-	for (int i = 0; i < 127; i++) {
-		gotoXY(col + i, row);
-		cout << (char)220;
-		//Sleep(1);
-	}
-	col = 131; row = 3;
-	for (int i = 0; i < 39; i++) {
-		gotoXY(col, row + i);
 		cout << (char)219;
 		Sleep(1);
 	}
-	row = 42; col = 131;
-	for (int i = 0; i < 127; i++) {
-		gotoXY(col - i, row);
-		cout << (char)223;
-		//Sleep(1);
-	}
-	col = 5; row = 41;
-	for (int i = 0; i < 39; i++) {
-		gotoXY(col, row - i);
-		cout << (char)219;
-		//Sleep(1);
-	}
-
-	Sleep(500);
-	textColor(BLUE);
-	col = 5, row = 2;
-	for (int i = 0; i < 127; i++) {
-		gotoXY(col + i, row);
-		cout << (char)220;
-		//Sleep(1);
-	}
-	col = 131; row = 3;
-	for (int i = 0; i < 39; i++) {
-		gotoXY(col, row + i);
-		cout << (char)219;
-		Sleep(1);
-	}
-	row = 42; col = 131;
-	for (int i = 0; i < 127; i++) {
-		gotoXY(col - i, row);
-		cout << (char)223;
-		//Sleep(1);
-	}
-	col = 5; row = 41;
-	for (int i = 0; i < 39; i++) {
-		gotoXY(col, row - i);
-		cout << (char)219;
-		//Sleep(1);
-	}
-
 }
 
 void moveNextLevel() {

@@ -432,8 +432,23 @@ void playGame(string name, string& dateAndTime) {
 		}
 	}
 
-	deleteBorder();
-	Sleep(2000);
+	// end game
+	while (true)
+	{
+		playSoundLoop(L"resources/losegame.wav");
+		drawLosingSnake(Snake);
+		deleteBorder();
+		turnOffSound();
+		break;
+	}
+
+	if (Sound == Status::ON)
+	{
+		playSoundLoop(L"resources/backgroundmusic.wav");
+	}
+	
+	
+	Sleep(1);
 	loseGame(name, dateAndTime);
 
 	time_t now = time(0);
@@ -642,8 +657,22 @@ void loadGame() {
 		}
 	}
 
-	deleteBorder();
-	Sleep(2000);
+	// end game
+	while (true)
+	{
+		playSoundLoop(L"resources/losegame.wav");
+		drawLosingSnake(Snake);
+		deleteBorder();
+		turnOffSound();
+		break;
+	}
+
+	if (Sound == Status::ON)
+	{
+		playSoundLoop(L"resources/backgroundmusic.wav");
+	}
+
+	Sleep(1);
 	string pName;
 	for (int i = 0; i < strlen(user[pos].name); ++i) {
 		pName.push_back(user[pos].name[i]);
@@ -653,4 +682,51 @@ void loadGame() {
 	string dateAndTime = ctime(&now);
 	dateAndTime.pop_back();
 	loseGame(pName, dateAndTime);
+}
+
+void drawLosingSnake(vector<Infomation>& Snake) {
+	size_t size = Snake.size();
+	for (int i = 0; i < size; i++) {
+		if (i % 2 == 0)
+		{
+			textColor(snakeColor);
+			gotoXY(Snake[i].x, Snake[i].y);
+			cout << Snake[i].data;
+			Sleep(30);
+		}
+		else
+		{
+			textColor(WHITE);
+			gotoXY(Snake[i].x, Snake[i].y);
+			cout << Snake[i].data;
+			Sleep(30);
+		}
+	}
+
+	for (int i = 0; i < size; i++) {
+		if (i % 2 != 0)
+		{
+			textColor(snakeColor);
+			gotoXY(Snake[i].x, Snake[i].y);
+			cout << Snake[i].data;
+			Sleep(30);
+		}
+		else
+		{
+			textColor(WHITE);
+			gotoXY(Snake[i].x, Snake[i].y);
+			cout << Snake[i].data;
+			Sleep(30);
+		}
+	}
+
+	for (int i = 0; i < size; i++) {
+		textColor(GRAY);
+		gotoXY(Snake[i].x, Snake[i].y);
+		cout << Snake[i].data;
+		Sleep(30);
+	} 
+
+	gotoXY(Snake[size - 1].ox, Snake[size - 1].oy);
+	cout << " ";
 }
