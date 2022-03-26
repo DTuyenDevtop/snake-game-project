@@ -461,7 +461,7 @@ void guide() {
 
 	// KEYBOARD SHORTCUTS 
 	textFillColor(BYELLOW, 64);
-	col = 25, row = 20;
+	col = 19, row = 20;
 	gotoXY(col, row);
 	cout << "KEYBOARD-SHORTCUTS";
 	textFillColor(GREEN, 64);
@@ -578,7 +578,7 @@ void guide() {
 
 	// text for "keyboard shortcuts"
 	textFillColor(WHITE, 64);
-	col = 32; row = 22;
+	col = 26; row = 22;
 	for (int i = 0; i < 4; i++)
 	{
 		gotoXY(col, row);
@@ -607,18 +607,18 @@ void guide() {
 		row = row + 1;
 	}
 	textFillColor(BLACK, 63);
-	gotoXY(34, 23);
+	gotoXY(28, 23);
 	cout << "W";
-	gotoXY(30, 25);
+	gotoXY(24, 25);
 	cout << "A   S   D";
 	textFillColor(GRAY, 64);
-	gotoXY(46, 23);
+	gotoXY(40, 23);
 	cout << "Pressing these keys";
-	gotoXY(46, 24);
+	gotoXY(40, 24);
 	cout << "to control the snake";
 
 	textFillColor(WHITE, 64);
-	col = 32; row = 28;
+	col = 26; row = 28;
 	for (int i = 0; i < 3; i++)
 	{
 		gotoXY(col, row);
@@ -643,10 +643,10 @@ void guide() {
 	gotoXY(col + 2, row - 2);
 	cout << "L";
 	textFillColor(WHITE, 64);
-	gotoXY(46, 29);
+	gotoXY(40, 29);
 	cout << "Load";
 
-	col = 28; row = row + 1;
+	col = 22; row = row + 1;
 	for (int i = 0; i < 3; i++)
 	{
 		gotoXY(col, row);
@@ -668,14 +668,14 @@ void guide() {
 		row = row + 1;
 	}
 	textFillColor(BLACK, 63);
-	gotoXY(32, row - 2);
+	gotoXY(26, row - 2);
 	cout << "SPACE";
 	textFillColor(GRAY, 64);
-	gotoXY(46, row - 2);
+	gotoXY(40, row - 2);
 	cout << "Pause / Continue";
 
 	textFillColor(WHITE, 64);
-	col = 32; row = row + 1;
+	col = 26; row = row + 1;
 	for (int i = 0; i < 3; i++)
 	{
 		gotoXY(col, row);
@@ -700,11 +700,11 @@ void guide() {
 	gotoXY(col + 2, row - 2);
 	cout << "S";
 	textFillColor(GRAY, 64);
-	gotoXY(46, row - 2);
+	gotoXY(40, row - 2);
 	cout << "Save game";
 
 	// text for "be careful"
-	col = 86, row = 29;
+	col = 80, row = 29;
 	gotoXY(col, row);
 	cout << (char)5 << " Do not hit any barricades ";
 	gotoXY(col, row + 2);
@@ -1258,7 +1258,7 @@ void pauseGame() {
 	cout << "Press spacebar again to continue";
 	textColor(snakeColor);
 }
-void loadGameGraphics() {
+void loadGameGraphic() {
 	system("cls");
 	int t = 25;
 	Sleep(t);

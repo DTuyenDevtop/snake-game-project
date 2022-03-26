@@ -54,4 +54,4 @@ int loseGame(string &name,string &dateAndTime);
 
 void pauseGame();
 
-void loadGameGraphics();
+void loadGameGraphic();
