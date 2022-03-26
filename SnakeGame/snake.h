@@ -9,7 +9,7 @@ enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF};
 
 #define WidthGame      120
 #define HeightGame     35
-#define SPEEDFIRST     100
+#define SPEEDFIRST     80
 #define SPEEDLATER	   30
 
 struct Infomation {

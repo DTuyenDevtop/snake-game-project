@@ -26,6 +26,8 @@ void bonusLevel();
 
 void drawInGate(int col, int row);
 
+void clearInGate(int col, int row);
+
 void drawOutGate(int width, int col, int row);
 
 void deleteBorder();

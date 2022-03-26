@@ -20,7 +20,7 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 int Speed = SPEEDFIRST;
-int requirement[] = { 3, 4, 5, 5, 6, 6, 7 };
+int requirement[] = { 1, 1, 1, 1, 1, 99999};
 int currRequirement, currentLevel;
 
 void randFood(Infomation& Food) {
@@ -48,13 +48,12 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	gotoXY(145, 7);
 	colorText("Speed: ", RED);
 	cout << -Speed + 120 << " km/h";
-	int pos = 15;
-
+	
+	drawInGate(66, 10);
 	for (int i = 0; i < 8; i++) {
 		Body.data = studentIds[i];
-		Body.x = pos; Body.y = 6;
+		Body.x = 70; Body.y = 7;
 		Snake.push_back(Body);
-		pos--;
 	}
 
 	randFood(Food);
@@ -62,8 +61,8 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	colorText(254, snakeColor);
 
 	// Init direction
-	Direction.x = 1; 
-	Direction.y = 0;
+	Direction.x = 0;
+	Direction.y = 1;
 }
 
 void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool& endGame, int& score) {
@@ -341,6 +340,10 @@ void playGame(string name, string& dateAndTime) {
 		int xEnd = Snake[Snake.size() - 1].x;
 		int yEnd = Snake[Snake.size() - 1].y;
 
+		if (colorXY[xEnd][yEnd] == "DONE") {
+			clearInGate(7, 5);
+		}
+
 		if (currRequirement == requirement[currentLevel] && !isDrawGate) {
 			drawOutGate(3, 121, 38);
 			isDrawGate = true;
@@ -358,9 +361,10 @@ void playGame(string name, string& dateAndTime) {
 			else {
 				currentLevel = 0;
 				level[currentLevel]();
+				Speed -= 10;
 			}
 			
-			drawInGate(10, 10);
+			drawInGate(7, 5);
 
 			Sleep(2000);
 
@@ -370,15 +374,15 @@ void playGame(string name, string& dateAndTime) {
 			Snake.resize(oldSnake.size());
 			for (int i = 0; i < oldSnake.size(); ++i) {
 				Snake[i].data = oldSnake[i];
-				Snake[i].x = 10;
-				Snake[i].y = 10;
+				Snake[i].x = 11;
+				Snake[i].y = 3;
 			}
 
 			Snake[0].ox = Snake[0].x;
 			Snake[0].oy = Snake[0].y;
 
-			Snake[0].x = 14;
-			Snake[0].y = 9;
+			Snake[0].x = 11;
+			Snake[0].y = 3;
 
 			for (size_t i = 1; i < Snake.size(); ++i) {
 				Snake[i].x = Snake[i - 1].x;
@@ -533,7 +537,7 @@ void loadGame() {
 				level[currentLevel]();
 			}
 
-			drawInGate(10, 10);
+			drawInGate(6, 10);
 
 			Sleep(2000);
 
@@ -543,19 +547,11 @@ void loadGame() {
 			Snake.resize(oldSnake.size());
 			for (int i = 0; i < oldSnake.size(); ++i) {
 				Snake[i].data = oldSnake[i];
-				Snake[i].x = 10;
-				Snake[i].y = 10;
 			}
 
-			Snake[0].ox = Snake[0].x;
-			Snake[0].oy = Snake[0].y;
-
-			Snake[0].x = 14;
-			Snake[0].y = 9;
-
 			for (size_t i = 1; i < Snake.size(); ++i) {
-				Snake[i].x = Snake[i - 1].x;
-				Snake[i].y = Snake[i - 1].y;
+				Snake[i].x = 10;
+				Snake[i].y = 7;
 			}
 
 			StatusMove = Status::DOWN;
