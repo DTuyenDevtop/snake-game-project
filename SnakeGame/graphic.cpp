@@ -272,7 +272,7 @@ void showSnakeRight() {
 }
 
 void showSnakeLeft() {
-    textColor(RED);
+    textColor(3);
     int line = 23;
     int col = 25;
     gotoXY(col, line++);

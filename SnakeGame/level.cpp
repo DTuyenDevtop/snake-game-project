@@ -105,17 +105,17 @@ void decorate(int index) {
 
 
 	gotoXY(x -1, y++ -8 );
-	wcout << " ____";
+	wcout << "      ____";
 	gotoXY(x -1, y++ - 8);
-	wcout << "/ . .\\    ";
+	wcout << "_,.-'`_ o `;__,";
 	gotoXY(x - 1, y++ - 8);
-	wcout << "\\  ---<  ";
-	gotoXY(x -1, y++ - 8);
-	wcout << " \\  /  ";
-	gotoXY(x -1 , y++ - 8);
-	wcout << " / /________  ";
-	gotoXY(x -1, y++ - 8);
-	wcout << " \\_________:=-";
+	wcout << " _.-'` '---'  '";
+	//gotoXY(x -1, y++ - 8);
+	//wcout << " \\  /  ";
+	//gotoXY(x -1 , y++ - 8);
+	//wcout << " / /________  ";
+	//gotoXY(x -1, y++ - 8);
+	//wcout << " \\_________:=-";
 
 	int t = 13;
 	if (index == 1) {
