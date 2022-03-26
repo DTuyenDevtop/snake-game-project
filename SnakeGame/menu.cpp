@@ -1293,6 +1293,4 @@ void loadGameGraphic() {
 	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
 	Sleep(t);
 	gotoXY(78, 29);
-	string file;
-	cin >> file;
 }

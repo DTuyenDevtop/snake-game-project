@@ -10,17 +10,18 @@
 #include <vector>
 #include <fstream>
 #include <conio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <ctime>
 
 std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
-string colorXY[205][85];
+string colorXY[205][85], userName;
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 int Speed = SPEEDFIRST;
-int requirement[] = { 1, 1, 1, 1, 1, 99999};
+int requirement[] = { 3, 4, 4, 5, 6, 99999};
 int currRequirement, currentLevel;
 
 void randFood(Infomation& Food) {
@@ -233,6 +234,9 @@ void mainLoop (
 		else if (key == 's') {
 			StatusMove = Status::DOWN;
 		}
+		else if (key == 'l') {
+			StatusGame = Status::SAVE;
+		}
 		else if (key == 32) { // Space - pause game
 			pauseGame();
 			StatusGame = Status::PAUSE;
@@ -293,11 +297,37 @@ void mainLoop (
 		currRequirement = 0;
 		endGame = true;
 	}
+
+	if (StatusGame == Status::SAVE) {
+		ofstream fOut;
+		fOut.open("gameData.txt", ios::app);
+		fOut << "\n\nUser: " << userName << "\n";
+		fOut << "Level: " << currentLevel + 1 << "\n";
+		fOut << "Length: " << Snake.size() << "\n";
+		fOut << "Snake Data: ";
+		for (int i = 0; i < Snake.size(); ++i) {
+			fOut << Snake[i].data;
+		}
+		fOut << "\n";
+		fOut << "Snake Position: ";
+		for (int i = 0; i < Snake.size(); ++i) {
+			fOut << Snake[i].x << ' ' << Snake[i].y << ' ';
+		}
+		fOut << "\n";
+		fOut << "Direction: " << Direction.x << ' ' << Direction.y << "\n";
+		fOut << "Score: " << score;
+
+		position = 8;
+		currRequirement = 0;
+		
+		endGame = true;
+	}
 }
 
 void playGame(string name, string& dateAndTime) {
 	system("cls");
 
+	userName = name;
 	vector<Infomation> Snake;
 	Infomation Direction, Food;
 	Status StatusMove, StatusGame;
@@ -409,6 +439,7 @@ void playGame(string name, string& dateAndTime) {
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
 	dateAndTime.pop_back();
+
 	Player t;
 	t.score = score;
 	t.name = name;
@@ -433,16 +464,19 @@ struct User {
 	int score;
 	int snakeLenght;
 	char snakeData[100];
+	int dirX, dirY;
 	vector<Infomation> Snake;
 };
 
+User user[100];
 void loadGame() {
 	FILE* file;
 	fopen_s(&file, "gameData.txt", "rt");
-	User *user;
-	user = new User[100];
 	int cnt = 0;
-
+	
+	for (int i = 0; i < 100; ++i) {
+		user[cnt].Snake.clear();
+	}
 
 	if (file != nullptr) {
 		while (!feof(file)) {
@@ -454,24 +488,48 @@ void loadGame() {
 			printf("%d", user[cnt].snakeLenght);
 
 			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
-
+			
+			fscanf_s(file, "Snake Position: ");
+			Infomation data;
 			for (int i = 0; i < user[cnt].snakeLenght; ++i) {
 				int x = 0, y = 0;
-				fscanf_s(file, "Snake Position: ");
 				fscanf_s(file, "%d %d", &x, &y);
-				Infomation data;
 				data.data = user[cnt].snakeData[i];
 				data.x = x;
 				data.y = y;
-				user->Snake.push_back(data);
+				user[cnt].Snake.push_back(data);
 			}
-			fscanf_s(file, "\nScore: %d\n", &user[cnt].score);
+
+			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
+
+			fscanf_s(file, "Score: %d", &user[cnt].score);
+			++cnt;
 		}
 	}
-	
+	loadGameGraphic();
+	string uName;
+	cin >> uName;
+	int pos = -1;
+
+	for (int i = 0; i < cnt; ++i) {
+		if (user[i].name == uName) {
+			pos = i;
+		}
+	}
+
+	if (pos == -1) {
+		gotoXY(40, 10);
+		textColor(RED);
+		cout << "Invalid user name!";
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 3s";
+		Sleep(3000);
+		return;
+	}
+
 	system("cls");
 
-	vector<Infomation> Snake = user[0].Snake;
+	vector<Infomation> Snake = user[pos].Snake;
 	Infomation Direction, Food;
 	Status StatusMove, StatusGame;
 	string oldSnake = "";
@@ -481,8 +539,8 @@ void loadGame() {
 	int Speed = SPEEDFIRST, score = 0;
 	bool endGame = false, isDrawGate = false;
 
-	currentLevel = user[0].level;
-	currRequirement = user[0].score / 100;
+	currentLevel = user[pos].level;
+	currRequirement = user[pos].score / 100;
 
 	initLevel();
 
@@ -494,8 +552,11 @@ void loadGame() {
 	gotoXY(Food.x, Food.y);
 	colorText(254, snakeColor);
 
-	Direction.x = 1;
-	Direction.y = 0;
+	Direction.x = user[pos].dirX;
+	Direction.y = user[pos].dirY;
+
+	drawSnake(Snake);
+	Sleep(1000);
 
 	while (!endGame) {
 		Sleep(Speed);
@@ -519,6 +580,10 @@ void loadGame() {
 		int xEnd = Snake[Snake.size() - 1].x;
 		int yEnd = Snake[Snake.size() - 1].y;
 
+		if (colorXY[xEnd][yEnd] == "DONE") {
+			clearInGate(7, 5);
+		}
+
 		if (currRequirement == requirement[currentLevel] && !isDrawGate) {
 			drawOutGate(3, 121, 38);
 			isDrawGate = true;
@@ -531,27 +596,37 @@ void loadGame() {
 			if (currentLevel < level.size() - 1) {
 				++currentLevel;
 				level[currentLevel]();
+				Speed -= 10;
 			}
 			else {
 				currentLevel = 0;
 				level[currentLevel]();
+				Speed -= 10;
 			}
 
-			drawInGate(6, 10);
+			drawInGate(7, 5);
 
 			Sleep(2000);
 
 			currRequirement = 0;
-			score = 0;
+			//score = 0;
 
 			Snake.resize(oldSnake.size());
 			for (int i = 0; i < oldSnake.size(); ++i) {
 				Snake[i].data = oldSnake[i];
+				Snake[i].x = 11;
+				Snake[i].y = 3;
 			}
 
+			Snake[0].ox = Snake[0].x;
+			Snake[0].oy = Snake[0].y;
+
+			Snake[0].x = 11;
+			Snake[0].y = 3;
+
 			for (size_t i = 1; i < Snake.size(); ++i) {
-				Snake[i].x = 10;
-				Snake[i].y = 7;
+				Snake[i].x = Snake[i - 1].x;
+				Snake[i].y = Snake[i - 1].y;
 			}
 
 			StatusMove = Status::DOWN;
@@ -569,5 +644,13 @@ void loadGame() {
 
 	deleteBorder();
 	Sleep(2000);
-	//loseGame();
+	string pName;
+	for (int i = 0; i < strlen(user[pos].name); ++i) {
+		pName.push_back(user[pos].name[i]);
+	}
+
+	time_t now = time(0);
+	string dateAndTime = ctime(&now);
+	dateAndTime.pop_back();
+	loseGame(pName, dateAndTime);
 }

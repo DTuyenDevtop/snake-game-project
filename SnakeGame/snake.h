@@ -5,7 +5,7 @@
 
 using namespace std;
 
-enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF};
+enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF, SAVE};
 
 #define WidthGame      120
 #define HeightGame     35
