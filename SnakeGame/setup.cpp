@@ -1,5 +1,5 @@
 #include "setup.h"
-
+#include<iostream>
 using namespace std;
 
 Screen screen;
@@ -9,12 +9,14 @@ vector<Menu> listMenu;
 extern vector<Player> savePlayers;
 map<int, pair<int, string>> color;
 
+
 void setup() {
     resizeConsole(WIDTH, HEIGHT);
     removeScrollbar();
     fixConsoleWindow();
     hideCursor();
     changeConsoleColor(BACKGROUND_COLOR);
+
 
     // Current OEM code page
     setlocale(LC_CTYPE, ".OCP"); // ref: https://xoax.net/cpp/ref/cstd/incl/clocale/fn/setlocale/
@@ -45,6 +47,7 @@ void mainMenu() {
     it = color.begin();
     bool firstTime = true;
     while (true) {
+       
         if (!firstTime) {
             for (int i = 40; i >= 15; --i) {
                 gotoXY(5, i);
@@ -58,7 +61,7 @@ void mainMenu() {
         showLogo1();
 
         showSnakeLeft();
-
+        
 
         showSnakeRight();
 

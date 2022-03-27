@@ -104,11 +104,11 @@ void decorate(int index) {
 	wcout << "(_________()Oo";
 
 
-	gotoXY(x -1, y++ -8 );
+	gotoXY(x -1, y++ -6 );
 	wcout << "      ____";
-	gotoXY(x -1, y++ - 8);
+	gotoXY(x -1, y++ - 6);
 	wcout << "_,.-'`_ o `;__,";
-	gotoXY(x - 1, y++ - 8);
+	gotoXY(x - 1, y++ - 6);
 	wcout << " _.-'` '---'  '";
 	//gotoXY(x -1, y++ - 8);
 	//wcout << " \\  /  ";

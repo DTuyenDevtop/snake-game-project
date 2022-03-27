@@ -1286,7 +1286,7 @@ void loadGameGraphic() {
 	textColor(3);
 	cout << "Please input your name exactly to load game which you saved. ";
 	Screen nameScreen;
-	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 8, 1, colorXY);
 	Sleep(t);
 	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
 	Sleep(t);
