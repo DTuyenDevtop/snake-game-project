@@ -23,18 +23,30 @@ struct Infomation {
 	}
 };
 
+struct User {
+	char name[20];
+	int level;
+	int score;
+	int snakeLenght;
+	char snakeData[100];
+	int dirX, dirY;
+	vector<Infomation> Snake;
+};
+
 void init(vector<Infomation>&, Infomation&, Infomation&, bool&, int);
 
 void moveSnake(vector<Infomation>&, Infomation, Infomation&, bool&, int&);
 
 void drawSnake(vector<Infomation>&);
 
-void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, int&, bool&, int&);
+void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, double&, bool&, int&);
 
 void playGame(string name, string& dateAndTime);
 
 void randFood(Infomation &Food);
 
 void loadGame();
+
+int loadFileUserData();
 
 void drawLosingSnake(vector<Infomation>& Snake);

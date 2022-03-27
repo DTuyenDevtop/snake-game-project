@@ -912,6 +912,8 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	cout << "Press ESC to exit.";
 }
 
+User user[100];
+
 void fillName(string &name) {
 	system("cls");
 	int t = 25;
@@ -946,8 +948,29 @@ void fillName(string &name) {
 	Sleep(t);
 	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
 	Sleep(t);
-	gotoXY(78, 29);
-	cin >> name;
+	while (1) {
+		gotoXY(78, 29);
+		textColor(3);
+		int check = 0;
+		cin >> name;
+		
+		int N = loadFileUserData();
+		for (int i = 0; i < N; i++) {
+			if (name == user[i].name) {
+				gotoXY(0, 30);
+				cout << "           ";
+				Sleep(500);
+				gotoXY(55, 34);
+				textColor(RED);
+				cout << "Your name is not valid or already exist. Please retype your name ";
+				check = 1;
+				gotoXY(78, 29);
+				cout<<"                     ";
+				
+			}
+		}
+		if (check == 0) break;
+	}
 }
 
 int loseGame(string &name,string &dateAndTime) {
@@ -1066,7 +1089,7 @@ int loseGame(string &name,string &dateAndTime) {
 	cout << "YES";
 	while (true) {
 			int key = _getch();
-			if (key == 'd' || key == 'a') {
+			if (key == 'd' || key == 'a' || key == 75 || key == 77) {
 				temp1++;
 				if (temp1 % 2 == 1) {
 					textColor(3);
@@ -1262,7 +1285,7 @@ void loadGameGraphic() {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(3, 7);
+	textFillColor(12, 7);
 	int col1 = 59, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"    __   ____  ___    ____     _________    __  _________";
@@ -1283,14 +1306,14 @@ void loadGameGraphic() {
 	wcout << L"                                                                            ";
 	Sleep(t);
 	gotoXY(col1 - 2, row1++);
-	textColor(3);
+	textColor(12);
 	cout << "Please input your name exactly to load game which you saved. ";
 	Screen nameScreen;
-	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 8, 1, colorXY);
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
 	Sleep(t);
-	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 4, 2, colorXY);
 	Sleep(t);
-	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 4, 2, colorXY);
 	Sleep(t);
 	gotoXY(78, 29);
 }

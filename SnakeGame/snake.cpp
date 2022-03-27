@@ -20,7 +20,7 @@ string colorXY[205][85], userName;
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
-int Speed = SPEEDFIRST;
+double Speed = SPEEDFIRST;
 int requirement[] = { 3, 4, 4, 5, 6, 99999};
 int currRequirement, currentLevel;
 
@@ -48,7 +48,7 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	cout << currRequirement << " / " << requirement[currentLevel];
 	gotoXY(145, 7);
 	colorText("Speed: ", RED);
-	cout << -Speed + 120 << " km/h";
+	cout << (int)-Speed + 120 << " km/h";
 	
 	drawInGate(66, 10);
 	for (int i = 0; i < 8; i++) {
@@ -202,7 +202,7 @@ void mainLoop (
 	Status& StatusMove, Status& StatusGame, 
 	vector<Infomation>& Snake, 
 	Infomation& Direction, Infomation& Food, 
-	int& Speed, bool& endGame, int& score
+	double& Speed, bool& endGame, int& score
 ) {
 	gotoXY(147, 5);
 	colorText("Score: ", RED);
@@ -212,7 +212,7 @@ void mainLoop (
 	cout << currRequirement << " / " << requirement[currentLevel];
 	gotoXY(145, 7);
 	colorText("Speed: ", RED);
-	cout << -Speed + 120 << " km/h";
+	cout << (int)-Speed + 120 << " km/h";
 	moveSnake(Snake, Direction, Food, endGame, score);
 
 	if (_kbhit()) {
@@ -386,12 +386,14 @@ void playGame(string name, string& dateAndTime) {
 			if (currentLevel < level.size() - 1) {
 				++currentLevel;
 				level[currentLevel]();
-				Speed -= 10;
+				if (Speed > 30) Speed -= 10;
+				else Speed = Speed / 1.25;
 			}
 			else {
 				currentLevel = 0;
 				level[currentLevel]();
-				Speed -= 10;
+				if (Speed > 30) Speed -= 10;
+				else Speed = Speed / 1.25;
 			}
 			
 			drawInGate(7, 5);
@@ -473,22 +475,13 @@ void playGame(string name, string& dateAndTime) {
 	}
 }
 
-struct User {
-	char name[20];
-	int level;
-	int score;
-	int snakeLenght;
-	char snakeData[100];
-	int dirX, dirY;
-	vector<Infomation> Snake;
-};
+extern User user[100];
 
-User user[100];
-void loadGame() {
+int loadFileUserData() {
 	FILE* file;
 	fopen_s(&file, "gameData.txt", "rt");
 	int cnt = 0;
-	
+
 	for (int i = 0; i < 100; ++i) {
 		user[cnt].Snake.clear();
 	}
@@ -503,7 +496,7 @@ void loadGame() {
 			printf("%d", user[cnt].snakeLenght);
 
 			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
-			
+
 			fscanf_s(file, "Snake Position: ");
 			Infomation data;
 			for (int i = 0; i < user[cnt].snakeLenght; ++i) {
@@ -521,6 +514,10 @@ void loadGame() {
 			++cnt;
 		}
 	}
+	return cnt;
+}
+void loadGame() {
+	int cnt = loadFileUserData();
 	loadGameGraphic();
 	string uName;
 	cin >> uName;
@@ -538,7 +535,16 @@ void loadGame() {
 		cout << "Invalid user name!";
 		gotoXY(40, 11);
 		cout << "You will be brought into main in 3s";
-		Sleep(3000);
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 2s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 1s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 0s"; 
+		Sleep(1000);
 		return;
 	}
 
@@ -551,7 +557,8 @@ void loadGame() {
 
 	srand((unsigned int)time(0));
 
-	int Speed = SPEEDFIRST, score = 0;
+	double Speed = SPEEDFIRST;
+	int score = 0;
 	bool endGame = false, isDrawGate = false;
 
 	currentLevel = user[pos].level;
@@ -611,12 +618,14 @@ void loadGame() {
 			if (currentLevel < level.size() - 1) {
 				++currentLevel;
 				level[currentLevel]();
-				Speed -= 10;
+				if (Speed > 30) Speed -= 10;
+				else Speed = Speed / 1.25;
 			}
 			else {
 				currentLevel = 0;
 				level[currentLevel]();
-				Speed -= 10;
+				if (Speed > 30) Speed -= 10;
+				else Speed = Speed / 1.25;
 			}
 
 			drawInGate(7, 5);
