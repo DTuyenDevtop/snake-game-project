@@ -5,11 +5,11 @@
 
 using namespace std;
 
-enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF};
+enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF, SAVE};
 
 #define WidthGame      120
 #define HeightGame     35
-#define SPEEDFIRST     100
+#define SPEEDFIRST     80
 #define SPEEDLATER	   30
 
 struct Infomation {
@@ -36,3 +36,5 @@ void playGame(string name, string& dateAndTime);
 void randFood(Infomation &Food);
 
 void loadGame();
+
+void drawLosingSnake(vector<Infomation>& Snake);

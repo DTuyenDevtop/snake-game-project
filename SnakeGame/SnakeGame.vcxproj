@@ -159,6 +159,7 @@
   <ItemGroup>
     <Media Include="resources\backgroundmusic.wav" />
     <Media Include="resources\eatfood.wav" />
+    <Media Include="resources\losegame.wav" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="gameData.txt" />

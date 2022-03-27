@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "snake.h"
 #include "graphic.h"
+#include "setup.h"
 
 vector<function<void()>> level;
 Screen gameDisplay;
@@ -323,13 +324,6 @@ void level1() {
 	drawBorder();
 	decorate(1);
 
-	colorXY[121][40] = "PASS";
-	colorXY[122][40] = "PASS";
-	colorXY[123][40] = "PASS";
-	colorXY[124][40] = "PASS";
-	colorXY[125][40] = "PASS";
-	colorXY[126][40] = "PASS";
-
 	gameDisplay.draw.retangle({ 14, 17 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 14, 28 }, { 8, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 105, 17 }, { 8, 0 }, BLACK, 2, colorXY);
@@ -370,8 +364,6 @@ void level3() {
 	gameDisplay.draw.retangle({ 38, 22 }, { 30, 0 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 68, 12 }, { 0, 20 }, BLACK, 2, colorXY);
 	decorate(3);
-	//drawInGate(7,6);
-	drawOutGate(2,121,38);
 }
 
 void level4() {
@@ -391,8 +383,6 @@ void level4() {
 	gameDisplay.draw.retangle({ 93, 21 }, { 0, 7 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 110, 30 }, { 0, 7 }, BLACK, 2, colorXY);
 	decorate(4);
-	//drawInGate(7,6);
-	drawOutGate(2,121,38);
 }
 
 void level5() {
@@ -417,8 +407,6 @@ void level5() {
 	gameDisplay.draw.retangle({ 77, 25 }, { 0, 8 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 77, 25 }, { 10, 0 }, BLACK, 2, colorXY);
 	decorate(5);
-	//drawInGate(7,6);
-	drawOutGate(1,121,38);
 }
 
 void randXY(Infomation& Food, const std::string label) {
@@ -439,20 +427,17 @@ void bonusLevel() {
 	drawBorder();	
 
 	Infomation Food;
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 20; ++i) {
 		randXY(Food, "FOOD_BINC");
 		gotoXY(Food.x, Food.y);
 		colorText(254, snakeColor);
 	}
 
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 20; ++i) {
 		randXY(Food, "FOOD_BST");
 		gotoXY(Food.x, Food.y);
 		colorText(254, BYELLOW);
 	}
-
-	//drawInGate(7,6);
-	drawOutGate(3, 121, 38);
 }
 
 void initLevel() {
@@ -464,10 +449,11 @@ void initLevel() {
 	level.push_back(bonusLevel);
 }
 
-void initGate() {
-}
-
 void drawInGate(int col, int row) {
+	colorXY[col + 4][row] = "DONE";
+	colorXY[col + 5][row] = "DONE";
+	colorXY[col + 6][row] = "DONE";
+
 	gotoXY(col, row);
 	for (int i = 0; i < 9; i++) {
 		if (i < 3 || i > 5) {
@@ -487,6 +473,28 @@ void drawInGate(int col, int row) {
 		//colorXY[col + i][row] = "DANGER";
 	}
 	cout << (char)201 << (char)205 << (char)205 << (char)79 << (char)205 << (char)205 << (char)187;
+}
+
+void clearInGate(int col, int row) {
+	gotoXY(col, row);
+	for (int i = 0; i < 9; i++) {
+		if (i < 3 || i > 5) {
+			//colorXY[col + i][row] = "DANGER";
+		}
+	}
+	cout << " " << " " << " " << "   " << " " << " " << " ";
+	col++; row--;
+	gotoXY(col, row);
+	//colorXY[col][row] = "DANGER";
+	//colorXY[col + 6][row] = "DANGER";
+	cout << " " << "     " << " ";
+	row--;
+
+	gotoXY(col, row);
+	for (int i = 0; i < 6; i++) {
+		//colorXY[col + i][row] = "DANGER";
+	}
+	cout << " " << " " << " " << " " << " " << " " << " ";
 }
 
 void drawOutGate(int width, int col, int row) {
@@ -550,28 +558,38 @@ void drawOutGate(int width, int col, int row) {
 	else {
 		cout << (char)200 << (char)205 << (char)205 << (char)205 << (char)188;
 	}
+
+	colorXY[121][40] = "PASS";
+	colorXY[122][40] = "PASS";
+	colorXY[123][40] = "PASS";
+	colorXY[124][40] = "PASS";
+	colorXY[125][40] = "PASS";
+	colorXY[126][40] = "PASS";
 }
 
 void deleteBorder() {
-	textColor(1);
+	textColor(BLACK);
 	int col = 5, row = 2;
 	for (int i = 0; i < 127; i++) {
 		gotoXY(col + i, row);
 		cout << (char)220;
-		Sleep(1);
+		Sleep(0.98);
 	}
+
 	col = 131; row = 3;
 	for (int i = 0; i < 39; i++) {
 		gotoXY(col, row + i);
 		cout << (char)219;
 		Sleep(1);
 	}
+
 	row = 42; col = 131;
 	for (int i = 0; i < 127; i++) {
 		gotoXY(col - i, row);
 		cout << (char)223;
-		Sleep(1);
+		Sleep(0.98);
 	}
+
 	col = 5; row = 41;
 	for (int i = 0; i < 39; i++) {
 		gotoXY(col, row - i);
