@@ -21,8 +21,10 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 double Speed = SPEEDFIRST;
-int requirement[] = { 3, 4, 4, 5, 6, 99999};
+int requirement[] = { 1, 1, 1, 1, 1, 99999};
 int currRequirement, currentLevel;
+
+time_t now;
 
 void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
@@ -50,10 +52,10 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	colorText("Speed: ", RED);
 	cout << (int)-Speed + 120 << " km/h";
 	
-	drawInGate(66, 10);
+	drawInGate(7, 5);
 	for (int i = 0; i < 8; i++) {
 		Body.data = studentIds[i];
-		Body.x = 70; Body.y = 7;
+		Body.x = 11; Body.y = 3;
 		Snake.push_back(Body);
 	}
 
@@ -198,6 +200,9 @@ void drawSnake(vector<Infomation>& Snake) {
 	cout << " "; 
 }
 
+int maxTime = 15;
+int tmp = 15;
+
 void mainLoop (
 	Status& StatusMove, Status& StatusGame, 
 	vector<Infomation>& Snake, 
@@ -214,6 +219,15 @@ void mainLoop (
 	colorText("Speed: ", RED);
 	cout << (int)-Speed + 120 << " km/h";
 	moveSnake(Snake, Direction, Food, endGame, score);
+	
+	if (currentLevel == level.size() - 1) {
+		gotoXY(10, 10);
+		time_t currSec = time(0);
+		if (maxTime != 0) {
+			maxTime = tmp - (int)(currSec - now);
+			printf("%02d", maxTime);
+		}
+	}
 
 	if (_kbhit()) {
 		int key = _getch();
@@ -279,9 +293,17 @@ void mainLoop (
 				if (key == 32) {
 					system("cls");
 					level[currentLevel]();
-					gotoXY(Food.x, Food.y);
-					colorXY[Food.x][Food.y] = "FOOD_INC";
-					colorText(254, snakeColor);
+					
+					if (currRequirement != requirement[currentLevel]) {
+						gotoXY(Food.x, Food.y);
+						colorXY[Food.x][Food.y] = "FOOD_INC";
+						colorText(254, snakeColor);
+					}
+
+					if (currRequirement == requirement[currentLevel]) {
+						drawOutGate(3, 121, 38);
+					}
+					
 					StatusGame = Status::EMPTY;
 					break;
 				}
@@ -348,6 +370,8 @@ void playGame(string name, string& dateAndTime) {
 
 	init(Snake, Food,Direction, endGame, score);
 
+	int isCal = false;
+
 	while (!endGame) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
@@ -374,12 +398,20 @@ void playGame(string name, string& dateAndTime) {
 			clearInGate(7, 5);
 		}
 
-		if (currRequirement == requirement[currentLevel] && !isDrawGate) {
-			drawOutGate(3, 121, 38);
+		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
+			if (currentLevel < 2) {
+				drawOutGate(3, 121, 38);
+			}
+			else if (currentLevel < 4) {
+				drawOutGate(2, 121, 38);
+			}
+			else {
+				drawOutGate(1, 121, 38);
+			}
 			isDrawGate = true;
 		}
 
-		if (currRequirement == requirement[currentLevel] && colorXY[xEnd][yEnd] == "PASS") {
+		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && colorXY[xEnd][yEnd] == "PASS") {
 			isDrawGate = false;
 			system("cls");
 
@@ -428,6 +460,10 @@ void playGame(string name, string& dateAndTime) {
 			randFood(Food);
 			gotoXY(Food.x, Food.y);
 			colorText(254, snakeColor);
+
+			if (currentLevel == level.size() - 1) {
+				now = time(0);
+			}
 			
 			mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 			drawSnake(Snake);
@@ -516,6 +552,7 @@ int loadFileUserData() {
 	}
 	return cnt;
 }
+
 void loadGame() {
 	int cnt = loadFileUserData();
 	loadGameGraphic();

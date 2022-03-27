@@ -453,7 +453,7 @@ void drawInGate(int col, int row) {
 	colorXY[col + 4][row] = "DONE";
 	colorXY[col + 5][row] = "DONE";
 	colorXY[col + 6][row] = "DONE";
-
+	textColor(BYELLOW);
 	gotoXY(col, row);
 	for (int i = 0; i < 9; i++) {
 		if (i < 3 || i > 5) {
@@ -498,6 +498,8 @@ void clearInGate(int col, int row) {
 }
 
 void drawOutGate(int width, int col, int row) {
+	textColor(BYELLOW);
+
 	int x = 0;
 	switch (width) {
 		case 3:
