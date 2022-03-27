@@ -1214,7 +1214,7 @@ int loseGame(string &name,string &dateAndTime) {
 				break;
 			}
 			else if (key == 13 && temp1 % 2 == 0) {
-			break;
+				break;
 			}
 		
 	}
