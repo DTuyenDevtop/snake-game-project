@@ -50,3 +50,7 @@ void loadGame();
 int loadFileUserData();
 
 void drawLosingSnake(vector<Infomation>& Snake);
+
+void decorateBonus();
+
+void eraserCountDown();

@@ -20,11 +20,13 @@ string colorXY[205][85], userName;
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
-double Speed = SPEEDFIRST;
+double Speed = SPEEDFIRST ;
 int requirement[] = { 1, 1, 1, 1, 1, 99999};
 int currRequirement, currentLevel;
 time_t now;
-int bonus = 5;
+int bonus = 1;
+int maxTime = 15;
+int tmp = 15;
 
 void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
@@ -68,8 +70,7 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation&Direction, boo
 	Direction.y = 1;
 }
 
-int maxTime = 15;
-int tmp = 15;
+
 
 void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool& endGame, int& score) {
 	Infomation Add;
@@ -233,6 +234,8 @@ void mainLoop (
 		printf("%02d", maxTime);
 	}
 
+	
+
 	if (_kbhit()) {
 		int key = _getch();
 
@@ -378,7 +381,9 @@ void playGame(string name, string& dateAndTime) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 		drawSnake(Snake);
-		
+
+
+
 		int xStart = Snake[0].x;
 		int yStart = Snake[0].y;
 
@@ -491,6 +496,9 @@ void playGame(string name, string& dateAndTime) {
 			mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 			drawSnake(Snake);
 		}
+		/*if (currentLevel == level.size() - 1) {
+			decorateBonus();
+		}*/
 	}
 
 	// end game
@@ -798,4 +806,542 @@ void drawLosingSnake(vector<Infomation>& Snake) {
 
 	gotoXY(Snake[size - 1].ox, Snake[size - 1].oy);
 	cout << " ";
+}
+void decorateBonus() {
+	Screen gameDisplay;
+	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
+	textColor(6);
+	int col1 = 137, row1 = 12;
+	gotoXY(col1, row1++);
+	wcout << L"██████ ";
+	gotoXY(col1, row1++);
+	wcout << L"██   ██";
+	gotoXY(col1, row1++);
+	wcout << L"██████ ";
+	gotoXY(col1, row1++);
+	wcout << L"██   ██";
+	gotoXY(col1, row1++);
+	wcout << L"██████ ";
+	row1++;
+	gotoXY(col1, row1++);
+	wcout << L" ██████ ";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L" ██████ ";
+	row1++;
+	gotoXY(col1, row1++);
+	wcout << L"███    ██";
+	gotoXY(col1, row1++);
+	wcout << L"████   ██";
+	gotoXY(col1, row1++);
+	wcout << L"██ ██  ██";
+	gotoXY(col1, row1++);
+	wcout << L"██  ██ ██";
+	gotoXY(col1, row1++);
+	wcout << L"██   ████";
+	row1++;
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L"██    ██";
+	gotoXY(col1, row1++);
+	wcout << L" ██████ ";
+	row1++;
+	gotoXY(col1, row1++);
+	wcout << L"███████ ";
+	gotoXY(col1, row1++);
+	wcout << L"██     ";
+	gotoXY(col1, row1++);
+	wcout << L"███████ ";
+	gotoXY(col1, row1++);
+	wcout << L"     ██ ";
+	gotoXY(col1, row1++);
+	wcout << L"███████ ";
+
+	int col2 = 152, row2 = 20;
+	if (maxTime == 15) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+		
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"███████╗";
+		gotoXY(col2, row2++);
+		wcout << L"██╔════╝";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██║";
+		gotoXY(col2, row2++);
+		wcout << L"███████║";
+		gotoXY(col2, row2++);
+		wcout << L"╚══════╝";
+	}
+	else if (maxTime == 14) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"██╗  ██╗";
+		gotoXY(col2, row2++);
+		wcout << L"██║  ██║";
+		gotoXY(col2, row2++);
+		wcout << L"███████║";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██║";
+		gotoXY(col2, row2++);
+		wcout << L"     ██║";
+		gotoXY(col2, row2++);
+		wcout << L"     ╚═╝";
+	}
+	else if (maxTime == 13) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██╗";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═══██╗";
+		gotoXY(col2, row2++);
+		wcout << L"██████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L"╚═════╝ ";
+	}
+	else if (maxTime == 12) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗";
+		gotoXY(col2, row2++);
+		wcout << L"███║";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║";
+		gotoXY(col2, row2++);
+		wcout << L" ██║";
+		gotoXY(col2, row2++);
+		wcout << L" ██║";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝";
+
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██╗";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═══╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚══════╝";
+	}
+	else if (maxTime == 11) {
+	gotoXY(col2, row2++);
+	wcout << L" ██╗";
+	gotoXY(col2, row2++);
+	wcout << L"███║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██║";
+	gotoXY(col2, row2++);
+	wcout << L" ██║";
+	gotoXY(col2, row2++);
+	wcout << L" ██║";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═╝";
+
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" ██╗     ";
+	gotoXY(col2, row2++);
+	wcout << L"███║     ";
+	gotoXY(col2, row2++);
+	wcout << L"╚██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═╝     ";
+	}
+	else if (maxTime == 10) {
+	gotoXY(col2, row2++);
+	wcout << L" ██╗";
+	gotoXY(col2, row2++);
+	wcout << L"███║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██║";
+	gotoXY(col2, row2++);
+	wcout << L" ██║";
+	gotoXY(col2, row2++);
+	wcout << L" ██║";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═╝";
+
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	}
+	else if (maxTime == 1) {
+	
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" ██╗     ";
+	gotoXY(col2, row2++);
+	wcout << L"███║     ";
+	gotoXY(col2, row2++);
+	wcout << L"╚██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ██║     ";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═╝     ";
+	}
+	else if (maxTime == 2) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L"██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"╚════██╗";
+	gotoXY(col2, row2++);
+	wcout << L" █████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═══╝ ";
+	gotoXY(col2, row2++);
+	wcout << L"███████╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚══════╝";
+	}
+	else if (maxTime == 3) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L"██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"╚════██╗";
+	gotoXY(col2, row2++);
+	wcout << L" █████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═══██╗";
+	gotoXY(col2, row2++);
+	wcout << L"██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L"╚═════╝ ";
+	}
+	else if (maxTime == 4) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L"██╗  ██╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║  ██║";
+	gotoXY(col2, row2++);
+	wcout << L"███████║";
+	gotoXY(col2, row2++);
+	wcout << L"╚════██║";
+	gotoXY(col2, row2++);
+	wcout << L"     ██║";
+	gotoXY(col2, row2++);
+	wcout << L"     ╚═╝";
+	}
+	else if (maxTime == 5) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L"███████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██╔════╝";
+	gotoXY(col2, row2++);
+	wcout << L"███████╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚════██║";
+	gotoXY(col2, row2++);
+	wcout << L"███████║";
+	gotoXY(col2, row2++);
+	wcout << L"╚══════╝";
+	}
+	else if (maxTime == 6) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔════╝ ";
+	gotoXY(col2, row2++);
+	wcout << L"███████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═══██╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	}
+	else if (maxTime == 7) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L"███████╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚════██║";
+	gotoXY(col2, row2++);
+	wcout << L"    ██╔╝";
+	gotoXY(col2, row2++);
+	wcout << L"   ██╔╝ ";
+	gotoXY(col2, row2++);
+	wcout << L"   ██║  ";
+	gotoXY(col2, row2++);
+	wcout << L"   ╚═╝  ";
+	}
+	else if (maxTime == 8) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" █████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔══██╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚█████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L"██╔══██╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚█████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚════╝ ";
+	}
+	else if (maxTime == 9) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" █████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔══██╗";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████║";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═══██║";
+	gotoXY(col2, row2++);
+	wcout << L" █████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚════╝ ";
+	}
+	else if (maxTime == 0) {
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+
+	row2 += 1;
+
+	gotoXY(col2, row2++);
+	wcout << L" ██████╗ ";
+	gotoXY(col2, row2++);
+	wcout << L"██╔═████╗";
+	gotoXY(col2, row2++);
+	wcout << L"██║██╔██║";
+	gotoXY(col2, row2++);
+	wcout << L"████╔╝██║";
+	gotoXY(col2, row2++);
+	wcout << L"╚██████╔╝";
+	gotoXY(col2, row2++);
+	wcout << L" ╚═════╝ ";
+	}
+
 }

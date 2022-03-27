@@ -236,88 +236,6 @@ void decorate(int index) {
 
 }
 
-void decorateBonus() {
-	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
-	textColor(6);
-	int col1 = 137, row1 = 12;
-	gotoXY(col1, row1++);
-	wcout << L"██████ ";
-	gotoXY(col1, row1++);
-	wcout << L"██   ██";
-	gotoXY(col1, row1++);
-	wcout << L"██████ ";
-	gotoXY(col1, row1++);
-	wcout << L"██   ██";
-	gotoXY(col1, row1++);
-	wcout << L"██████ ";
-	row1++;
-	col1 = col1 + 5;
-	gotoXY(col1, row1++);
-	wcout << L" ██████ ";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L" ██████ ";
-	row1++;
-	col1 = col1 + 5;
-	gotoXY(col1, row1++);
-	wcout << L"███    ██";
-	gotoXY(col1, row1++);
-	wcout << L"████   ██";
-	gotoXY(col1, row1++);
-	wcout << L"██ ██  ██";
-	gotoXY(col1, row1++);
-	wcout << L"██  ██ ██";
-	gotoXY(col1, row1++);
-	wcout << L"██   ████";
-	row1++;
-	col1 = col1 + 5;
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L"██    ██";
-	gotoXY(col1, row1++);
-	wcout << L" ██████ ";
-	row1++;
-	col1 = col1 + 5;
-	gotoXY(col1, row1++);
-	wcout << L"███████ ";
-	gotoXY(col1, row1++);
-	wcout << L"██     ";
-	gotoXY(col1, row1++);
-	wcout << L"███████ ";
-	gotoXY(col1, row1++);
-	wcout << L"     ██ ";
-	gotoXY(col1, row1++);
-	wcout << L"███████ ";
-	textColor(3);
-	int x = 138;
-	int y = 10;
-	gotoXY(x - 1, y++ + 22);
-	wcout << "   __";
-	gotoXY(x - 1, y++ + 22);
-	wcout << "  {0O}";
-	gotoXY(x - 1, y++ + 22);
-	wcout << "  \\__/";
-	gotoXY(x - 1, y++ + 22);
-	wcout << "  /^/";
-	gotoXY(x - 1, y++ + 22);
-	wcout << " ( (  ";
-	gotoXY(x - 1, y++ + 22);
-	wcout << " \\_\\_____";
-	gotoXY(x - 1, y++ + 22);
-	wcout << " (_______)";
-	gotoXY(x - 1, y++ + 22);
-	wcout << "(_________()Oo";
-}
 
 void level1() {
 	gameDisplay.resetScreenColor(colorXY);
@@ -442,10 +360,10 @@ void bonusLevel() {
 
 void initLevel() {
 	level.push_back(level1);
-	level.push_back(level2);
+	/*level.push_back(level2);
 	level.push_back(level3);
 	level.push_back(level4);
-	level.push_back(level5);
+	level.push_back(level5);*/
 	level.push_back(bonusLevel);
 }
 
