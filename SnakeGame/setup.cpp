@@ -36,7 +36,8 @@ void setup() {
 }
 
 void mainMenu() {
-    playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+    //playSoundLoop(L"resources/backgroundmusic.wav"), Sound = Status::ON;
+    Sound = Status::OFF;
     bool stopShow = true;
     initMenu(listMenu);
     int dir = 0;

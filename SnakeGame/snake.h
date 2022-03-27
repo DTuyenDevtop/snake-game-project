@@ -53,4 +53,6 @@ void drawLosingSnake(vector<Infomation>& Snake);
 
 void decorateBonus();
 
+void coolDown();
+
 void eraserCountDown();
