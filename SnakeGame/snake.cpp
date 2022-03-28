@@ -382,7 +382,9 @@ void playGame(string name, string& dateAndTime) {
 		mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 		drawSnake(Snake);
 
-
+		/*if (currentLevel == level.size() - 1) {
+			decorateBonus();
+		}*/
 
 		int xStart = Snake[0].x;
 		int yStart = Snake[0].y;
@@ -496,9 +498,7 @@ void playGame(string name, string& dateAndTime) {
 			mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 			drawSnake(Snake);
 		}
-		/*if (currentLevel == level.size() - 1) {
-			decorateBonus();
-		}*/
+		
 	}
 
 	// end game
