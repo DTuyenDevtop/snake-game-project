@@ -621,7 +621,8 @@ void loadGame() {
 		Sleep(1000);
 		return;
 	}
-
+	system("cls");
+	loadingGameGraphic();
 	system("cls");
 
 	vector<Infomation> Snake = user[pos].Snake;

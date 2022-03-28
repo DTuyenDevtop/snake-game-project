@@ -1317,3 +1317,33 @@ void loadGameGraphic() {
 	Sleep(t);
 	gotoXY(78, 29);
 }
+
+void loadingGameGraphic() {
+	int t = 25;
+	int col1 = 50, row1 = 18;
+	textColor(BLACK);
+	gotoXY(col1, row1++);
+	wcout << L"██          ██████      █████     ██████     ██    ███    ██     ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██         ██    ██    ██   ██    ██   ██    ██    ████   ██    ██       ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██         ██    ██    ███████    ██   ██    ██    ██ ██  ██    ██   ███ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██         ██    ██    ██   ██    ██   ██    ██    ██  ██ ██    ██    ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"███████     ██████     ██   ██    ██████     ██    ██   ████     ██████     ██  ██  ██";
+	Sleep(t);
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
+	nameScreen.draw.retangle({ 62, 28 }, { 28, 2 }, BLACK, 1, colorXY);
+	int g = 200;
+	for (int i = 63; i < 63 + 28 * 2; i++) {
+		gotoXY(i++, 29);
+		cout << (char)254;
+		Sleep(g);
+	}
+}
