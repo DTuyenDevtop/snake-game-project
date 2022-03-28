@@ -239,7 +239,7 @@ void mainLoop (
 		if (maxTime != 0) {
 			maxTime = tmp - (int)(currSec - now);
 		}
-		printf("%02d", maxTime);
+		//printf("%02d", maxTime);
 		coolDown();
 	}	
 
@@ -850,7 +850,7 @@ void decorateBonus() {
 	Screen gameDisplay;
 	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
 	textColor(6);
-	int col1 = 137, row1 = 12;
+	int col1 = 138, row1 = 12;
 	gotoXY(col1, row1++);
 	wcout << L"██████ ";
 	gotoXY(col1, row1++);
@@ -908,7 +908,152 @@ void decorateBonus() {
 }
 
 void coolDown() {
-	int col2 = 152, row2 = 20;
+	int col2 = 153, row2 = 20;
+	if (maxTime == 20) {
+		gotoXY(col2, row2++);
+		wcout << L"██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██╗";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═══╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚══════╝";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" ██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═████╗";
+		gotoXY(col2, row2++);
+		wcout << L"██║██╔██║";
+		gotoXY(col2, row2++);
+		wcout << L"████╔╝██║";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═════╝ ";
+	}
+	if (maxTime == 19) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" █████╗  ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████║ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═══██║ ";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚════╝  ";
+	}
+	if (maxTime == 18) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" █████╗  ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚█████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚█████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚════╝  ";
+	}
+	if (maxTime == 17) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"███████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██║ ";
+		gotoXY(col2, row2++);
+		wcout << L"    ██╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"   ██╔╝  ";
+		gotoXY(col2, row2++);
+		wcout << L"   ██║   ";
+		gotoXY(col2, row2++);
+		wcout << L"   ╚═╝   ";
+	}
+	if (maxTime == 16) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" ██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔════╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═══██╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═════╝ ";
+	}
 	if (maxTime == 15) {
 		gotoXY(col2, row2++);
 		wcout << L" ██╗     ";
@@ -926,17 +1071,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔════╝";
+		wcout << L"██╔════╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 14) {
 		gotoXY(col2, row2++);
@@ -1000,17 +1145,17 @@ void coolDown() {
 	}
 	else if (maxTime == 12) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 		row2 += 1;
 
@@ -1029,17 +1174,17 @@ void coolDown() {
 	}
 	else if (maxTime == 11) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 
 		row2 += 1;
@@ -1059,17 +1204,17 @@ void coolDown() {
 	}
 	else if (maxTime == 10) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 
 		row2 += 1;
@@ -1133,17 +1278,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██████╗ ";
+		wcout << L"██████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██╗";
+		wcout << L"╚════██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔═══╝ ";
+		wcout << L"██╔═══╝  ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 3) {
 
@@ -1162,17 +1307,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██████╗ ";
+		wcout << L"██████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██╗";
+		wcout << L"╚════██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═══██╗";
+		wcout << L" ╚═══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██████╔╝";
+		wcout << L"██████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚═════╝ ";
+		wcout << L"╚═════╝  ";
 	}
 	else if (maxTime == 4) {
 
@@ -1191,17 +1336,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██╗  ██╗";
+		wcout << L"██╗  ██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██║  ██║";
+		wcout << L"██║  ██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"     ██║";
+		wcout << L"     ██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"     ╚═╝";
+		wcout << L"     ╚═╝ ";
 	}
 	else if (maxTime == 5) {
 
@@ -1221,17 +1366,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔════╝";
+		wcout << L"██╔════╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 6) {
 
@@ -1281,17 +1426,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"    ██╔╝";
+		wcout << L"    ██╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"   ██╔╝ ";
+		wcout << L"   ██╔╝  ";
 		gotoXY(col2, row2++);
-		wcout << L"   ██║  ";
+		wcout << L"   ██║   ";
 		gotoXY(col2, row2++);
-		wcout << L"   ╚═╝  ";
+		wcout << L"   ╚═╝   ";
 	}
 	else if (maxTime == 8) {
 
@@ -1311,17 +1456,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L" █████╗ ";
+		wcout << L" █████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚█████╔╝";
+		wcout << L"╚█████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚█████╔╝";
+		wcout << L"╚█████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚════╝ ";
+		wcout << L" ╚════╝  ";
 	}
 	else if (maxTime == 9) {
 
@@ -1341,17 +1486,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L" █████╗ ";
+		wcout << L" █████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██████║";
+		wcout << L"╚██████║ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═══██║";
+		wcout << L" ╚═══██║ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚════╝ ";
+		wcout << L" ╚════╝  ";
 	}
 	else if (maxTime == 0) {
 
