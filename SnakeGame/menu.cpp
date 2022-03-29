@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "graphic.h"
 #include "snake.h"
+#include "gameSound.h"
 #include <fstream>
 #include <string>
 using namespace std;
@@ -1318,6 +1319,82 @@ void loadGameGraphic() {
 	gotoXY(78, 29);
 }
 
+void loadGameGraphic(string& uName, string& password) {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(12, 7);
+	int col1 = 50, row1 = 12;
+	gotoXY(col1, row1++);
+	wcout << L"██       ██████   █████  ██████       ██████   █████  ███    ███ ███████ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██    ██ ██   ██ ██   ██     ██       ██   ██ ████  ████ ██      ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██    ██ ███████ ██   ██     ██   ███ ███████ ██ ████ ██ █████   ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██    ██ ██   ██ ██   ██     ██    ██ ██   ██ ██  ██  ██ ██      ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"███████  ██████  ██   ██ ██████       ██████  ██   ██ ██      ██ ███████ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	gotoXY(col1, row1++);
+	textColor(12);
+	cout << "Please input your name and password exactly to load game which you saved. ";
+	Screen nameScreen;
+	int e = 5;
+	nameScreen.draw.retangle({ 25, 6 }, { 60, 30 }, BLACK, 1, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 72 - e, 22 }, { 20, 4 }, 3, 1, colorXY);
+	Sleep(t);
+	gotoXY(61 - e, 24);
+	cout << "User name:";
+	gotoXY(61 - e, 29);
+	cout << "Password:";
+	nameScreen.draw.retangle({ 72 - e, 27 }, { 20, 4 }, 3, 1, colorXY);
+	Sleep(t);
+	gotoXY(84 - e, 24);
+	//presentCursor();
+	SetCursorSize(1);
+	char* tmpPassword = new char[30];
+	password = "                                  ";
+	cin >> uName;
+	gotoXY(84 - e, 29);
+	int n = 0;
+	int g = 0;
+	for (int i = 0; i < 30; i++) {
+		if (_kbhit) {
+			int key = _getch();
+			if (key != 13 && key != 8) {
+				gotoXY(84 + g - e, 29);
+				cout << "*";
+				password[n] = (char)key;
+				n++;
+				g++;
+			}
+			else if (key == 8) {
+				password[n] = NULL;
+				n--;
+				g--;
+				gotoXY(84 + g - e, 29);
+				cout << " ";
+				gotoXY(84 + g - e, 29);
+
+			}
+			else break;
+		}
+
+	}
+	password.resize(n);
+	hideCursor();
+}
+
 void loadingGameGraphic() {
 	int t = 25;
 	int col1 = 50, row1 = 18;
@@ -1340,10 +1417,74 @@ void loadingGameGraphic() {
 	Screen nameScreen;
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
 	nameScreen.draw.retangle({ 62, 28 }, { 28, 2 }, BLACK, 1, colorXY);
-	int g = 200;
+	int g = 100;
 	for (int i = 63; i < 63 + 28 * 2; i++) {
 		gotoXY(i++, 29);
 		cout << (char)254;
 		Sleep(g);
 	}
+	system("cls");
+	playSound(L"resources/countdown.wav");
+	int u = 20;
+	int y = 80;
+	int col2 = y, row2 = u;
+	textColor(BLACK);
+	gotoXY(col2, row2++);
+	wcout << L"██████  ";
+	gotoXY(col2, row2++);
+	wcout << L"     ██ ";
+	gotoXY(col2, row2++);
+	wcout << L" █████  ";
+	gotoXY(col2, row2++);
+	wcout << L"     ██ ";
+	gotoXY(col2, row2++);
+	wcout << L"██████  ";
+	Sleep(1000);
+	system("cls");
+
+
+	col2 = y;
+	row2 = u;
+	gotoXY(col2, row2++);
+	wcout << L"██████  ";
+	gotoXY(col2, row2++);
+	wcout << L"     ██ ";
+	gotoXY(col2, row2++);
+	wcout << L" █████  ";
+	gotoXY(col2, row2++);
+	wcout << L"██      ";
+	gotoXY(col2, row2++);
+	wcout << L"███████ ";
+	Sleep(1000);
+	system("cls");
+
+
+	col2 = y;
+	row2 = u;
+	gotoXY(col2, row2++);
+	wcout << L" ██ ";
+	gotoXY(col2, row2++);
+	wcout << L"███ ";
+	gotoXY(col2, row2++);
+	wcout << L" ██ ";
+	gotoXY(col2, row2++);
+	wcout << L" ██ ";
+	gotoXY(col2, row2++);
+	wcout << L" ██ ";
+	Sleep(1000);
+	system("cls");
+
+	col2 = y - 10;
+	row2 = u;
+	gotoXY(col2, row2++);
+	wcout << L" ██████      ██████     ██ ";
+	gotoXY(col2, row2++);
+	wcout << L"██          ██    ██    ██ ";
+	gotoXY(col2, row2++);
+	wcout << L"██   ███    ██    ██    ██ ";
+	gotoXY(col2, row2++);
+	wcout << L"██    ██    ██    ██       ";
+	gotoXY(col2, row2++);
+	wcout << L" ██████      ██████     ██ ";
+	Sleep(1000);
 }

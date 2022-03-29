@@ -157,6 +157,7 @@
     <ClInclude Include="snake.h" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\..\..\Downloads\countdown.wav" />
     <Media Include="resources\backgroundmusic.wav" />
     <Media Include="resources\eatfood.wav" />
     <Media Include="resources\losegame.wav" />

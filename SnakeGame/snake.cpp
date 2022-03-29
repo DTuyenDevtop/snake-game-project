@@ -601,13 +601,12 @@ void loadGame() {
 	std::hash <std::string> hash;
 	int cnt = loadFileUserData();
 
-	loadGameGraphic();
+	
 	string uName;
-	cin >> uName;
 	int pos = -1;
 
 	string uPass;
-	cin >> uPass;
+	loadGameGraphic(uName,uPass);
 	size_t uPassHash = hash(uPass);
 
 	for (int i = 0; i < cnt; ++i) {
@@ -617,19 +616,19 @@ void loadGame() {
 	}
 
 	if (pos == -1) {
-		gotoXY(40, 10);
+		gotoXY(40, 8);
 		textColor(RED);
 		cout << "Invalid user name or password!";
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 3s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 2s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 1s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 0s"; 
 		Sleep(1000);
 		return;
