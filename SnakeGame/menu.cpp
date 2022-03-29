@@ -1380,13 +1380,12 @@ void loadGameGraphic(string& uName, string& password) {
 			}
 			else if (key == 8) {
 				password[n] = NULL;
-				n--;
-				g--;
+				if (n > 0) n--;
+				if (g > 0) g--;
 				gotoXY(84 + g - e, 29);
 				cout << " ";
 				gotoXY(84 + g - e, 29);
-				if (n <= 0) n = 0;
-				if (g <= 0) g = 0;
+				
 			}
 			else break;
 		}
