@@ -30,6 +30,7 @@ int bonus = 5;
 int maxTime = 20;
 int tmp = 20;
 
+
 void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
@@ -335,9 +336,16 @@ void mainLoop (
 	}
 
 	if (StatusGame == Status::SAVE) {
+		std::hash <std::string> hash;
+		cout << "Enter sercurity key: ";
+		string key;
+		cin >> key;
+		size_t password = hash(key);
+
 		ofstream fOut;
 		fOut.open("saveData.txt", ios::app);
 		fOut << "\n\nUser: " << userName << "\n";
+		fOut << "Password: " << password << "\n";
 		fOut << "Level: " << currentLevel + 1 << "\n";
 		fOut << "Length: " << Snake.size() << "\n";
 		fOut << "Snake Data: ";
@@ -559,11 +567,12 @@ int loadFileUserData() {
 	if (file != nullptr) {
 		while (!feof(file)) {
 			fscanf_s(file, "User: %s\n", user[cnt].name, 20);
+			fscanf_s(file, "Password: %lld\n", &user[cnt].password);
+			//cout << user[cnt].password << ' ' << cnt << "\n\n";
 			fscanf_s(file, "Level: %d\n", &user[cnt].level);
 			user[cnt].level--;
 
 			fscanf_s(file, "Length: %d\n", &user[cnt].snakeLenght);
-			printf("%d", user[cnt].snakeLenght);
 
 			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
 
@@ -580,16 +589,16 @@ int loadFileUserData() {
 
 			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
 
-			fscanf_s(file, "Score: %d", &user[cnt].score);
+			fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
 			++cnt;
 		}
 		fclose(file);
 	}
-	
 	return cnt;
 }
 
 void loadGame() {
+	std::hash <std::string> hash;
 	int cnt = loadFileUserData();
 
 	loadGameGraphic();
@@ -597,8 +606,12 @@ void loadGame() {
 	cin >> uName;
 	int pos = -1;
 
+	string uPass;
+	cin >> uPass;
+	size_t uPassHash = hash(uPass);
+
 	for (int i = 0; i < cnt; ++i) {
-		if (user[i].name == uName) {
+		if (user[i].name == uName && user[i].password == uPassHash) {
 			pos = i;
 		}
 	}
@@ -606,7 +619,7 @@ void loadGame() {
 	if (pos == -1) {
 		gotoXY(40, 10);
 		textColor(RED);
-		cout << "Invalid user name!";
+		cout << "Invalid user name or password!";
 		gotoXY(40, 11);
 		cout << "You will be brought into main in 3s";
 		Sleep(1000);
@@ -645,9 +658,11 @@ void loadGame() {
 
 	//init(Snake, Food, Direction, endGame, score);
 
-	randFood(Food);
-	gotoXY(Food.x, Food.y);
-	colorText(254, snakeColor);
+	if (currRequirement < requirement[currentLevel]) {
+		randFood(Food);
+		gotoXY(Food.x, Food.y);
+		colorText(254, snakeColor);
+	}
 
 	Direction.x = user[pos].dirX;
 	Direction.y = user[pos].dirY;
