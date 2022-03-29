@@ -1385,7 +1385,8 @@ void loadGameGraphic(string& uName, string& password) {
 				gotoXY(84 + g - e, 29);
 				cout << " ";
 				gotoXY(84 + g - e, 29);
-
+				if (n <= 0) n = 0;
+				if (g <= 0) g = 0;
 			}
 			else break;
 		}
