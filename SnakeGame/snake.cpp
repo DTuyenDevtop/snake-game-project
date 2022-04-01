@@ -109,8 +109,12 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 		//if (Snake[i].y < 0) {
 		//	Snake[i].y = HeightGame - 1;
 		//}
+		int checkSnake = 0;
+		for (int i = 0; i < Snake.size(); i++) {
+			if (colorXY[Snake[i].x][Snake[i].y] == "DANGER") checkSnake = 1;
+		}
 
-		if (colorXY[Snake[0].x][Snake[0].y] == "DANGER") {
+		if (colorXY[Snake[i].x][Snake[i].y] == "DANGER") {
 			position = 8;
 			currRequirement = 0;
 			Speed = SPEEDFIRST;
@@ -233,6 +237,10 @@ void mainLoop(
 	colorText("Speed: ", RED);
 	cout << (int)-Speed + 120 << " km/h";
 	moveSnake(Snake, Direction, Food, endGame, score);
+	obstacle(currentLevel);
+	obstacle1(currentLevel);
+	obstacle2(currentLevel);
+	obstacle3(currentLevel);
 
 	if (currentLevel == bonus) {
 		gotoXY(10, 10);
@@ -1544,5 +1552,236 @@ void coolDown() {
 		wcout << L"╚██████╔╝";
 		gotoXY(col2, row2++);
 		wcout << L" ╚═════╝ ";
+	}
+}
+
+
+void saveGame() {
+	//saveGameGraphic();
+	int pos = -1;
+
+	if (pos == -1) {
+		textColor(RED);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 3s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 2s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 1s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 0s";
+		Sleep(1000);
+		return;
+	}
+}
+
+void obstacle(int currentLevel) {
+	static int x = 17, y = 23;
+	static int tempx;
+	static int t = 1;
+	if (currentLevel == 0) {
+		if (t == 1) {
+			textColor(BLUE);
+			gotoXY(x + 3, y);
+			cout << (char)16;
+			colorXY[x + 3][y] = "DANGER";
+			gotoXY(x + 2, y);
+			cout << (char)254;
+			colorXY[x + 2][y] = "DANGER";
+			gotoXY(x + 1, y);
+			cout << (char)254;
+			colorXY[x + 1][y] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)254;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x - 1, y);
+			cout << (char)254;
+			colorXY[x - 1][y] = "DANGER";
+			gotoXY(x - 2, y);
+			cout << " ";
+			colorXY[x - 2][y] = "SAFE";
+			x++;
+			if (x == 115) {
+				t = 2;
+				gotoXY(x + 2, y);
+				cout << " ";
+
+			}
+		}
+		if (t == 2) {
+			textColor(BLUE);
+			gotoXY(x - 3, y);
+			colorXY[x - 3][y] = "DANGER";
+			cout << (char)17;
+			gotoXY(x - 2, y);
+			cout << (char)254;
+			colorXY[x - 2][y] = "DANGER";
+			gotoXY(x - 1, y);
+			cout << (char)254;
+			colorXY[x - 1][y] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)254;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x + 1, y);
+			cout << (char)254;
+			colorXY[x + 1][y] = "DANGER";
+			gotoXY(x + 2, y);
+			cout << " ";
+			colorXY[x + 2][y] = "SAFE";
+			x--;
+			if (x == 17) {
+				t = 1;
+				gotoXY(x - 2, y);
+				cout << " ";
+			}
+		}
+	}
+}
+void obstacle1(int currentLevel) {
+	static int x = 115, y = 20;
+	static int tempx;
+	static int t = 1;
+	if (currentLevel == 0) {
+		if (t == 2) {
+			textColor(BLUE);
+			gotoXY(x + 3, y);
+			cout << (char)16;
+			colorXY[x + 3][y] = "DANGER";
+			gotoXY(x + 2, y);
+			cout << (char)254;
+			colorXY[x + 2][y] = "DANGER";
+			gotoXY(x + 1, y);
+			cout << (char)254;
+			colorXY[x + 1][y] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)254;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x - 1, y);
+			cout << (char)254;
+			colorXY[x - 1][y] = "DANGER";
+			gotoXY(x - 2, y);
+			cout << " ";
+			colorXY[x - 2][y] = "SAFE";
+			x++;
+			if (x == 115) {
+				t = 1;
+				gotoXY(x + 2, y);
+				cout << " ";
+
+			}
+		}
+		if (t == 1) {
+			textColor(BLUE);
+			gotoXY(x - 3, y);
+			colorXY[x - 3][y] = "DANGER";
+			cout << (char)17;
+			gotoXY(x - 2, y);
+			cout << (char)254;
+			colorXY[x - 2][y] = "DANGER";
+			gotoXY(x - 1, y);
+			cout << (char)254;
+			colorXY[x - 1][y] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)254;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x + 1, y);
+			cout << (char)254;
+			colorXY[x + 1][y] = "DANGER";
+			gotoXY(x + 2, y);
+			cout << " ";
+			colorXY[x + 2][y] = "SAFE";
+			x--;
+			if (x == 17) {
+				t = 2;
+				gotoXY(x - 2, y);
+				cout << " ";
+			}
+		}
+	}
+}
+
+void obstacle2(int currentLevel) {
+	static int x = 63, y = 4;
+	static int tempx;
+	static int t = 1;
+	if (currentLevel == 0) {
+		if (t == 1) {
+			textColor(BLUE);
+			gotoXY(x, y + 2);
+			cout << (char)31;
+			colorXY[x][y + 2] = "DANGER";
+			gotoXY(x, y + 1);
+			cout << (char)219;
+			colorXY[x][y + 1] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)219;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x, y - 1);
+			cout << " ";
+			colorXY[x][y - 1] = "SAFE";
+			y++;
+			if (y == 40) t = 2;
+		}
+		if (t == 2) {
+			textColor(BLUE);
+			gotoXY(x, y - 2);
+			colorXY[x][y - 2] = "DANGER";
+			cout << (char)30;
+			gotoXY(x, y - 1);
+			cout << (char)219;
+			colorXY[x][y - 1] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)219;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x, y + 1);
+			cout << " ";
+			colorXY[x][y + 1] = "SAFE";
+			y--;
+			if (y == 4) t = 1;
+		}
+	}
+}
+void obstacle3(int currentLevel) {
+	static int x = 72, y = 40;
+	static int tempx;
+	static int t = 1;
+	if (currentLevel == 0) {
+		if (t == 2) {
+			textColor(BLUE);
+			gotoXY(x, y + 2);
+			cout << (char)31;
+			colorXY[x][y + 2] = "DANGER";
+			gotoXY(x, y + 1);
+			cout << (char)219;
+			colorXY[x][y + 1] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)219;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x, y - 1);
+			cout << " ";
+			colorXY[x][y - 1] = "SAFE";
+			y++;
+			if (y == 40) t = 1;
+		}
+		if (t == 1) {
+			textColor(BLUE);
+			gotoXY(x, y - 2);
+			colorXY[x][y - 2] = "DANGER";
+			cout << (char)30;
+			gotoXY(x, y - 1);
+			cout << (char)219;
+			colorXY[x][y - 1] = "DANGER";
+			gotoXY(x, y);
+			cout << (char)219;
+			colorXY[x][y] = "DANGER";
+			gotoXY(x, y + 1);
+			cout << " ";
+			colorXY[x][y + 1] = "SAFE";
+			y--;
+			if (y == 4) t = 2;
+		}
 	}
 }

@@ -63,3 +63,13 @@ void drawLosingSnake(vector<Infomation>& Snake);
 void decorateBonus();
 
 void coolDown();
+
+void obstacle(int currentLevel);
+
+void obstacle1(int currentLevel);
+
+void obstacle2(int currentLevel);
+
+void obstacle3(int currentLevel);
+
+//void saveGame();
