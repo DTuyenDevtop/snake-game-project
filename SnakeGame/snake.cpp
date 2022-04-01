@@ -374,6 +374,7 @@ void mainLoop(
 		position = 8;
 		currRequirement = 0;
 
+		saveGame();
 		endGame = true;
 	}
 }
@@ -1557,7 +1558,7 @@ void coolDown() {
 
 
 void saveGame() {
-	//saveGameGraphic();
+	saveGameGraphic();
 	int pos = -1;
 
 	if (pos == -1) {

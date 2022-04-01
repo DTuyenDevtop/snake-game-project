@@ -73,3 +73,5 @@ void wrenchLeft();
 void plierRight();
 
 void testColor(short snakeColor);
+
+void saveGameGraphic();

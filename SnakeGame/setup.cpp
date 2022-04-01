@@ -66,7 +66,6 @@ void mainMenu() {
 
         showSnakeRight();
 
-        //loseGame();
         screen.draw.retangle({ 68, 20 }, { 20, 20 }, BYELLOW, 1, colorXY);
         textColor(BLUE);
         printMenu(listMenu);

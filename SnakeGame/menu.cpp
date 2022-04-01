@@ -1032,8 +1032,6 @@ int loseGame(string& name, string& dateAndTime) {
 	gotoXY(54 + s + 8, 35);
 	cout << "YES";
 
-	//
-
 	for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
 		gotoXY(i, 33);
 		cout << (char)(205);
@@ -1487,4 +1485,35 @@ void loadingGameGraphic() {
 	gotoXY(col2, row2++);
 	wcout << L" ██████      ██████     ██ ";
 	Sleep(1000);
+}
+
+void saveGameGraphic() {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(12, 7);
+	int col1 = 50, row1 = 22;
+	gotoXY(col1, row1++);
+	wcout << L" ██████   █████  ███    ███ ███████     ███████  █████  ██    ██ ███████ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██       ██   ██ ████  ████ ██          ██      ██   ██ ██    ██ ██      ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██   ███ ███████ ██ ████ ██ █████       ███████ ███████ ██    ██ █████   ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██    ██ ██   ██ ██  ██  ██ ██               ██ ██   ██  ██  ██  ██      ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L" ██████  ██   ██ ██      ██ ███████     ███████ ██   ██   ████   ███████ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 - 2, row1++);
+	textColor(12);
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
+	gotoXY(78, 29);
 }

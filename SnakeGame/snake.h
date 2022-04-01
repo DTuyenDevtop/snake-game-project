@@ -72,4 +72,4 @@ void obstacle2(int currentLevel);
 
 void obstacle3(int currentLevel);
 
-//void saveGame();
+void saveGame();
