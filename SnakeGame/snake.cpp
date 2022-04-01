@@ -23,7 +23,7 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 double Speed = SPEEDFIRST;
-int requirement[] = { 1, 1, 1, 1, 1, 99999 };
+int requirement[] = { 3, 4, 4, 4, 5, 99999 };
 int currRequirement, currentLevel;
 time_t now;
 int bonus = 5;
@@ -1579,10 +1579,10 @@ void saveGame() {
 }
 
 void obstacle(int currentLevel) {
-	static int x = 17, y = 23;
+	static int x = 8, y = 23;
 	static int tempx;
 	static int t = 1;
-	if (currentLevel == 0) {
+	if (currentLevel == 4) {
 		if (t == 1) {
 			textColor(BLUE);
 			gotoXY(x + 3, y);
@@ -1604,7 +1604,7 @@ void obstacle(int currentLevel) {
 			cout << " ";
 			colorXY[x - 2][y] = "SAFE";
 			x++;
-			if (x == 115) {
+			if (x == 128) {
 				t = 2;
 				gotoXY(x + 2, y);
 				cout << " ";
@@ -1632,7 +1632,7 @@ void obstacle(int currentLevel) {
 			cout << " ";
 			colorXY[x + 2][y] = "SAFE";
 			x--;
-			if (x == 17) {
+			if (x == 8) {
 				t = 1;
 				gotoXY(x - 2, y);
 				cout << " ";
@@ -1641,10 +1641,10 @@ void obstacle(int currentLevel) {
 	}
 }
 void obstacle1(int currentLevel) {
-	static int x = 115, y = 20;
+	static int x = 128, y = 20;
 	static int tempx;
 	static int t = 1;
-	if (currentLevel == 0) {
+	if (currentLevel == 4) {
 		if (t == 2) {
 			textColor(BLUE);
 			gotoXY(x + 3, y);
@@ -1666,7 +1666,7 @@ void obstacle1(int currentLevel) {
 			cout << " ";
 			colorXY[x - 2][y] = "SAFE";
 			x++;
-			if (x == 115) {
+			if (x == 128) {
 				t = 1;
 				gotoXY(x + 2, y);
 				cout << " ";
@@ -1694,7 +1694,7 @@ void obstacle1(int currentLevel) {
 			cout << " ";
 			colorXY[x + 2][y] = "SAFE";
 			x--;
-			if (x == 17) {
+			if (x == 8) {
 				t = 2;
 				gotoXY(x - 2, y);
 				cout << " ";
@@ -1707,7 +1707,7 @@ void obstacle2(int currentLevel) {
 	static int x = 63, y = 4;
 	static int tempx;
 	static int t = 1;
-	if (currentLevel == 0) {
+	if (currentLevel == 4) {
 		if (t == 1) {
 			textColor(BLUE);
 			gotoXY(x, y + 2);
@@ -1748,7 +1748,7 @@ void obstacle3(int currentLevel) {
 	static int x = 72, y = 40;
 	static int tempx;
 	static int t = 1;
-	if (currentLevel == 0) {
+	if (currentLevel == 4) {
 		if (t == 2) {
 			textColor(BLUE);
 			gotoXY(x, y + 2);

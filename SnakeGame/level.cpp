@@ -307,8 +307,8 @@ void level5() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();
 
-	gameDisplay.draw.retangle({ 120, 8 }, { 0, 12 }, BLACK, 2, colorXY);
-	gameDisplay.draw.retangle({ 90, 8 }, { 15, 0 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 120, 7 }, { 0, 12 }, BLACK, 2, colorXY);
+	gameDisplay.draw.retangle({ 90, 7 }, { 15, 0 }, BLACK, 2, colorXY);
 
 	gameDisplay.draw.retangle({ 13, 24 }, { 0, 12 }, BLACK, 2, colorXY);
 	gameDisplay.draw.retangle({ 13, 36 }, { 15, 0 }, BLACK, 2, colorXY);
@@ -359,11 +359,11 @@ void bonusLevel() {
 }
 
 void initLevel() {
-	level.push_back(level5);
+	level.push_back(level1);
 	level.push_back(level2);
 	level.push_back(level3);
 	level.push_back(level4);
-	level.push_back(level1);
+	level.push_back(level5);
 	level.push_back(bonusLevel);
 }
 
