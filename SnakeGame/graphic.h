@@ -44,6 +44,8 @@ void removeScrollbar();
 
 void hideCursor();
 
+void SetCursorSize(int iSize);
+
 void colorText(std::string Text, int Color);
 
 void colorText(char Text, int Color);

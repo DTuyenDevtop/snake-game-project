@@ -75,6 +75,16 @@ void hideCursor() {
     SetConsoleCursorInfo(consoleHandle, &info);
 }
 
+void SetCursorSize(int iSize)
+{
+    HANDLE cxHandle;
+    cxHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cci;
+    cci.dwSize = iSize;
+    cci.bVisible = true;
+    SetConsoleCursorInfo(cxHandle, &cci);
+}
+
 void colorText(std::string Text, int Color) {
     textColor(Color);
     std::cout << Text;

@@ -24,13 +24,22 @@ struct Infomation {
 };
 
 struct User {
-	char name[20];
+	char* name;
+	size_t password;
 	int level;
 	int score;
 	int snakeLenght;
-	char snakeData[100];
+	char* snakeData;
 	int dirX, dirY;
 	vector<Infomation> Snake;
+
+	User() {
+		level = score = snakeLenght = dirX = dirY = 0;
+		password = 0;
+		name = new char[20];
+		snakeData = new char[100];
+		Snake.clear();
+	}
 };
 
 void init(vector<Infomation>&, Infomation&, Infomation&, bool&, int);
@@ -54,5 +63,3 @@ void drawLosingSnake(vector<Infomation>& Snake);
 void decorateBonus();
 
 void coolDown();
-
-void eraserCountDown();

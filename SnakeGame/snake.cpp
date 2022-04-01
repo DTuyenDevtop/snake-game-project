@@ -12,6 +12,8 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <thread>
+#include <future>
 #include <ctime>
 
 std::string studentIds = "21127003211276482112709021127493";
@@ -24,9 +26,10 @@ double Speed = SPEEDFIRST ;
 int requirement[] = { 1, 1, 1, 1, 1, 99999};
 int currRequirement, currentLevel;
 time_t now;
-int bonus = 1;
+int bonus = 5;
 int maxTime = 20;
 int tmp = 20;
+
 
 void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
@@ -206,6 +209,14 @@ void drawSnake(vector<Infomation>& Snake) {
 	cout << " "; 
 }
 
+void print() {
+	for (int i = 0; i < 100; ++i) {
+		gotoXY(10, 10);
+		cout << i;
+		Sleep(100);
+	}
+}
+
 void mainLoop (
 	Status& StatusMove, Status& StatusGame, 
 	vector<Infomation>& Snake, 
@@ -229,7 +240,7 @@ void mainLoop (
 		if (maxTime != 0) {
 			maxTime = tmp - (int)(currSec - now);
 		}
-		printf("%02d", maxTime);
+		//printf("%02d", maxTime);
 		coolDown();
 	}	
 
@@ -325,9 +336,16 @@ void mainLoop (
 	}
 
 	if (StatusGame == Status::SAVE) {
+		std::hash <std::string> hash;
+		cout << "Enter sercurity key: ";
+		string key;
+		cin >> key;
+		size_t password = hash(key);
+
 		ofstream fOut;
-		fOut.open("gameData.txt", ios::app);
+		fOut.open("saveData.txt", ios::app);
 		fOut << "\n\nUser: " << userName << "\n";
+		fOut << "Password: " << password << "\n";
 		fOut << "Level: " << currentLevel + 1 << "\n";
 		fOut << "Length: " << Snake.size() << "\n";
 		fOut << "Snake Data: ";
@@ -342,6 +360,8 @@ void mainLoop (
 		fOut << "\n";
 		fOut << "Direction: " << Direction.x << ' ' << Direction.y << "\n";
 		fOut << "Score: " << score;
+
+		fOut.close();
 
 		position = 8;
 		currRequirement = 0;
@@ -378,8 +398,6 @@ void playGame(string name, string& dateAndTime) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake,Direction, Food, Speed, endGame, score);
 		drawSnake(Snake);
-
-
 
 		int xStart = Snake[0].x;
 		int yStart = Snake[0].y;
@@ -539,21 +557,22 @@ extern User user[100];
 
 int loadFileUserData() {
 	FILE* file;
-	fopen_s(&file, "gameData.txt", "rt");
+	fopen_s(&file, "saveData.txt", "r");
 	int cnt = 0;
 
 	for (int i = 0; i < 100; ++i) {
-		user[cnt].Snake.clear();
+		user[i].Snake.clear();
 	}
 
 	if (file != nullptr) {
 		while (!feof(file)) {
 			fscanf_s(file, "User: %s\n", user[cnt].name, 20);
+			fscanf_s(file, "Password: %lld\n", &user[cnt].password);
+			//cout << user[cnt].password << ' ' << cnt << "\n\n";
 			fscanf_s(file, "Level: %d\n", &user[cnt].level);
 			user[cnt].level--;
 
 			fscanf_s(file, "Length: %d\n", &user[cnt].snakeLenght);
-			printf("%d", user[cnt].snakeLenght);
 
 			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
 
@@ -570,15 +589,18 @@ int loadFileUserData() {
 
 			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
 
-			fscanf_s(file, "Score: %d", &user[cnt].score);
+			fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
 			++cnt;
 		}
+		fclose(file);
 	}
 	return cnt;
 }
 
 void loadGame() {
+	std::hash <std::string> hash;
 	int cnt = loadFileUserData();
+<<<<<<< HEAD
 	loadGameGraphic();
 	//string uName;
 	//cin >> uName;
@@ -586,29 +608,43 @@ void loadGame() {
 
 	/*for (int i = 0; i < cnt; ++i) {
 		if (user[i].name == uName) {
+=======
+
+	
+	string uName;
+	int pos = -1;
+
+	string uPass;
+	loadGameGraphic(uName,uPass);
+	size_t uPassHash = hash(uPass);
+
+	for (int i = 0; i < cnt; ++i) {
+		if (user[i].name == uName && user[i].password == uPassHash) {
+>>>>>>> 0dd2fd90fdb291086ca9056f577226621c2fd524
 			pos = i;
 		}
 	}*/
 
 	if (pos == -1) {
-		gotoXY(40, 10);
+		gotoXY(40, 8);
 		textColor(RED);
-		cout << "Invalid user name!";
-		gotoXY(40, 11);
+		cout << "Invalid user name or password!";
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 3s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 2s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 1s";
 		Sleep(1000);
-		gotoXY(40, 11);
+		gotoXY(40, 9);
 		cout << "You will be brought into main in 0s"; 
 		Sleep(1000);
 		return;
 	}
-
+	system("cls");
+	loadingGameGraphic();
 	system("cls");
 
 	vector<Infomation> Snake = user[pos].Snake;
@@ -631,9 +667,11 @@ void loadGame() {
 
 	//init(Snake, Food, Direction, endGame, score);
 
-	randFood(Food);
-	gotoXY(Food.x, Food.y);
-	colorText(254, snakeColor);
+	if (currRequirement < requirement[currentLevel]) {
+		randFood(Food);
+		gotoXY(Food.x, Food.y);
+		colorText(254, snakeColor);
+	}
 
 	Direction.x = user[pos].dirX;
 	Direction.y = user[pos].dirY;
@@ -667,16 +705,43 @@ void loadGame() {
 			clearInGate(7, 5);
 		}
 
-		if (currRequirement == requirement[currentLevel] && !isDrawGate) {
-			drawOutGate(3, 121, 38);
+		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
+			if (currentLevel < 2) {
+				drawOutGate(3, 121, 38);
+			}
+			else if (currentLevel < 4) {
+				drawOutGate(2, 121, 38);
+			}
+			else {
+				drawOutGate(1, 121, 38);
+			}
 			isDrawGate = true;
 		}
 
-		if (currRequirement == requirement[currentLevel] && colorXY[xEnd][yEnd] == "PASS") {
+		if (maxTime == 0) {
+			for (int i = 5; i <= WidthGame; ++i) {
+				for (int j = 5; j <= HeightGame; ++j) {
+					if (colorXY[i][j] == "FOOD_BINC" || colorXY[i][j] == "FOOD_BST" || colorXY[i][j] == "FOOD_INC") {
+						gotoXY(i, j);
+						colorXY[i][j] = "SAFE";
+						colorText(254, BACKGROUND_COLOR);
+					}
+				}
+			}
+			gotoXY(Food.x, Food.y);
+			colorXY[Food.x][Food.y] = "SAFE";
+			colorText(254, BACKGROUND_COLOR);
+		}
+
+		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && colorXY[xEnd][yEnd] == "PASS") {
 			isDrawGate = false;
 			system("cls");
 
-			if (currentLevel < level.size() - 1) {
+			if (maxTime == 0) {
+				maxTime = 20;
+			}
+
+			if (currentLevel <= bonus - 1) {
 				++currentLevel;
 				level[currentLevel]();
 				if (Speed > 30) Speed -= 10;
@@ -722,9 +787,14 @@ void loadGame() {
 			gotoXY(Food.x, Food.y);
 			colorText(254, snakeColor);
 
+			if (currentLevel == bonus) {
+				now = time(0);
+			}
+
 			mainLoop(StatusMove, StatusGame, Snake, Direction, Food, Speed, endGame, score);
 			drawSnake(Snake);
 		}
+
 	}
 
 	// end game
@@ -805,7 +875,7 @@ void decorateBonus() {
 	Screen gameDisplay;
 	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
 	textColor(6);
-	int col1 = 137, row1 = 12;
+	int col1 = 138, row1 = 12;
 	gotoXY(col1, row1++);
 	wcout << L"██████ ";
 	gotoXY(col1, row1++);
@@ -863,7 +933,152 @@ void decorateBonus() {
 }
 
 void coolDown() {
-	int col2 = 152, row2 = 20;
+	int col2 = 153, row2 = 20;
+	if (maxTime == 20) {
+		gotoXY(col2, row2++);
+		wcout << L"██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██╗";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═══╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚══════╝";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" ██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═████╗";
+		gotoXY(col2, row2++);
+		wcout << L"██║██╔██║";
+		gotoXY(col2, row2++);
+		wcout << L"████╔╝██║";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═════╝ ";
+	}
+	if (maxTime == 19) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" █████╗  ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████║ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═══██║ ";
+		gotoXY(col2, row2++);
+		wcout << L" █████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚════╝  ";
+	}
+	if (maxTime == 18) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" █████╗  ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚█████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔══██╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚█████╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚════╝  ";
+	}
+	if (maxTime == 17) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L"███████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"╚════██║ ";
+		gotoXY(col2, row2++);
+		wcout << L"    ██╔╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"   ██╔╝  ";
+		gotoXY(col2, row2++);
+		wcout << L"   ██║   ";
+		gotoXY(col2, row2++);
+		wcout << L"   ╚═╝   ";
+	}
+	if (maxTime == 16) {
+		gotoXY(col2, row2++);
+		wcout << L" ██╗     ";
+		gotoXY(col2, row2++);
+		wcout << L"███║     ";
+		gotoXY(col2, row2++);
+		wcout << L"╚██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ██║     ";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═╝     ";
+
+		row2 += 1;
+
+		gotoXY(col2, row2++);
+		wcout << L" ██████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔════╝ ";
+		gotoXY(col2, row2++);
+		wcout << L"███████╗ ";
+		gotoXY(col2, row2++);
+		wcout << L"██╔═══██╗";
+		gotoXY(col2, row2++);
+		wcout << L"╚██████╔╝";
+		gotoXY(col2, row2++);
+		wcout << L" ╚═════╝ ";
+	}
 	if (maxTime == 15) {
 		gotoXY(col2, row2++);
 		wcout << L" ██╗     ";
@@ -881,17 +1096,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔════╝";
+		wcout << L"██╔════╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 14) {
 		gotoXY(col2, row2++);
@@ -955,17 +1170,17 @@ void coolDown() {
 	}
 	else if (maxTime == 12) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 		row2 += 1;
 
@@ -984,17 +1199,17 @@ void coolDown() {
 	}
 	else if (maxTime == 11) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 
 		row2 += 1;
@@ -1014,17 +1229,17 @@ void coolDown() {
 	}
 	else if (maxTime == 10) {
 		gotoXY(col2, row2++);
-		wcout << L" ██╗";
+		wcout << L" ██╗     ";
 		gotoXY(col2, row2++);
-		wcout << L"███║";
+		wcout << L"███║     ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██║";
+		wcout << L"╚██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ██║";
+		wcout << L" ██║     ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═╝";
+		wcout << L" ╚═╝     ";
 
 
 		row2 += 1;
@@ -1088,17 +1303,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██████╗ ";
+		wcout << L"██████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██╗";
+		wcout << L"╚════██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔═══╝ ";
+		wcout << L"██╔═══╝  ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 3) {
 
@@ -1117,17 +1332,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██████╗ ";
+		wcout << L"██████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██╗";
+		wcout << L"╚════██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═══██╗";
+		wcout << L" ╚═══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██████╔╝";
+		wcout << L"██████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚═════╝ ";
+		wcout << L"╚═════╝  ";
 	}
 	else if (maxTime == 4) {
 
@@ -1146,17 +1361,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"██╗  ██╗";
+		wcout << L"██╗  ██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██║  ██║";
+		wcout << L"██║  ██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"     ██║";
+		wcout << L"     ██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"     ╚═╝";
+		wcout << L"     ╚═╝ ";
 	}
 	else if (maxTime == 5) {
 
@@ -1176,17 +1391,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔════╝";
+		wcout << L"██╔════╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"███████║";
+		wcout << L"███████║ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚══════╝";
+		wcout << L"╚══════╝ ";
 	}
 	else if (maxTime == 6) {
 
@@ -1236,17 +1451,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L"███████╗";
+		wcout << L"███████╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚════██║";
+		wcout << L"╚════██║ ";
 		gotoXY(col2, row2++);
-		wcout << L"    ██╔╝";
+		wcout << L"    ██╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"   ██╔╝ ";
+		wcout << L"   ██╔╝  ";
 		gotoXY(col2, row2++);
-		wcout << L"   ██║  ";
+		wcout << L"   ██║   ";
 		gotoXY(col2, row2++);
-		wcout << L"   ╚═╝  ";
+		wcout << L"   ╚═╝   ";
 	}
 	else if (maxTime == 8) {
 
@@ -1266,17 +1481,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L" █████╗ ";
+		wcout << L" █████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚█████╔╝";
+		wcout << L"╚█████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚█████╔╝";
+		wcout << L"╚█████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚════╝ ";
+		wcout << L" ╚════╝  ";
 	}
 	else if (maxTime == 9) {
 
@@ -1296,17 +1511,17 @@ void coolDown() {
 		row2 += 1;
 
 		gotoXY(col2, row2++);
-		wcout << L" █████╗ ";
+		wcout << L" █████╗  ";
 		gotoXY(col2, row2++);
-		wcout << L"██╔══██╗";
+		wcout << L"██╔══██╗ ";
 		gotoXY(col2, row2++);
-		wcout << L"╚██████║";
+		wcout << L"╚██████║ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚═══██║";
+		wcout << L" ╚═══██║ ";
 		gotoXY(col2, row2++);
-		wcout << L" █████╔╝";
+		wcout << L" █████╔╝ ";
 		gotoXY(col2, row2++);
-		wcout << L" ╚════╝ ";
+		wcout << L" ╚════╝  ";
 	}
 	else if (maxTime == 0) {
 

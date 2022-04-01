@@ -157,12 +157,13 @@
     <ClInclude Include="snake.h" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\..\..\Downloads\countdown.wav" />
     <Media Include="resources\backgroundmusic.wav" />
     <Media Include="resources\eatfood.wav" />
     <Media Include="resources\losegame.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="gameData.txt" />
+    <Text Include="saveData.txt" />
     <Text Include="saveScore.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

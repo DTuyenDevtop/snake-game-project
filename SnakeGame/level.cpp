@@ -18,21 +18,21 @@ void decorate(int index) {
 	int y = 11;
 	int ox = 1;
 	int oy = 1;
-	int plus = 5;
+	int plus = 0;
 	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
 
-	textColor(2);
-	gotoXY(x + plus + 8, y);
+	textColor(1);
+	gotoXY(x + plus + 0, y);
 	cout << "  _____    ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << " |_   _|   ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "   | |     ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "   | |   _ ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "  _| |__/ |";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << " |________|";
 	gotoXY(x + plus, y + oy++);
 	cout << "  ________ ";
@@ -73,43 +73,43 @@ void decorate(int index) {
 	gotoXY(x + plus, y + oy++);
 	cout << " |________|";
 
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "  _____    ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << " |_   _|   ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "   | |     ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "   | |   _ ";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << "  _| |__/ |";
-	gotoXY(x + plus + 8, y + oy++);
+	gotoXY(x + plus + 0, y + oy++);
 	cout << " |________|";
-
-	textColor(3);
-	gotoXY(x -1 , y++ +22);
+	int k = 14;
+	textColor(2);
+	gotoXY(x + k , y++ +22);
 	wcout << "   __";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << "  {0O}";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << "  \\__/";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << "  /^/";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << " ( (  ";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << " \\_\\_____";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << " (_______)";
-	gotoXY(x - 1, y++ + 22);
+	gotoXY(x + k, y++ + 22);
 	wcout << "(_________()Oo";
 
 
-	gotoXY(x -1, y++ -6 );
+	gotoXY(x + k - 1 , y++ - 4 );
 	wcout << "      ____";
-	gotoXY(x -1, y++ - 6);
+	gotoXY(x + k - 1 , y++ - 4);
 	wcout << "_,.-'`_ o `;__,";
-	gotoXY(x - 1, y++ - 6);
+	gotoXY(x + k - 1, y++ - 4);
 	wcout << " _.-'` '---'  '";
 	//gotoXY(x -1, y++ - 8);
 	//wcout << " \\  /  ";
@@ -118,13 +118,13 @@ void decorate(int index) {
 	//gotoXY(x -1, y++ - 8);
 	//wcout << " \\_________:=-";
 
-	int t = 13;
+	int t = 5;
 	if (index == 1) {
 		textColor(t);
 		gotoXY(tempx, tempy++);
 		wcout << L"  __    ";
 		gotoXY(tempx, tempy++);
-		wcout << L" /' \\   ";
+		wcout << L" /' \\   ";	
 		gotoXY(tempx, tempy++);
 		wcout << L" \" || ";
 		gotoXY(tempx, tempy++);
@@ -360,10 +360,10 @@ void bonusLevel() {
 
 void initLevel() {
 	level.push_back(level1);
-	/*level.push_back(level2);
+	level.push_back(level2);
 	level.push_back(level3);
 	level.push_back(level4);
-	level.push_back(level5);*/
+	level.push_back(level5);
 	level.push_back(bonusLevel);
 }
 
