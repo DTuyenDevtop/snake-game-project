@@ -580,15 +580,15 @@ int loadFileUserData() {
 void loadGame() {
 	int cnt = loadFileUserData();
 	loadGameGraphic();
-	string uName;
-	cin >> uName;
+	//string uName;
+	//cin >> uName;
 	int pos = -1;
 
-	for (int i = 0; i < cnt; ++i) {
+	/*for (int i = 0; i < cnt; ++i) {
 		if (user[i].name == uName) {
 			pos = i;
 		}
-	}
+	}*/
 
 	if (pos == -1) {
 		gotoXY(40, 10);
@@ -1337,5 +1337,27 @@ void coolDown() {
 		wcout << L"╚██████╔╝";
 		gotoXY(col2, row2++);
 		wcout << L" ╚═════╝ ";
+	}
+}
+
+void saveGame() {
+	saveGameGraphic();
+	int pos = -1;
+
+	if (pos == -1) {
+		textColor(RED);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 3s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 2s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 1s";
+		Sleep(1000);
+		gotoXY(40, 11);
+		cout << "You will be brought into main in 0s";
+		Sleep(1000);
+		return;
 	}
 }

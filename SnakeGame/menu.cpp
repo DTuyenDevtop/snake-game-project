@@ -1317,3 +1317,34 @@ void loadGameGraphic() {
 	Sleep(t);
 	gotoXY(78, 29);
 }
+
+void saveGameGraphic() {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(12, 7);
+	int col1 = 50, row1 = 22;
+	gotoXY(col1, row1++);
+	wcout << L" ██████   █████  ███    ███ ███████     ███████  █████  ██    ██ ███████ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██       ██   ██ ████  ████ ██          ██      ██   ██ ██    ██ ██      ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██   ███ ███████ ██ ████ ██ █████       ███████ ███████ ██    ██ █████   ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██    ██ ██   ██ ██  ██  ██ ██               ██ ██   ██  ██  ██  ██      ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L" ██████  ██   ██ ██      ██ ███████     ███████ ██   ██   ████   ███████ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 - 2, row1++);
+	textColor(12);
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
+	gotoXY(78, 29);
+}
