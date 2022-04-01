@@ -50,16 +50,10 @@ void ourTeam();
 
 void fillName(string& name);
 
-int loseGame(string &name,string &dateAndTime);
+int loseGame(string& name, string& dateAndTime);
 
 void pauseGame();
 
-<<<<<<< HEAD
-void loadGameGraphic();
-
-void saveGameGraphic();
-=======
 void loadGameGraphic(string& uName, string& password);
 
 void loadingGameGraphic();
->>>>>>> 0dd2fd90fdb291086ca9056f577226621c2fd524

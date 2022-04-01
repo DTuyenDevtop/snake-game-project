@@ -15,7 +15,7 @@ void initMenu(vector<Menu>& listMenu) {
 	items.y = 24;
 	items.data = "PLAY GAME";
 	listMenu.push_back(items);
-	
+
 	items.x = 85;
 	items.y = 26;
 	items.data = "LOAD GAME";
@@ -49,7 +49,7 @@ void initMenu(vector<Menu>& listMenu) {
 
 void printMenu(vector<Menu> listMenu) {
 	for (int i = 0; i < listMenu.size(); i++) {
-		gotoXY(listMenu[i].x, listMenu[i].y); 
+		gotoXY(listMenu[i].x, listMenu[i].y);
 		cout << listMenu[i].data;
 	}
 }
@@ -59,7 +59,7 @@ void moveSelect(vector<Menu> listMenu, int& dir, bool& check) {
 		if (_kbhit()) {
 			int key = _getch();
 			if (key == 72) {
-				gotoXY(listMenu[dir].x - 3, listMenu[dir].y); 
+				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
 				cout << "             ";
 				gotoXY(listMenu[dir].x, listMenu[dir].y); cout << listMenu[dir].data;
 				if (dir == 0) {
@@ -69,28 +69,28 @@ void moveSelect(vector<Menu> listMenu, int& dir, bool& check) {
 					dir--;
 				}
 
-				gotoXY(listMenu[dir].x - 3, listMenu[dir].y); 
+				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
 				textColor(RED);
-				cout << (char)175 << " " << listMenu[dir].data << " "; 
+				cout << (char)175 << " " << listMenu[dir].data << " ";
 				textColor(BLUE);
 				//break;
 			}
-			else if (key == 80) { 
-				gotoXY(listMenu[dir].x - 3, listMenu[dir].y); 
+			else if (key == 80) {
+				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
 				cout << "             ";
-				gotoXY(listMenu[dir].x, listMenu[dir].y); 
+				gotoXY(listMenu[dir].x, listMenu[dir].y);
 				cout << listMenu[dir].data;
 
 				if (dir == listMenu.size() - 1) {
 					dir = 0;
-				} 
+				}
 				else {
 					dir++;
 				}
 
-				textColor(RED); 
-				gotoXY(listMenu[dir].x - 3, listMenu[dir].y); 
-				cout << (char)175 << " " << listMenu[dir].data << " "; 
+				textColor(RED);
+				gotoXY(listMenu[dir].x - 3, listMenu[dir].y);
+				cout << (char)175 << " " << listMenu[dir].data << " ";
 				textColor(BLUE);
 				//break;
 			}
@@ -163,7 +163,7 @@ void blackBoard() {
 		cout << "                                                                                                                                                          ";
 		Sleep(8);
 	}
-	
+
 	textFillColor(WHITE, BLACK);
 	for (int i = 20 - leng; i <= 155 + leng; ++i) {
 		gotoXY(i, 15);
@@ -278,7 +278,7 @@ void ourTeam() {
 	wcout << L"╚██████╔╝╚██████╔╝██║  ██║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║";
 	gotoXY(col, row++);
 	wcout << L" ╚═════╝  ╚═════╝ ╚═╝  ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝";
-	
+
 	// Team 8 border
 	textFillColor(11, 64);
 	for (int i = 43; i <= 79; ++i) {
@@ -319,7 +319,7 @@ void ourTeam() {
 	cout << "   |_| |___/_/ \\_\\_|  |_| \\___/";
 
 	textFillColor(WHITE, 64);
-	
+
 	// Team member
 	int row2 = 27, col2 = 45;
 
@@ -379,7 +379,7 @@ void ourTeam() {
 	cout << "  | || .` \\__ \\ | | |   / |_| | (__  | || (_) |   /";
 	gotoXY(col3, row3++);
 	cout << " |___|_|\\_|___/ |_| |_|_\\\\___/ \\___| |_| \\___/|_|_\\";
-	
+
 	textFillColor(WHITE, 64);
 
 	// Instructor information
@@ -388,8 +388,8 @@ void ourTeam() {
 	gotoXY(col4, row4++);
 	textFillColor(14, 64);
 	cout << "Dr.Truong Toan Thinh - Teacher";
-	
-	textFillColor(WHITE, 64);	
+
+	textFillColor(WHITE, 64);
 
 	// Snake image
 	/*int flag = 0;
@@ -399,13 +399,13 @@ void ourTeam() {
 		snakeImage();
 		Sleep(100);
 		textFillColor(VIOLET, 64);
-		snakeImage(); 
+		snakeImage();
 		Sleep(100);
 		textFillColor(BLUE, 64);
-		snakeImage(); 
+		snakeImage();
 		Sleep(100);
 		textFillColor(GREEN, 64);
-		snakeImage(); 
+		snakeImage();
 		Sleep(100);
 		textFillColor(BYELLOW, 64);
 		snakeImage();
@@ -722,10 +722,10 @@ void swap(Player& a, Player& b) {
 	Player temp;
 	temp = a;
 	a = b;
-	b = temp;	
+	b = temp;
 }
 
-void loadFileScore(vector<Player> &savePlayers) {
+void loadFileScore(vector<Player>& savePlayers) {
 	ifstream filein;
 	filein.open("saveScore.txt", ios::in);
 	if (filein.fail() == true) {
@@ -762,7 +762,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	wcout << L"	██║  ██║██║╚██████╔╝██║  ██║    ███████║╚██████╗╚██████╔╝██║  ██║███████╗";
 	gotoXY(colHS, rowHS++);
 	wcout << L"	╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝";
-	
+
 	textFillColor(14, BLACK);
 	int a = 134;
 	int b = 24;
@@ -800,8 +800,8 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	//High score border
 	//screen.draw.retangle({ 44, 23 }, { 36, 16 }, 3, 1, colorXY);
 	int s5 = 11;
-	textFillColor(3,BLACK);
-	for (int i = 43 + s5; i <= 115 +s5; i++) {
+	textFillColor(3, BLACK);
+	for (int i = 43 + s5; i <= 115 + s5; i++) {
 		gotoXY(i, 23);
 		cout << (char)220;
 		gotoXY(i, 38);
@@ -810,7 +810,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 			gotoXY(i, 27);
 			cout << (char)223;
 		}
-		 
+
 	}
 	textFillColor(GRAY, BLACK);
 	for (int i = 43 + s5; i <= 115 + s5; i++) {
@@ -820,7 +820,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	textFillColor(3, BLACK);
 	gotoXY(43 + s5, 27);
 	cout << char(221);
-	for (int i = 24 ; i <= 37; i++) {
+	for (int i = 24; i <= 37; i++) {
 		gotoXY(43 + s5, i);
 		cout << (char)219;
 		gotoXY(53 + s5, i);
@@ -849,7 +849,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 
 	//Sort function
 	for (int i = 0; i < savePlayers.size() - 1; i++) {
-		for (int j = i + 1 ; j < savePlayers.size(); j++) {
+		for (int j = i + 1; j < savePlayers.size(); j++) {
 			if (savePlayers[i].score < savePlayers[j].score) {
 				swap(savePlayers[i], savePlayers[j]);
 			}
@@ -858,7 +858,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 	gotoXY(0, 0);
 	cout << savePlayers.size();
 	//textColor(WHITE);
-	
+
 	textFillColor(14, BLACK);
 	for (int i = 0; i < savePlayers.size(); i++) {
 		if (i >= 10) break;
@@ -915,7 +915,7 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 
 User user[100];
 
-void fillName(string &name) {
+void fillName(string& name) {
 	system("cls");
 	int t = 25;
 	Sleep(t);
@@ -939,7 +939,7 @@ void fillName(string &name) {
 	gotoXY(col1, row1++);
 	wcout << L"                                                                            ";
 	Sleep(t);
-	gotoXY(col1+15, row1++);
+	gotoXY(col1 + 15, row1++);
 	textColor(3);
 	cout << "Please fill in your name in the blanks below. ";
 	Screen nameScreen;
@@ -954,7 +954,7 @@ void fillName(string &name) {
 		textColor(3);
 		int check = 0;
 		cin >> name;
-		
+
 		int N = loadFileUserData();
 		for (int i = 0; i < N; i++) {
 			if (name == user[i].name) {
@@ -966,15 +966,15 @@ void fillName(string &name) {
 				cout << "Your name is not valid or already exist. Please retype your name ";
 				check = 1;
 				gotoXY(78, 29);
-				cout<<"                     ";
-				
+				cout << "                     ";
+
 			}
 		}
 		if (check == 0) break;
 	}
 }
 
-int loseGame(string &name,string &dateAndTime) {
+int loseGame(string& name, string& dateAndTime) {
 	system("cls");
 	Screen nameScreen;
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 27 }, 12, 1, colorXY);
@@ -1000,13 +1000,13 @@ int loseGame(string &name,string &dateAndTime) {
 	gotoXY(col1, row1++);
 	wcout << L"                                                                            ";
 	Sleep(t);
-	gotoXY(col1 + 28, row1+5);
+	gotoXY(col1 + 28, row1 + 5);
 	textColor(3);
 	int s = 8;
 	int s2 = 38;
 	cout << "Do you want to continue playing ? ";
 
-	
+
 	for (int i = 55 + s; i <= 70 + s; ++i) {
 		gotoXY(i, 33);
 		cout << (char)(205);
@@ -1029,12 +1029,12 @@ int loseGame(string &name,string &dateAndTime) {
 	cout << (char)(187);
 	gotoXY(71 + s, 37);
 	cout << (char)(188);
-	gotoXY(54 + s +8, 35);
+	gotoXY(54 + s + 8, 35);
 	cout << "YES";
-	
+
 	//
 
-	for (int i = 55 + s2; i <= 70 + s2 +1; ++i) {
+	for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
 		gotoXY(i, 33);
 		cout << (char)(205);
 		gotoXY(i, 37);
@@ -1089,135 +1089,135 @@ int loseGame(string &name,string &dateAndTime) {
 	gotoXY(54 + s + 8, 35);
 	cout << "YES";
 	while (true) {
-			int key = _getch();
-			if (key == 'd' || key == 'a' || key == 75 || key == 77) {
-				temp1++;
-				if (temp1 % 2 == 1) {
-					textColor(3);
-					for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
-						gotoXY(i, 33);
-						cout << (char)(205);
-						Sleep(t2);
-						gotoXY(i, 37);
-						cout << (char)(205);
-						Sleep(t2);
-					}
-					for (int i = 34; i <= 36; ++i) {
-						gotoXY(54 + s2, i);
-						cout << (char)(186);
-						Sleep(t2);
-						gotoXY(71 + s2, i);
-						cout << (char)(186);
-						Sleep(t2);
-					}
-					gotoXY(54 + s2, 33);
-					cout << (char)(201);
-					gotoXY(54 + s2, 37);
-					cout << (char)(200);
-					gotoXY(71 + s2, 33);
-					cout << (char)(187);
-					gotoXY(71 + s2, 37);
-					cout << (char)(188);
-					gotoXY(54 + s + 38, 35);
-					cout << "NO";
-					textColor(RED);
-					for (int i = 55 + s; i <= 70 + s; ++i) {
-						gotoXY(i, 33);
-						cout << (char)(205);
-						Sleep(t2);
-						gotoXY(i, 37);
-						cout << (char)(205);
-						Sleep(t2);
-
-					}
-
-					for (int i = 34; i <= 36; ++i) {
-						gotoXY(54 + s, i);
-						cout << (char)(186);
-						Sleep(t2);
-						gotoXY(71 + s, i);
-						cout << (char)(186);
-						Sleep(t2);
-					}
-					gotoXY(54 + s, 33);
-					cout << (char)(201);
-					gotoXY(54 + s, 37);
-					cout << (char)(200);
-					gotoXY(71 + s, 33);
-					cout << (char)(187);
-					gotoXY(71 + s, 37);
-					cout << (char)(188);
-					gotoXY(54 + s + 8, 35);
-					cout << "YES";
-						
+		int key = _getch();
+		if (key == 'd' || key == 'a' || key == 75 || key == 77) {
+			temp1++;
+			if (temp1 % 2 == 1) {
+				textColor(3);
+				for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
+					gotoXY(i, 33);
+					cout << (char)(205);
+					Sleep(t2);
+					gotoXY(i, 37);
+					cout << (char)(205);
+					Sleep(t2);
 				}
-				else {
-					textColor(3);
-					for (int i = 55 + s; i <= 70 + s; ++i) {
-						gotoXY(i, 33);
-						cout << (char)(205);
-						Sleep(t2);
-						gotoXY(i, 37);
-						cout << (char)(205);
-						Sleep(t2);
+				for (int i = 34; i <= 36; ++i) {
+					gotoXY(54 + s2, i);
+					cout << (char)(186);
+					Sleep(t2);
+					gotoXY(71 + s2, i);
+					cout << (char)(186);
+					Sleep(t2);
+				}
+				gotoXY(54 + s2, 33);
+				cout << (char)(201);
+				gotoXY(54 + s2, 37);
+				cout << (char)(200);
+				gotoXY(71 + s2, 33);
+				cout << (char)(187);
+				gotoXY(71 + s2, 37);
+				cout << (char)(188);
+				gotoXY(54 + s + 38, 35);
+				cout << "NO";
+				textColor(RED);
+				for (int i = 55 + s; i <= 70 + s; ++i) {
+					gotoXY(i, 33);
+					cout << (char)(205);
+					Sleep(t2);
+					gotoXY(i, 37);
+					cout << (char)(205);
+					Sleep(t2);
 
-					}
-					for (int i = 34; i <= 36; ++i) {
-						gotoXY(54 + s, i);
-						cout << (char)(186);
-						Sleep(t2);
-						gotoXY(71 + s, i);
-						cout << (char)(186);
-						Sleep(t2);
-					}
-					gotoXY(54 + s, 33);
-					cout << (char)(201);
-					gotoXY(54 + s, 37);
-					cout << (char)(200);
-					gotoXY(71 + s, 33);
-					cout << (char)(187);
-					gotoXY(71 + s, 37);
-					cout << (char)(188);
-					gotoXY(54 + s + 8, 35);
-					cout << "YES";
-					textColor(RED);
-					for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
-						gotoXY(i, 33);
-						cout << (char)(205);
-						Sleep(t2);
-						gotoXY(i, 37);
-						cout << (char)(205);
-						Sleep(t2);
-					}
-					for (int i = 34; i <= 36; ++i) {
-						gotoXY(54 + s2, i);
-						cout << (char)(186);
-						Sleep(t2);
-						gotoXY(71 + s2, i);
-						cout << (char)(186);
-						Sleep(t2);
-					}
-					gotoXY(54 + s2, 33);
-					cout << (char)(201);
-					gotoXY(54 + s2, 37);
-					cout << (char)(200);
-					gotoXY(71 + s2, 33);
-					cout << (char)(187);
-					gotoXY(71 + s2, 37);
-					cout << (char)(188);
-					gotoXY(54 + s + 38, 35);
-					cout << "NO";
 				}
 
+				for (int i = 34; i <= 36; ++i) {
+					gotoXY(54 + s, i);
+					cout << (char)(186);
+					Sleep(t2);
+					gotoXY(71 + s, i);
+					cout << (char)(186);
+					Sleep(t2);
+				}
+				gotoXY(54 + s, 33);
+				cout << (char)(201);
+				gotoXY(54 + s, 37);
+				cout << (char)(200);
+				gotoXY(71 + s, 33);
+				cout << (char)(187);
+				gotoXY(71 + s, 37);
+				cout << (char)(188);
+				gotoXY(54 + s + 8, 35);
+				cout << "YES";
+
 			}
-			else if (key == 13 && temp1 % 2 == 1) {
-				playGame(name, dateAndTime);
-				break;
+			else {
+				textColor(3);
+				for (int i = 55 + s; i <= 70 + s; ++i) {
+					gotoXY(i, 33);
+					cout << (char)(205);
+					Sleep(t2);
+					gotoXY(i, 37);
+					cout << (char)(205);
+					Sleep(t2);
+
+				}
+				for (int i = 34; i <= 36; ++i) {
+					gotoXY(54 + s, i);
+					cout << (char)(186);
+					Sleep(t2);
+					gotoXY(71 + s, i);
+					cout << (char)(186);
+					Sleep(t2);
+				}
+				gotoXY(54 + s, 33);
+				cout << (char)(201);
+				gotoXY(54 + s, 37);
+				cout << (char)(200);
+				gotoXY(71 + s, 33);
+				cout << (char)(187);
+				gotoXY(71 + s, 37);
+				cout << (char)(188);
+				gotoXY(54 + s + 8, 35);
+				cout << "YES";
+				textColor(RED);
+				for (int i = 55 + s2; i <= 70 + s2 + 1; ++i) {
+					gotoXY(i, 33);
+					cout << (char)(205);
+					Sleep(t2);
+					gotoXY(i, 37);
+					cout << (char)(205);
+					Sleep(t2);
+				}
+				for (int i = 34; i <= 36; ++i) {
+					gotoXY(54 + s2, i);
+					cout << (char)(186);
+					Sleep(t2);
+					gotoXY(71 + s2, i);
+					cout << (char)(186);
+					Sleep(t2);
+				}
+				gotoXY(54 + s2, 33);
+				cout << (char)(201);
+				gotoXY(54 + s2, 37);
+				cout << (char)(200);
+				gotoXY(71 + s2, 33);
+				cout << (char)(187);
+				gotoXY(71 + s2, 37);
+				cout << (char)(188);
+				gotoXY(54 + s + 38, 35);
+				cout << "NO";
 			}
-			else if (key == 13 && temp1 % 2 == 0) {
-				break;
-			}
-		
+
+		}
+		else if (key == 13 && temp1 % 2 == 1) {
+			playGame(name, dateAndTime);
+			break;
+		}
+		else if (key == 13 && temp1 % 2 == 0) {
+			break;
+		}
+
 	}
 
 	Sleep(t);
@@ -1319,32 +1319,11 @@ void loadGameGraphic() {
 	gotoXY(78, 29);
 }
 
-<<<<<<< HEAD
-void saveGameGraphic() {
-=======
 void loadGameGraphic(string& uName, string& password) {
->>>>>>> 0dd2fd90fdb291086ca9056f577226621c2fd524
 	system("cls");
 	int t = 25;
 	Sleep(t);
 	textFillColor(12, 7);
-<<<<<<< HEAD
-	int col1 = 50, row1 = 22;
-	gotoXY(col1, row1++);
-	wcout << L" ██████   █████  ███    ███ ███████     ███████  █████  ██    ██ ███████ ██████  ";
-	Sleep(t);
-	gotoXY(col1, row1++);
-	wcout << L"██       ██   ██ ████  ████ ██          ██      ██   ██ ██    ██ ██      ██   ██ ";
-	Sleep(t);
-	gotoXY(col1, row1++);
-	wcout << L"██   ███ ███████ ██ ████ ██ █████       ███████ ███████ ██    ██ █████   ██   ██ ";
-	Sleep(t);
-	gotoXY(col1, row1++);
-	wcout << L"██    ██ ██   ██ ██  ██  ██ ██               ██ ██   ██  ██  ██  ██      ██   ██ ";
-	Sleep(t);
-	gotoXY(col1, row1++);
-	wcout << L" ██████  ██   ██ ██      ██ ███████     ███████ ██   ██   ████   ███████ ██████  ";
-=======
 	int col1 = 50, row1 = 12;
 	gotoXY(col1, row1++);
 	wcout << L"██       ██████   █████  ██████       ██████   █████  ███    ███ ███████ ";
@@ -1360,18 +1339,10 @@ void loadGameGraphic(string& uName, string& password) {
 	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"███████  ██████  ██   ██ ██████       ██████  ██   ██ ██      ██ ███████ ";
->>>>>>> 0dd2fd90fdb291086ca9056f577226621c2fd524
 	Sleep(t);
 	gotoXY(col1, row1++);
 	wcout << L"                                                                            ";
 	Sleep(t);
-<<<<<<< HEAD
-	gotoXY(col1 - 2, row1++);
-	textColor(12);
-	Screen nameScreen;
-	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
-	gotoXY(78, 29);
-=======
 	gotoXY(col1, row1++);
 	gotoXY(col1, row1++);
 	textColor(12);
@@ -1414,7 +1385,7 @@ void loadGameGraphic(string& uName, string& password) {
 				gotoXY(84 + g - e, 29);
 				cout << " ";
 				gotoXY(84 + g - e, 29);
-				
+
 			}
 			else break;
 		}
@@ -1516,5 +1487,4 @@ void loadingGameGraphic() {
 	gotoXY(col2, row2++);
 	wcout << L" ██████      ██████     ██ ";
 	Sleep(1000);
->>>>>>> 0dd2fd90fdb291086ca9056f577226621c2fd524
 }
