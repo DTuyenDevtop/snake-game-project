@@ -23,7 +23,7 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 double Speed = SPEEDFIRST;
-int requirement[] = { 3, 4, 4, 4, 5, 99999 };
+int requirement[] = { 1, 1, 1, 1, 5, 99999 };
 int currRequirement, currentLevel;
 time_t now;
 int bonus = 5;
@@ -35,7 +35,7 @@ void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
-	while ((colorXY[Food.x][Food.y] == "DANGER") || ((Food.y == 23 || Food.y == 20 || Food.x == 63 || Food.y == 72) && currentLevel == 4)) {
+	while ((colorXY[Food.x][Food.y] == "DANGER") || ((Food.y == 23 || Food.y == 20 || Food.x == 63 || Food.x == 72) && currentLevel == 4)) {
 		srand((unsigned int)time(0));
 		Food.x = 5 + rand() % (WidthGame - 5);
 		Food.y = 5 + rand() % (HeightGame - 5);
