@@ -36,7 +36,7 @@ void randFood(Infomation& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
-	while (colorXY[Food.x][Food.y] == "DANGER") {
+	while ((colorXY[Food.x][Food.y] == "DANGER") || ((Food.y == 23 || Food.y == 20 || Food.x == 63 || Food.x == 72) && currentLevel == 4)) {
 		srand((unsigned int)time(0));
 		Food.x = 5 + rand() % (WidthGame - 5);
 		Food.y = 5 + rand() % (HeightGame - 5);
