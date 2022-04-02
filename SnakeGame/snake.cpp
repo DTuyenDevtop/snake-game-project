@@ -23,12 +23,13 @@ short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 double Speed = SPEEDFIRST;
-int requirement[] = { 3, 4, 4, 4, 5, 99999 };
+int requirement[] = { 3, 3, 4, 4, 5, 99999 };
 int currRequirement, currentLevel;
 time_t now;
 int bonus = 5;
 int maxTime = 20;
 int tmp = 20;
+bool saved = false;
 
 
 void randFood(Infomation& Food) {
@@ -64,9 +65,9 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Direction, bo
 		Snake.push_back(Body);
 	}
 
-	randFood(Food);
+	/*randFood(Food);
 	gotoXY(Food.x, Food.y);
-	colorText(254, snakeColor);
+	colorText(254, snakeColor);*/
 
 	// Init direction
 	Direction.x = 0;
@@ -242,13 +243,14 @@ void mainLoop(
 	obstacle2(currentLevel);
 	obstacle3(currentLevel);
 
+	gotoXY(10, 10);
+	//cout << currentLevel << ' ' << bonus;
 	if (currentLevel == bonus) {
 		gotoXY(10, 10);
 		time_t currSec = time(0);
 		if (maxTime != 0) {
 			maxTime = tmp - (int)(currSec - now);
 		}
-		//printf("%02d", maxTime);
 		coolDown();
 	}
 
@@ -367,14 +369,21 @@ void mainLoop(
 		}
 		fOut << "\n";
 		fOut << "Direction: " << Direction.x << ' ' << Direction.y << "\n";
-		fOut << "Score: " << score;
+		fOut << "Score: " << score << "\n";
+
+		if (currentLevel == bonus) {
+			fOut << "Time: " << maxTime;
+		}
 
 		fOut.close();
 
 		position = 8;
 		currRequirement = 0;
+		maxTime = 20;
+		tmp = 20;
 
 		saveGame();
+		saved = true;
 		endGame = true;
 	}
 }
@@ -405,6 +414,8 @@ void playGame(string name, string& dateAndTime) {
 
 	init(Snake, Food, Direction, endGame, score);
 
+	int cal = false;
+
 	while (!endGame) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Direction, Food, Speed, endGame, score);
@@ -429,6 +440,9 @@ void playGame(string name, string& dateAndTime) {
 
 		if (colorXY[xEnd][yEnd] == "DONE") {
 			clearInGate(7, 5);
+			randFood(Food);
+			gotoXY(Food.x, Food.y);
+			colorText(254, snakeColor);
 		}
 
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
@@ -442,6 +456,11 @@ void playGame(string name, string& dateAndTime) {
 				drawOutGate(1, 121, 38);
 			}
 			isDrawGate = true;
+		}
+
+		if (currentLevel == bonus && !cal) {
+			now = time(0);
+			cal = true;
 		}
 
 		if (maxTime == 0) {
@@ -509,10 +528,6 @@ void playGame(string name, string& dateAndTime) {
 			Direction.x = 0;
 			Direction.y = 1;
 
-			randFood(Food);
-			gotoXY(Food.x, Food.y);
-			colorText(254, snakeColor);
-
 			if (currentLevel == bonus) {
 				now = time(0);
 			}
@@ -523,24 +538,23 @@ void playGame(string name, string& dateAndTime) {
 
 	}
 
-	// end game
-	while (true)
-	{
-		playSoundLoop(L"resources/losegame.wav");
-		drawLosingSnake(Snake);
-		deleteBorder();
-		turnOffSound();
-		break;
+	if (!saveGame) {
+		// end game
+		while (true) {
+			playSoundLoop(L"resources/losegame.wav");
+			drawLosingSnake(Snake);
+			deleteBorder();
+			turnOffSound();
+			break;
+		}
+
+		if (Sound == Status::ON) {
+			playSoundLoop(L"resources/backgroundmusic.wav");
+		}
+
+		Sleep(500);
+		loseGame(name, dateAndTime);
 	}
-
-	if (Sound == Status::ON)
-	{
-		playSoundLoop(L"resources/backgroundmusic.wav");
-	}
-
-
-	Sleep(1);
-	loseGame(name, dateAndTime);
 
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
@@ -600,7 +614,14 @@ int loadFileUserData() {
 
 			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
 
-			fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
+			if (user[cnt].level == bonus) {
+				fscanf_s(file, "Score: %d\n", &user[cnt].score);
+				fscanf_s(file, "Time: %d\n\n", &user[cnt].time);
+			}
+			else {
+				fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
+			}
+
 			++cnt;
 		}
 		fclose(file);
@@ -619,6 +640,8 @@ void loadGame() {
 	string uPass;
 	loadGameGraphic(uName, uPass);
 	size_t uPassHash = hash(uPass);
+
+	userName = uName;
 
 	for (int i = 0; i < cnt; ++i) {
 		if (user[i].name == uName && user[i].password == uPassHash) {
@@ -680,6 +703,10 @@ void loadGame() {
 	drawSnake(Snake);
 	Sleep(1000);
 
+	tmp = user[pos].time;
+
+	int cal = false;
+
 	while (!endGame) {
 		Sleep(Speed);
 		mainLoop(StatusMove, StatusGame, Snake, Direction, Food, Speed, endGame, score);
@@ -704,6 +731,11 @@ void loadGame() {
 
 		if (colorXY[xEnd][yEnd] == "DONE") {
 			clearInGate(7, 5);
+		}
+
+		if (currentLevel == bonus && !cal) {
+			now = time(0);
+			cal = true;
 		}
 
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
@@ -737,6 +769,8 @@ void loadGame() {
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && colorXY[xEnd][yEnd] == "PASS") {
 			isDrawGate = false;
 			system("cls");
+
+			tmp = 20;
 
 			if (maxTime == 0) {
 				maxTime = 20;
