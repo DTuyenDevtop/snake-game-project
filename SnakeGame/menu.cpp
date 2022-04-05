@@ -1517,3 +1517,43 @@ void saveGameGraphic() {
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
 	gotoXY(78, 29);
 }
+
+void fillPassword (string& key) {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(3, 7);
+	int col1 = 55, row1 = 18;
+	gotoXY(col1, row1++);
+	wcout << L"██████   █████  ███████ ███████ ██     ██  ██████  ██████  ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██   ██ ██   ██ ██      ██      ██     ██ ██    ██ ██   ██ ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██████  ███████ ███████ ███████ ██  █  ██ ██    ██ ██████  ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██      ██      ██ ██ ███ ██ ██    ██ ██   ██ ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██ ███████ ███████  ███ ███   ██████  ██   ██ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 + 5, row1++);
+	textColor(3);
+	cout << "Please fill in your password in the blanks below to save game. ";
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
+	Sleep(t);
+	gotoXY(78, 29);
+	textColor(3);
+	cin >> key;
+}
+	

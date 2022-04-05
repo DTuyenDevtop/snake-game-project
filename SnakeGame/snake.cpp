@@ -349,7 +349,7 @@ void mainLoop(
 		std::hash <std::string> hash;
 		cout << "Enter sercurity key: ";
 		string key;
-		cin >> key;
+		fillPassword(key);
 		size_t password = hash(key);
 
 		ofstream fOut;
