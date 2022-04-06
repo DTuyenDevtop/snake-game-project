@@ -642,10 +642,10 @@ void guide() {
 	}
 	textFillColor(BLACK, 63);
 	gotoXY(col + 2, row - 2);
-	cout << "L";
+	cout << "Enter";
 	textFillColor(WHITE, 64);
 	gotoXY(40, 29);
-	cout << "Load";
+	cout << "Increase speed";
 
 	col = 22; row = row + 1;
 	for (int i = 0; i < 3; i++)
@@ -699,7 +699,7 @@ void guide() {
 	}
 	textFillColor(BLACK, 63);
 	gotoXY(col + 2, row - 2);
-	cout << "S";
+	cout << "L";
 	textFillColor(GRAY, 64);
 	gotoXY(40, row - 2);
 	cout << "Save game";

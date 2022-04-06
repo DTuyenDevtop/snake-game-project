@@ -327,7 +327,7 @@ void level5() {
 	decorate(5);
 }
 
-void randXY(Infomation& Food, const std::string label) {
+void randXY(Information& Food, const std::string label) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
@@ -344,7 +344,7 @@ void bonusLevel() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();	
 
-	Infomation Food;
+	Information Food;
 	for (int i = 0; i < 20; ++i) {
 		randXY(Food, "FOOD_BINC");
 		gotoXY(Food.x, Food.y);
