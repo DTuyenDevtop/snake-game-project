@@ -619,11 +619,11 @@ void guide() {
 	cout << "to control the snake";
 
 	textFillColor(WHITE, 64);
-	col = 26; row = 28;
+	col = 22; row = 28;
 	for (int i = 0; i < 3; i++)
 	{
 		gotoXY(col, row);
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < 13; j++)
 		{
 			switch (i)
 			{
@@ -641,7 +641,7 @@ void guide() {
 		row++;
 	}
 	textFillColor(BLACK, 63);
-	gotoXY(col + 2, row - 2);
+	gotoXY(26, row - 2);
 	cout << "Enter";
 	textFillColor(WHITE, 64);
 	gotoXY(40, 29);
