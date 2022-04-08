@@ -919,7 +919,7 @@ void fillName(string& name) {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(3, 7);
+	textFillColor(3, BACKGROUND_COLOR);
 	int col1 = 50, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"██    ██  ██████  ██    ██ ██████      ███    ██  █████  ███    ███ ███████ ";
@@ -980,7 +980,7 @@ int loseGame(string& name, string& dateAndTime) {
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 27 }, 12, 1, colorXY);
 	int t = 25;
 	Sleep(t);
-	textFillColor(3, 7);
+	textFillColor(3, BACKGROUND_COLOR);
 	int col1 = 42, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"██    ██  ██████  ██    ██      █████  ██████  ███████     ██       ██████  ███████ ███████ ";
@@ -1284,7 +1284,7 @@ void loadGameGraphic() {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(12, 7);
+	textFillColor(12, BACKGROUND_COLOR);
 	int col1 = 59, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"    __   ____  ___    ____     _________    __  _________";
@@ -1321,7 +1321,7 @@ void loadGameGraphic(string& uName, string& password) {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(12, 7);
+	textFillColor(12, BACKGROUND_COLOR);
 	int col1 = 50, row1 = 12;
 	gotoXY(col1, row1++);
 	wcout << L"██       ██████   █████  ██████       ██████   █████  ███    ███ ███████ ";
@@ -1491,7 +1491,7 @@ void saveGameGraphic() {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(12, 7);
+	textFillColor(12, BACKGROUND_COLOR);
 	int col1 = 50, row1 = 22;
 	gotoXY(col1, row1++);
 	wcout << L" ██████   █████  ███    ███ ███████     ███████  █████  ██    ██ ███████ ██████  ";
