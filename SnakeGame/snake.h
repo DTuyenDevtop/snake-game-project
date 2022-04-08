@@ -12,12 +12,12 @@ enum class Status {UP, DOWN, LEFT, RIGHT, ESC, PAUSE, EMPTY, ON, OFF, SAVE};
 #define SPEEDFIRST     80
 #define SPEEDLATER	   30
 
-struct Infomation {
+struct Information {
 	string data;
 	int x, y;     
 	int ox, oy;  
 
-	Infomation () {
+	Information () {
 		data = "";
 		x = y = ox = oy = 0;
 	}
@@ -28,37 +28,39 @@ struct User {
 	size_t password;
 	int level;
 	int score;
+	int time;
 	int snakeLenght;
 	char* snakeData;
 	int dirX, dirY;
-	vector<Infomation> Snake;
+	Information food;
+	vector<Information> Snake;
 
 	User() {
 		level = score = snakeLenght = dirX = dirY = 0;
-		password = 0;
+		password = 0, time = 0;
 		name = new char[20];
 		snakeData = new char[100];
 		Snake.clear();
 	}
 };
 
-void init(vector<Infomation>&, Infomation&, Infomation&, bool&, int);
+void init(vector<Information>&, Information&, Information&, bool&, int);
 
-void moveSnake(vector<Infomation>&, Infomation, Infomation&, bool&, int&);
+void moveSnake(vector<Information>&, Information, Information&, bool&, int&);
 
-void drawSnake(vector<Infomation>&);
+void drawSnake(vector<Information>&);
 
-void mainLoop(Status&, Status&, vector<Infomation>&, Infomation&, Infomation&, double&, bool&, int&);
+void mainLoop(Status&, Status&, vector<Information>&, Information&, Information&, double&, bool&, int&);
 
 void playGame(string name, string& dateAndTime);
 
-void randFood(Infomation &Food);
+void randFood(Information &Food);
 
 void loadGame();
 
 int loadFileUserData();
 
-void drawLosingSnake(vector<Infomation>& Snake);
+void drawLosingSnake(vector<Information>& Snake);
 
 void decorateBonus();
 

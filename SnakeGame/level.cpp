@@ -10,7 +10,7 @@ Screen gameDisplay;
 void drawBorder() {
 	gameDisplay.draw.retangle({ 2, 1 }, { 85, 42 }, GREEN, 2, colorXY);
 	gameDisplay.draw.retangle({ 5, 2 }, { 63, 40 }, RED, 1, colorXY);
-	gameDisplay.draw.retangle({ 134, 2 }, { 16, 40 }, RED, 1, colorXY);
+	gameDisplay.draw.retangle({ 134, 2 }, { 18, 40 }, RED, 1, colorXY);
 }
 
 void decorate(int index) {
@@ -19,7 +19,7 @@ void decorate(int index) {
 	int ox = 1;
 	int oy = 1;
 	int plus = 0;
-	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
+	gameDisplay.draw.retangle({ 135, 10 }, { 17, 0 }, RED, 1, colorXY);
 
 	textColor(1);
 	gotoXY(x + plus + 0, y);
@@ -327,7 +327,7 @@ void level5() {
 	decorate(5);
 }
 
-void randXY(Infomation& Food, const std::string label) {
+void randXY(Information& Food, const std::string label) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
@@ -344,7 +344,7 @@ void bonusLevel() {
 	gameDisplay.resetScreenColor(colorXY);
 	drawBorder();	
 
-	Infomation Food;
+	Information Food;
 	for (int i = 0; i < 20; ++i) {
 		randXY(Food, "FOOD_BINC");
 		gotoXY(Food.x, Food.y);

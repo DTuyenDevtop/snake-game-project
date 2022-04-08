@@ -524,23 +524,25 @@ void guide() {
 
 	// BE CAREFUL
 	textFillColor(VIOLET, 64);
-	col = col + 10;
-	row = row + 4;
+	col = col + 8;
+	row = row + 3;
 	gotoXY(col, row);
-	for (int i = 0; i < 64; i++)
+	for (int i = 0; i < 82; i++)
 	{
 		col++;
 		gotoXY(col, row);
-		if (i != 63)
+		if (i != 81)
 		{
 			cout << (char)205;
 		}
 		else
 			cout << (char)187;
 	}
-	gotoXY(col - 37, row);
+
+	gotoXY(col - 48, row);
 	textFillColor(RED, 64);
 	cout << (char)254 << " BE-CAREFUL " << (char)254;
+	
 	textFillColor(VIOLET, 64);
 	for (int i = 0; i < 14; i++)
 	{
@@ -553,17 +555,19 @@ void guide() {
 		else
 			cout << (char)188;
 	}
-	for (int i = 0; i < 64; i++)
+
+	for (int i = 0; i < 82; i++)
 	{
 		col--;
 		gotoXY(col, row);
-		if (i != 63)
+		if (i != 81)
 		{
 			cout << (char)205;
 		}
 		else
 			cout << (char)200;
 	}
+	
 	for (int i = 0; i < 14; i++)
 	{
 		row--;
@@ -574,7 +578,6 @@ void guide() {
 		}
 		else
 			cout << (char)201;
-
 	}
 
 	// text for "keyboard shortcuts"
@@ -619,11 +622,11 @@ void guide() {
 	cout << "to control the snake";
 
 	textFillColor(WHITE, 64);
-	col = 26; row = 28;
+	col = 22; row = 28;
 	for (int i = 0; i < 3; i++)
 	{
 		gotoXY(col, row);
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < 13; j++)
 		{
 			switch (i)
 			{
@@ -641,11 +644,11 @@ void guide() {
 		row++;
 	}
 	textFillColor(BLACK, 63);
-	gotoXY(col + 2, row - 2);
-	cout << "L";
+	gotoXY(26, row - 2);
+	cout << "Enter";
 	textFillColor(WHITE, 64);
 	gotoXY(40, 29);
-	cout << "Load";
+	cout << "Increase speed";
 
 	col = 22; row = row + 1;
 	for (int i = 0; i < 3; i++)
@@ -699,22 +702,33 @@ void guide() {
 	}
 	textFillColor(BLACK, 63);
 	gotoXY(col + 2, row - 2);
-	cout << "S";
+	cout << "L";
 	textFillColor(GRAY, 64);
 	gotoXY(40, row - 2);
 	cout << "Save game";
 
 	// text for "be careful"
-	col = 80, row = 29;
+	col = 77, row = 25;
 	gotoXY(col, row);
 	cout << (char)5 << " Do not hit any barricades ";
 	gotoXY(col, row + 2);
 	cout << (char)5 << " Avoid the walls";
 	gotoXY(col, row + 4);
 	cout << (char)5 << " Do not let the head of snake touches any part of its body";
+	textFillColor(BYELLOW, 64);
+	col = 98, row = 31;
+	gotoXY(col, row);
+	cout << "- - - - - - BONUS LEVEL - - - - -";
+	textFillColor(WHITE, 64);
+	col = 77, row = 33;
+	gotoXY(col, row);
+	cout << (char)5 << " The food has the same color with the snake will make increase its length";
+	gotoXY(col, row + 2);
+	cout << (char)5 << " The food has the different color with the snake will make increase your score";
+
 
 	textFillColor(CYAN, 64);
-	gotoXY(137, 39);
+	gotoXY(143, 39);
 	cout << "Press ESC to exit";
 }
 
@@ -1517,3 +1531,43 @@ void saveGameGraphic() {
 	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, BLACK, 1, colorXY);
 	gotoXY(78, 29);
 }
+
+void fillPassword (string& key) {
+	system("cls");
+	int t = 25;
+	Sleep(t);
+	textFillColor(3, 7);
+	int col1 = 55, row1 = 18;
+	gotoXY(col1, row1++);
+	wcout << L"██████   █████  ███████ ███████ ██     ██  ██████  ██████  ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██   ██ ██   ██ ██      ██      ██     ██ ██    ██ ██   ██ ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██████  ███████ ███████ ███████ ██  █  ██ ██    ██ ██████  ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██      ██      ██ ██ ███ ██ ██    ██ ██   ██ ██   ██ ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"██      ██   ██ ███████ ███████  ███ ███   ██████  ██   ██ ██████  ";
+	Sleep(t);
+	gotoXY(col1, row1++);
+	wcout << L"                                                                            ";
+	Sleep(t);
+	gotoXY(col1 + 5, row1++);
+	textColor(3);
+	cout << "Please fill in your password in the blanks below to save game. ";
+	Screen nameScreen;
+	nameScreen.draw.retangle({ 30, 12 }, { 60, 25 }, 12, 1, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 66, 27 }, { 20, 4 }, 3, 2, colorXY);
+	Sleep(t);
+	nameScreen.draw.retangle({ 65, 26 }, { 21, 6 }, 3, 2, colorXY);
+	Sleep(t);
+	gotoXY(78, 29);
+	textColor(3);
+	cin >> key;
+}
+	

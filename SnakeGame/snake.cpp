@@ -19,19 +19,21 @@
 std::string studentIds = "21127003211276482112709021127493";
 int position = 8;
 string colorXY[205][85], userName;
+size_t password;
 short snakeColor;
 vector<Player> savePlayers;
 Status Sound;
 double Speed = SPEEDFIRST;
-int requirement[] = { 1, 1, 1, 1, 5, 99999 };
+int requirement[] = { 3, 3, 4, 4, 5, 99999 };
 int currRequirement, currentLevel;
 time_t now;
 int bonus = 5;
 int maxTime = 20;
 int tmp = 20;
+bool saved = false, loaded = false;
 
 
-void randFood(Infomation& Food) {
+void randFood(Information& Food) {
 	Food.x = 5 + rand() % (WidthGame - 5);
 	Food.y = 5 + rand() % (HeightGame - 5);
 
@@ -43,8 +45,8 @@ void randFood(Infomation& Food) {
 	colorXY[Food.x][Food.y] = "FOOD_INC";
 }
 
-void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Direction, bool& endGame, int score) {
-	Infomation Body;
+void init(vector<Information>& Snake, Information& Food, Information& Direction, bool& endGame, int score) {
+	Information Body;
 	endGame = false;
 
 	gotoXY(147, 5);
@@ -64,17 +66,17 @@ void init(vector<Infomation>& Snake, Infomation& Food, Infomation& Direction, bo
 		Snake.push_back(Body);
 	}
 
-	randFood(Food);
+	/*randFood(Food);
 	gotoXY(Food.x, Food.y);
-	colorText(254, snakeColor);
+	colorText(254, snakeColor);*/
 
 	// Init direction
 	Direction.x = 0;
 	Direction.y = 1;
 }
 
-void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool& endGame, int& score) {
-	Infomation Add;
+void moveSnake(vector<Information>& Snake, Information dir, Information& Food, bool& endGame, int& score) {
+	Information Add;
 	size_t size = Snake.size();
 
 	for (size_t i = 0; i < size_t(size); i++) {
@@ -202,7 +204,7 @@ void moveSnake(vector<Infomation>& Snake, Infomation dir, Infomation& Food, bool
 	}
 }
 
-void drawSnake(vector<Infomation>& Snake) {
+void drawSnake(vector<Information>& Snake) {
 	size_t size = Snake.size();
 	textColor(snakeColor);
 	for (int i = 0; i < size; i++) {
@@ -223,8 +225,8 @@ void print() {
 
 void mainLoop(
 	Status& StatusMove, Status& StatusGame,
-	vector<Infomation>& Snake,
-	Infomation& Direction, Infomation& Food,
+	vector<Information>& Snake,
+	Information& Direction, Information& Food,
 	double& Speed, bool& endGame, int& score
 ) {
 	gotoXY(147, 5);
@@ -242,13 +244,14 @@ void mainLoop(
 	obstacle2(currentLevel);
 	obstacle3(currentLevel);
 
+	gotoXY(10, 10);
+	//cout << currentLevel << ' ' << bonus;
 	if (currentLevel == bonus) {
 		gotoXY(10, 10);
 		time_t currSec = time(0);
 		if (maxTime != 0) {
 			maxTime = tmp - (int)(currSec - now);
 		}
-		//printf("%02d", maxTime);
 		coolDown();
 	}
 
@@ -347,8 +350,11 @@ void mainLoop(
 		std::hash <std::string> hash;
 		cout << "Enter sercurity key: ";
 		string key;
-		cin >> key;
-		size_t password = hash(key);
+
+		if (!loaded) {
+			fillPassword(key);
+			password = hash(key);
+		}
 
 		ofstream fOut;
 		fOut.open("saveData.txt", ios::app);
@@ -367,14 +373,27 @@ void mainLoop(
 		}
 		fOut << "\n";
 		fOut << "Direction: " << Direction.x << ' ' << Direction.y << "\n";
-		fOut << "Score: " << score;
+
+		if (currentLevel == bonus) {
+			fOut << "Score: " << score << "\n";
+		}
+		else {
+			fOut << "Food position: " << Food.x << ' ' << Food.y << "\n";
+			fOut << "Score: " << score;
+		}
+		if (currentLevel == bonus) {
+			fOut << "Time: " << maxTime;
+		}
 
 		fOut.close();
 
 		position = 8;
 		currRequirement = 0;
+		maxTime = 20;
+		tmp = 20;
 
 		saveGame();
+		saved = true;
 		endGame = true;
 	}
 }
@@ -385,14 +404,14 @@ void playGame(string name, string& dateAndTime) {
 	system("cls");
 
 	userName = name;
-	vector<Infomation> Snake;
-	Infomation Direction, Food;
+	vector<Information> Snake;
+	Information Direction, Food;
 	Status StatusMove, StatusGame;
 	string oldSnake = "";
 
 	srand((unsigned int)time(0));
 
-
+	saved = false;
 	int score = 0;
 	bool endGame = false, isDrawGate = false;
 
@@ -404,6 +423,8 @@ void playGame(string name, string& dateAndTime) {
 	level[currentLevel]();
 
 	init(Snake, Food, Direction, endGame, score);
+
+	int cal = false;
 
 	while (!endGame) {
 		Sleep(Speed);
@@ -429,6 +450,9 @@ void playGame(string name, string& dateAndTime) {
 
 		if (colorXY[xEnd][yEnd] == "DONE") {
 			clearInGate(7, 5);
+			randFood(Food);
+			gotoXY(Food.x, Food.y);
+			colorText(254, snakeColor);
 		}
 
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
@@ -442,6 +466,11 @@ void playGame(string name, string& dateAndTime) {
 				drawOutGate(1, 121, 38);
 			}
 			isDrawGate = true;
+		}
+
+		if (currentLevel == bonus && !cal) {
+			now = time(0);
+			cal = true;
 		}
 
 		if (maxTime == 0) {
@@ -509,10 +538,6 @@ void playGame(string name, string& dateAndTime) {
 			Direction.x = 0;
 			Direction.y = 1;
 
-			randFood(Food);
-			gotoXY(Food.x, Food.y);
-			colorText(254, snakeColor);
-
 			if (currentLevel == bonus) {
 				now = time(0);
 			}
@@ -523,24 +548,23 @@ void playGame(string name, string& dateAndTime) {
 
 	}
 
-	// end game
-	while (true)
-	{
-		playSoundLoop(L"resources/losegame.wav");
-		drawLosingSnake(Snake);
-		deleteBorder();
-		turnOffSound();
-		break;
+	if (!saved) {
+		// end game
+		while (true) {
+			playSoundLoop(L"resources/losegame.wav");
+			drawLosingSnake(Snake);
+			deleteBorder();
+			turnOffSound();
+			break;
+		}
+
+		if (Sound == Status::ON) {
+			playSoundLoop(L"resources/backgroundmusic.wav");
+		}
+
+		Sleep(500);
+		loseGame(name, dateAndTime);
 	}
-
-	if (Sound == Status::ON)
-	{
-		playSoundLoop(L"resources/backgroundmusic.wav");
-	}
-
-
-	Sleep(1);
-	loseGame(name, dateAndTime);
 
 	time_t now = time(0);
 	dateAndTime = ctime(&now);
@@ -588,7 +612,7 @@ int loadFileUserData() {
 			fscanf_s(file, "Snake Data: %s\n", user[cnt].snakeData, 100);
 
 			fscanf_s(file, "Snake Position: ");
-			Infomation data;
+			Information data;
 			for (int i = 0; i < user[cnt].snakeLenght; ++i) {
 				int x = 0, y = 0;
 				fscanf_s(file, "%d %d", &x, &y);
@@ -600,7 +624,18 @@ int loadFileUserData() {
 
 			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
 
-			fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
+			if (user[cnt].level != bonus) {
+				fscanf_s(file, "Food position: %d %d\n", &user[cnt].food.x, &user[cnt].food.y);
+			}
+
+			if (user[cnt].level == bonus) {
+				fscanf_s(file, "Score: %d\n", &user[cnt].score);
+				fscanf_s(file, "Time: %d\n\n", &user[cnt].time);
+			}
+			else {
+				fscanf_s(file, "Score: %d\n\n", &user[cnt].score);
+			}
+
 			++cnt;
 		}
 		fclose(file);
@@ -608,17 +643,71 @@ int loadFileUserData() {
 	return cnt;
 }
 
+void deleteElement(int pos, int &cnt) {
+	for (int i = pos; i < cnt - 1; i++) {
+		user[i] = user[i + 1];
+	}
+	--cnt;
+
+	ofstream fOut;
+	fOut.open("saveData.txt", ios::out);
+	for (int i = 0; i < cnt; ++i) {
+		if (i != 0) {
+			fOut << "\n";
+		}
+		fOut << "User: " << user[i].name << "\n";
+		fOut << "Password: " << user[i].password << "\n";
+		fOut << "Level: " << user[i].level + 1 << "\n";
+		fOut << "Length: " << user[i].snakeLenght << "\n";
+		fOut << "Snake Data: ";
+		for (int j = 0; j < user[i].snakeLenght; ++j) {
+			fOut << user[i].snakeData[j];
+		}
+		fOut << "\n";
+		fOut << "Snake Position: ";
+		for (int j = 0; j < user[i].snakeLenght; ++j) {
+			fOut << user[i].Snake[j].x << ' ' << user[i].Snake[j].y << ' ';
+		}
+		fOut << "\n";
+		fOut << "Direction: " << user[i].dirX << ' ' << user[i].dirY << "\n";
+
+		if (user[i].level != bonus) {
+			fOut << "Food position: " << user[i].food.x << ' ' << user[i].food.y << "\n";
+		}
+
+		if (i != cnt - 1) {
+			fOut << "Score: " << user[i].score << "\n";
+
+			if (user[i].level == bonus) {
+				fOut << "Time: " << user[i].time << "\n";
+			}
+		}
+		else {
+			fOut << "Score: " << user[i].score;
+
+			if (user[i].level == bonus) {
+				fOut << "Time: " << user[i].time;
+			}
+		}
+
+	}
+	fOut.close();
+}
+
 void loadGame() {
 	std::hash <std::string> hash;
 	int cnt = loadFileUserData();
 
-
+	loaded = true;
 	string uName;
 	int pos = -1;
 
 	string uPass;
 	loadGameGraphic(uName, uPass);
 	size_t uPassHash = hash(uPass);
+	password = uPassHash;
+
+	userName = uName;
 
 	for (int i = 0; i < cnt; ++i) {
 		if (user[i].name == uName && user[i].password == uPassHash) {
@@ -648,14 +737,15 @@ void loadGame() {
 	loadingGameGraphic();
 	system("cls");
 
-	vector<Infomation> Snake = user[pos].Snake;
-	Infomation Direction, Food;
+	vector<Information> Snake = user[pos].Snake;
+	Information Direction, Food;
 	Status StatusMove, StatusGame;
 	string oldSnake = "";
 
 	srand((unsigned int)time(0));
 
 	double Speed = SPEEDFIRST;
+	saved = false;
 	int score = 0;
 	bool endGame = false, isDrawGate = false;
 
@@ -669,16 +759,25 @@ void loadGame() {
 	//init(Snake, Food, Direction, endGame, score);
 
 	if (currRequirement < requirement[currentLevel]) {
-		randFood(Food);
-		gotoXY(Food.x, Food.y);
+		gotoXY(user[pos].food.x, user[pos].food.y);
+		colorXY[user[pos].food.x][user[pos].food.y] = "FOOD_INC";
 		colorText(254, snakeColor);
 	}
+
+	Food.x = user[pos].food.x;
+	Food.y = user[pos].food.y;
 
 	Direction.x = user[pos].dirX;
 	Direction.y = user[pos].dirY;
 
 	drawSnake(Snake);
 	Sleep(1000);
+
+	tmp = user[pos].time;
+
+	deleteElement(pos, cnt);
+
+	int cal = false;
 
 	while (!endGame) {
 		Sleep(Speed);
@@ -704,6 +803,11 @@ void loadGame() {
 
 		if (colorXY[xEnd][yEnd] == "DONE") {
 			clearInGate(7, 5);
+		}
+
+		if (currentLevel == bonus && !cal) {
+			now = time(0);
+			cal = true;
 		}
 
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && !isDrawGate) {
@@ -737,6 +841,8 @@ void loadGame() {
 		if ((maxTime == 0 || currRequirement == requirement[currentLevel]) && colorXY[xEnd][yEnd] == "PASS") {
 			isDrawGate = false;
 			system("cls");
+
+			tmp = 20;
 
 			if (maxTime == 0) {
 				maxTime = 20;
@@ -798,34 +904,47 @@ void loadGame() {
 
 	}
 
-	// end game
-	while (true)
-	{
-		playSoundLoop(L"resources/losegame.wav");
-		drawLosingSnake(Snake);
-		deleteBorder();
-		turnOffSound();
-		break;
-	}
-
-	if (Sound == Status::ON)
-	{
-		playSoundLoop(L"resources/backgroundmusic.wav");
-	}
-
-	Sleep(1);
 	string pName;
+	time_t now = time(0);
+	string dateAndTime = ctime(&now);
+	dateAndTime.pop_back();
+
 	for (int i = 0; i < strlen(user[pos].name); ++i) {
 		pName.push_back(user[pos].name[i]);
 	}
 
-	time_t now = time(0);
-	string dateAndTime = ctime(&now);
-	dateAndTime.pop_back();
-	loseGame(pName, dateAndTime);
+	if (!saved) {
+		// end game
+		while (true) {
+			playSoundLoop(L"resources/losegame.wav");
+			drawLosingSnake(Snake);
+			deleteBorder();
+			turnOffSound();
+			break;
+		}
+
+		if (Sound == Status::ON) {
+			playSoundLoop(L"resources/backgroundmusic.wav");
+		}
+
+		Sleep(500);
+		loseGame(pName, dateAndTime);
+	}
+
+	ofstream fileout;
+	fileout.open("saveScore.txt", ios::app);
+	
+	if (fileout.fail() == true) {
+		cout << "File cannot be found";
+	}
+	else {
+		fileout << endl << score << endl;
+		fileout << pName << endl;
+		fileout << dateAndTime;
+	}
 }
 
-void drawLosingSnake(vector<Infomation>& Snake) {
+void drawLosingSnake(vector<Information>& Snake) {
 	size_t size = Snake.size();
 	for (int i = 0; i < size; i++) {
 		if (i % 2 == 0)
