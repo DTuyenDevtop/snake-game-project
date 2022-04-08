@@ -1536,7 +1536,7 @@ void fillPassword (string& key) {
 	system("cls");
 	int t = 25;
 	Sleep(t);
-	textFillColor(3, 7);
+	textFillColor(3, BACKGROUND_COLOR);
 	int col1 = 55, row1 = 18;
 	gotoXY(col1, row1++);
 	wcout << L"██████   █████  ███████ ███████ ██     ██  ██████  ██████  ██████  ";
