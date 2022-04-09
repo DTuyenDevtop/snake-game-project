@@ -19,7 +19,7 @@ using namespace std;
 #define GRAY 7
 #define WHITE 15
 
-const int BACKGROUND_COLOR = GRAY;
+const int BACKGROUND_COLOR = WHITE;
 
 // Change the console color
 void changeConsoleColor(int BackC);
