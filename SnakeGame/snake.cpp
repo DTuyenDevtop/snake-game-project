@@ -223,6 +223,8 @@ void print() {
 	}
 }
 
+bool upSpeed = false;
+
 void mainLoop(
 	Status& StatusMove, Status& StatusGame,
 	vector<Information>& Snake,
@@ -283,6 +285,9 @@ void mainLoop(
 		}
 		else if (key == 27) {
 			StatusGame = Status::ESC; // ESC - Exit game
+		}
+		else if (key == 13) {
+			StatusGame = Status::SPEED_UP;
 		}
 	}
 
@@ -346,6 +351,19 @@ void mainLoop(
 		endGame = true;
 	}
 
+	if (StatusGame == Status::SPEED_UP) {
+		if (upSpeed == true) {
+			Speed += 20;
+			upSpeed = false;
+			StatusGame = Status::EMPTY;
+		}
+		else {
+			Speed -= 20;
+			upSpeed = true;
+			StatusGame = Status::EMPTY;
+		}
+	}
+
 	if (StatusGame == Status::SAVE) {
 		std::hash <std::string> hash;
 		cout << "Enter sercurity key: ";
@@ -404,6 +422,7 @@ void playGame(string name, string& dateAndTime) {
 	system("cls");
 
 	userName = name;
+	upSpeed = false;
 	vector<Information> Snake;
 	Information Direction, Food;
 	Status StatusMove, StatusGame;
@@ -494,6 +513,17 @@ void playGame(string name, string& dateAndTime) {
 
 			if (maxTime == 0) {
 				maxTime = 20;
+			}
+
+			if (upSpeed == true) {
+				Speed += 20;
+				upSpeed = false;
+				StatusGame = Status::EMPTY;
+			}
+			else {
+				Speed -= 20;
+				upSpeed = true;
+				StatusGame = Status::EMPTY;
 			}
 
 			if (currentLevel <= bonus - 1) {
@@ -699,6 +729,7 @@ void loadGame() {
 	int cnt = loadFileUserData();
 
 	loaded = true;
+	upSpeed = false;
 	string uName;
 	int pos = -1;
 
@@ -846,6 +877,17 @@ void loadGame() {
 
 			if (maxTime == 0) {
 				maxTime = 20;
+			}
+
+			if (upSpeed == true) {
+				Speed += 20;
+				upSpeed = false;
+				StatusGame = Status::EMPTY;
+			}
+			else {
+				Speed -= 20;
+				upSpeed = true;
+				StatusGame = Status::EMPTY;
 			}
 
 			if (currentLevel <= bonus - 1) {
