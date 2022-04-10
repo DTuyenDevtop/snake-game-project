@@ -391,6 +391,8 @@ void mainLoop(
 		}
 		fOut << "\n";
 		fOut << "Direction: " << Direction.x << ' ' << Direction.y << "\n";
+		fOut << "Requirement: " << currRequirement << "\n";
+		fOut << "Speed: " << Speed << "\n";
 
 		if (currentLevel == bonus) {
 			fOut << "Score: " << score << "\n";
@@ -652,7 +654,9 @@ int loadFileUserData() {
 				user[cnt].Snake.push_back(data);
 			}
 
-			fscanf_s(file, "\nDirection: %d %d\n", &user[cnt].dirX, &user[cnt].dirY);
+			fscanf_s(file, "\nDirection: %d %d", &user[cnt].dirX, &user[cnt].dirY);
+			fscanf_s(file, "\nRequirement: %d", &user[cnt].requirement);
+			fscanf_s(file, "\nSpeed: %d\n", &user[cnt].speed);
 
 			if (user[cnt].level != bonus) {
 				fscanf_s(file, "Food position: %d %d\n", &user[cnt].food.x, &user[cnt].food.y);
@@ -674,8 +678,10 @@ int loadFileUserData() {
 }
 
 void deleteElement(int pos, int &cnt) {
-	for (int i = pos; i < cnt - 1; i++) {
-		user[i] = user[i + 1];
+	if (cnt >= 2) {
+		for (int i = pos; i < cnt - 1; i++) {
+			user[i] = user[i + 1];
+		}
 	}
 	--cnt;
 
@@ -685,6 +691,7 @@ void deleteElement(int pos, int &cnt) {
 		if (i != 0) {
 			fOut << "\n";
 		}
+
 		fOut << "User: " << user[i].name << "\n";
 		fOut << "Password: " << user[i].password << "\n";
 		fOut << "Level: " << user[i].level + 1 << "\n";
@@ -700,6 +707,8 @@ void deleteElement(int pos, int &cnt) {
 		}
 		fOut << "\n";
 		fOut << "Direction: " << user[i].dirX << ' ' << user[i].dirY << "\n";
+		fOut << "Requirement: " << user[i].requirement << "\n";
+		fOut << "Speed: " << user[i].speed << "\n";
 
 		if (user[i].level != bonus) {
 			fOut << "Food position: " << user[i].food.x << ' ' << user[i].food.y << "\n";
@@ -775,13 +784,13 @@ void loadGame() {
 
 	srand((unsigned int)time(0));
 
-	double Speed = SPEEDFIRST;
+	double Speed = user[pos].speed;
 	saved = false;
-	int score = 0;
+	int score = user[pos].score;
 	bool endGame = false, isDrawGate = false;
 
 	currentLevel = user[pos].level;
-	currRequirement = user[pos].score / 100;
+	currRequirement = user[pos].requirement;
 
 	initLevel();
 
@@ -1035,7 +1044,8 @@ void drawLosingSnake(vector<Information>& Snake) {
 
 void decorateBonus() {
 	Screen gameDisplay;
-	gameDisplay.draw.retangle({ 135, 10 }, { 15, 0 }, RED, 1, colorXY);
+	gameDisplay.draw.retangle({ 135, 10 }, { 17, 0 }, RED, 1, colorXY);
+
 	textColor(6);
 	int col1 = 138, row1 = 12;
 	gotoXY(col1, row1++);

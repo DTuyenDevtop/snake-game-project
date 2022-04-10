@@ -30,6 +30,8 @@ struct User {
 	int score;
 	int time;
 	int snakeLenght;
+	int speed;
+	int requirement;
 	char* snakeData;
 	int dirX, dirY;
 	Information food;
@@ -37,7 +39,7 @@ struct User {
 
 	User() {
 		level = score = snakeLenght = dirX = dirY = 0;
-		password = 0, time = 0;
+		password = 0, time = 0, speed = 0, requirement = 0;
 		name = new char[20];
 		snakeData = new char[100];
 		Snake.clear();
