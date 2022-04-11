@@ -194,6 +194,7 @@ void blackBoard() {
 
 void setting() {
 	blackBoard();
+	
 
 	int row = 16, col = 60;
 
@@ -212,28 +213,31 @@ void setting() {
 	wcout << L"	╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝	";
 	gotoXY(col, row++);
 
-	int row5 = 33, col5 = 43;
+	int row5 = 32, col5 = 20;
 	gotoXY(col5, row5++);
 	textFillColor(GRAY, 64);
-	cout << "                                                                            ____";
+	cout << "                                                                                                                                   _____";
 	gotoXY(col5, row5++);
 	textFillColor(VIOLET, 64);
-	cout << "                                                                           / . .\\";
+	cout << "                                                                                                                                  / . . \\";
 	gotoXY(col5, row5++);
 	textFillColor(BLUE, 64);
-	cout << "                                                                           \\   -----<";
+	cout << "                                                                                                                                  \\   ------<";
 	gotoXY(col5, row5++);
 	textFillColor(GREEN, 64);
-	cout << "                                                                            \\  /";
+	cout << "                                                                                                                                   \\    /";
+	gotoXY(col5, row5++);
+	textFillColor(GREEN, 64);
+	cout << "                                                                                                                                    \\  /";
 	gotoXY(col5, row5++);
 	textFillColor(BYELLOW, 64);
-	cout << "   _________________________________________________________________________/ /";
+	cout << "   _________________________________________________________________________________________________________________________________/ /";
 	gotoXY(col5, row5++);
 	textFillColor(RED, 64);
-	cout << "-=:__________________________________________________________________________/";
+	cout << "-=:__________________________________________________________________________________________________________________________________/";
 
 	textFillColor(WHITE, 64);
-
+	settingGraphic();
 	// Exit
 	int row6 = 39, col6 = 43;
 	gotoXY(col6, row6++);

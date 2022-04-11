@@ -59,3 +59,5 @@ void loadGameGraphic(string& uName, string& password);
 void loadingGameGraphic();
 
 void fillPassword(string& key);
+
+void settingGraphic();

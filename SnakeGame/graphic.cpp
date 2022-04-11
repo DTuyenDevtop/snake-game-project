@@ -354,6 +354,56 @@ void testColor(short snakeColor) {
     cout << " DEMO COLOR " << endl;
 }
 
+void settingGraphic() {
+    textFillColor(RED, 64);
+    int line = 34, col = 21;
+    gotoXY(col, line++);
+    cout << "                                                                                                                            ____" << endl;
+    gotoXY(col, line++);
+    cout << "   ________________________________________________________________________________________________________________________/ O  \\" << endl;
+    gotoXY(col, line++);
+    cout << "-=:_____________________________________________________________________________________________________________________________/" << endl;
+    textFillColor(BYELLOW, 64);
 
+    int line1 = 32, col1 = 22;
+    gotoXY(col1, line1++);
+    cout << "                                                                                                                     ____" << endl;
+    gotoXY(col1, line1++);
+    cout << "   _________________________________________________________________________________________________________________/ O  \\" << endl;
+    gotoXY(col1, line1++);
+    cout << "-=:_____________________________________________________________________________________________________________________/ " << endl;
+
+    int line2 = 26, col2 = 115;
+    gotoXY(col2, line2++);
+    cout << "      {0O}" << endl;
+    gotoXY(col2, line2++);
+    cout << "      \\__/" << endl;
+    gotoXY(col2, line2++);
+    cout << "      /^/" << endl;
+    gotoXY(col2, line2++);
+    cout << "     ( (       " << endl;
+    gotoXY(col2, line2++);
+    cout << "     \\_\\_____" << endl;
+    gotoXY(col2, line2++);
+    cout << "     (_______)" << endl;
+    gotoXY(col2, line2++);
+    cout << "    (_________()Oo" << endl;
+
+    int line3 = 26, col3 = 48;
+    gotoXY(col3, line3++);
+    cout << "         {0O}" << endl;
+    gotoXY(col3, line3++);
+    cout << "         \\__/" << endl;
+    gotoXY(col3, line3++);
+    cout << "          \\^\\" << endl;
+    gotoXY(col3, line3++);
+    cout << "           ) )" << endl;
+    gotoXY(col3, line3++);
+    cout << "      _____/_/" << endl;
+    gotoXY(col3, line3++);
+    cout << "     (_______)" << endl;
+    gotoXY(col3, line3++);
+    cout << " o0()_________)" << endl;
+}
 
 
