@@ -194,8 +194,6 @@ void blackBoard() {
 
 void setting() {
 	blackBoard();
-	wrenchLeft();
-	plierRight();
 
 	int row = 16, col = 60;
 
