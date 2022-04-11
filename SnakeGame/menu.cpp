@@ -646,7 +646,7 @@ void guide() {
 	cout << "Enter";
 	textFillColor(WHITE, 64);
 	gotoXY(40, 29);
-	cout << "Increase speed";
+	cout << "Increase/decrease speed";
 
 	col = 22; row = row + 1;
 	for (int i = 0; i < 3; i++)
