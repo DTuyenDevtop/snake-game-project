@@ -712,7 +712,7 @@ void guide() {
 	// text for "be careful"
 	col = 77, row = 25;
 	gotoXY(col, row);
-	cout << (char)5 << " Do not hit any barricades ";
+	cout << (char)5 << " Do not hit any obstacles ";
 	gotoXY(col, row + 2);
 	cout << (char)5 << " Avoid the walls";
 	gotoXY(col, row + 4);
@@ -871,8 +871,8 @@ void highScore(vector<Player>& savePlayers, Screen screen) {
 			}
 		}
 	}
-	gotoXY(0, 0);
-	cout << savePlayers.size();
+	//gotoXY(0, 0);
+	//cout << savePlayers.size();
 	//textColor(WHITE);
 
 	textFillColor(14, BLACK);
